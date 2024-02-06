@@ -1,49 +1,46 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React from 'react';
+// import { View, Text } from 'react-native'
+// import React from 'react'
+// import LounchScreen from './screens/LaunchScreen'
+// import SignUp from './screens/authScreens/SignUp'
+
+// const App = () => {
+//   return (
+//     <View>
+//       {/* <Text>App</Text> */}
+//       {/* <LounchScreen/> */}
+//       <SignUp/>
+//     </View>
+//   )
+// }
+
+// export default App
+
+
+import { View, Text,StyleSheet } from 'react-native'
+import React from 'react'
+import SignUp from './screens/authScreens/SignUp'
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>what is this</Text>
+    <View>
+      {/* <Text>App</Text> */}
+      <SignUp/>
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    margin: 10,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  restaurantItem: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  restaurantLogo: {
-    width: 100,
-    height: 100,
+    paddingHorizontal: 15,
   },
 })
