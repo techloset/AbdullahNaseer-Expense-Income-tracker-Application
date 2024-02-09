@@ -1,5 +1,4 @@
-
-import {Image, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
 const ProfileHome = () => {
@@ -8,7 +7,7 @@ const ProfileHome = () => {
       <View style={styles.profileHeader}>
         <View style={styles.UserProfile}>
           <View style={styles.ImageContainer}>
-            <Image  source={require("../../assets/user.jpg")}/>
+            <Image style={styles.ProfileImage} source={require("../../assets/user.jpg")} />
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>
@@ -75,11 +74,10 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Align items to the top center
     justifyContent: 'center', // Center items horizontally
   },
-
   ProfileImage: {
-    height: '95%',
-    width: '95%',
-    borderRadius: 40,
+    height: '100%', // Adjusted to be 100% of the container height
+    width: '100%', // Adjusted to be 100% of the container width
+    borderRadius: 40, // Fully rounded image
   },
   usernameText: {
     fontSize: 14,
@@ -101,24 +99,24 @@ const styles = StyleSheet.create({
     // height: '70%',
     width: '100%',
     backgroundColor: 'white',
-   borderRadius:24
+    borderRadius: 24,
   },
-  actionImage:{
-height:52,
-width:52,
+  actionImage: {
+    height: 52,
+    width: 52,
   },
-  actionText:{
-    fontSize:16,
-    fontWeight:"500",
-    marginLeft:9,
+  actionText: {
+    fontSize: 16,
+    fontWeight: "500",
+    marginLeft: 9,
   },
   actionImgContainer: {
 
   },
-  actionContainer:{
-    flexDirection:"row",
+  actionContainer: {
+    flexDirection: "row",
     alignItems: 'center',
-    padding:17,
+    padding: 17,
   }
 });
 

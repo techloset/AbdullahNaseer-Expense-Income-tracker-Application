@@ -15,10 +15,10 @@ const App = () => {
       {/* <SignUp/> */}
       {/* <LoginScreen/> */}
       {/* <ForgetPassScreen/> */}
-      {/* <ProfileHome/> */}
+      <ProfileHome/>
       {/* <UpdateProfileScreen/> */}
       {/* <ResetPassword/> */}
-      <ConfirmAlert/>
+      {/* <ConfirmAlert/> */}
     </View>
   )
 }
