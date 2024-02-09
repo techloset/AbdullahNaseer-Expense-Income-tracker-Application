@@ -4,6 +4,7 @@ import SignUp from './screens/authScreens/SignUp'
 import LoginScreen from './screens/authScreens/LoginScreen'
 import ForgetPassScreen from './screens/ForgetPassScreen'
 import ProfileHome from './screens/ProfileScreens/ProfileHome'
+import UpdateProfileScreen from './screens/ProfileScreens/UpdateProfileScreen'
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       {/* <SignUp/> */}
       {/* <LoginScreen/> */}
       {/* <ForgetPassScreen/> */}
-      <ProfileHome/>
+      {/* <ProfileHome/> */}
+      <UpdateProfileScreen/>
     </View>
   )
 }

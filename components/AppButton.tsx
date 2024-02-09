@@ -18,11 +18,11 @@ export default AppButton;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#7F3DFF',
-    width: '90%',
+    width: '100%',
     height: 56,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 16,
     // borderWidth: 1,
     marginTop: 10,
   },

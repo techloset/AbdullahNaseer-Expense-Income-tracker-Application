@@ -8,7 +8,7 @@ const ProfileHome = () => {
       <View style={styles.profileHeader}>
         <View style={styles.UserProfile}>
           <View style={styles.ImageContainer}>
-            <Image  source={require("../../assets/edit.png")}/>
+            <Image  source={require("../../assets/user.jpg")}/>
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 16,
+    // backgroundColor:"red"
   },
   card: {
     // height: '70%',
