@@ -7,6 +7,7 @@ import ProfileHome from './screens/ProfileScreens/ProfileHome'
 import UpdateProfileScreen from './screens/ProfileScreens/UpdateProfileScreen'
 import ResetPassword from './screens/ProfileScreens/ResetPassword'
 import ConfirmAlert from './components/ConfirmAlert'
+import MenuBar from './components/MenuBar'
 
 const App = () => {
   return (
@@ -15,10 +16,11 @@ const App = () => {
       {/* <SignUp/> */}
       {/* <LoginScreen/> */}
       {/* <ForgetPassScreen/> */}
-      <ProfileHome/>
+      {/* <ProfileHome/> */}
       {/* <UpdateProfileScreen/> */}
       {/* <ResetPassword/> */}
       {/* <ConfirmAlert/> */}
+<MenuBar/>
     </View>
   )
 }
