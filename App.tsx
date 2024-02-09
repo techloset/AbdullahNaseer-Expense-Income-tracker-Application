@@ -5,6 +5,7 @@ import LoginScreen from './screens/authScreens/LoginScreen'
 import ForgetPassScreen from './screens/ForgetPassScreen'
 import ProfileHome from './screens/ProfileScreens/ProfileHome'
 import UpdateProfileScreen from './screens/ProfileScreens/UpdateProfileScreen'
+import ResetPassword from './screens/ProfileScreens/ResetPassword'
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
       {/* <LoginScreen/> */}
       {/* <ForgetPassScreen/> */}
       {/* <ProfileHome/> */}
-      <UpdateProfileScreen/>
+      {/* <UpdateProfileScreen/> */}
+      <ResetPassword/>
     </View>
   )
 }

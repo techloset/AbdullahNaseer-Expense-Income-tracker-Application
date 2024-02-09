@@ -1,7 +1,13 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const NavigationHeader = () => {
+interface NavigationHeaderProps {
+  title: string;
+}
+
+// const AppButton: React.FC<AppButtonProps>
+
+const NavigationHeader: React.FC<NavigationHeaderProps> =({title}) => {
   return (
     <View>
       <View style={styles.navigationHeader}>
@@ -9,7 +15,7 @@ const NavigationHeader = () => {
           <Image source={require('../assets/arrow.png')} />
         </View>
         <View style={styles.centerView}>
-          <Text style={styles.headerText}>Update Profile</Text>
+          <Text style={styles.headerText}>{title}</Text>
         </View>
       </View>
     </View>
@@ -26,6 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom:16
       },
       arrowButton: {
         justifyContent: 'flex-start',

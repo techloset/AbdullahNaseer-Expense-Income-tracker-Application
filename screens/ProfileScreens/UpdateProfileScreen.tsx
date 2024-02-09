@@ -6,7 +6,7 @@ import AppButton from '../../components/AppButton';
 const UpdateProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <NavigationHeader />
+      <NavigationHeader title={"Update Profile"} />
       <View style={styles.profileView}>
         <View style={styles.imageContainer}>
           <Image
