@@ -6,6 +6,7 @@ import ForgetPassScreen from './screens/ForgetPassScreen'
 import ProfileHome from './screens/ProfileScreens/ProfileHome'
 import UpdateProfileScreen from './screens/ProfileScreens/UpdateProfileScreen'
 import ResetPassword from './screens/ProfileScreens/ResetPassword'
+import ConfirmAlert from './components/ConfirmAlert'
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
       {/* <ForgetPassScreen/> */}
       {/* <ProfileHome/> */}
       {/* <UpdateProfileScreen/> */}
-      <ResetPassword/>
+      {/* <ResetPassword/> */}
+      <ConfirmAlert/>
     </View>
   )
 }
