@@ -1,30 +1,18 @@
-// import { View, Text } from 'react-native'
-// import React from 'react'
-// import LounchScreen from './screens/LaunchScreen'
-// import SignUp from './screens/authScreens/SignUp'
-
-// const App = () => {
-//   return (
-//     <View>
-//       {/* <Text>App</Text> */}
-//       {/* <LounchScreen/> */}
-//       <SignUp/>
-//     </View>
-//   )
-// }
-
-// export default App
-
-
 import { View, Text,StyleSheet } from 'react-native'
 import React from 'react'
 import SignUp from './screens/authScreens/SignUp'
+import LoginScreen from './screens/authScreens/LoginScreen'
+import ForgetPassScreen from './screens/ForgetPassScreen'
+import ProfileHome from './screens/ProfileScreens/ProfileHome'
 
 const App = () => {
   return (
     <View>
       {/* <Text>App</Text> */}
-      <SignUp/>
+      {/* <SignUp/> */}
+      {/* <LoginScreen/> */}
+      {/* <ForgetPassScreen/> */}
+      <ProfileHome/>
     </View>
   )
 }
