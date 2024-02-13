@@ -14,10 +14,12 @@ import Graph from './components/Graph';
 import Filter from './components/Filter';
 import HomeHeader from './components/HomeHeader';
 import HomeList from './components/HomeList';
+import Home from './screens/HomeScreens/Home';
+import ExpenseInputScreen from './screens/InputScreens/ExpenseInputScreen';
 
 const App = () => {
   return (
-    <View>
+    <View style={styles.container}>
       {/* <Text>App</Text> */}
       {/* <SignUp/> */}
       {/* <LoginScreen/> */}
@@ -27,12 +29,14 @@ const App = () => {
       {/* <ResetPassword/> */}
       {/* <ConfirmAlert/> */}
       {/* <MenuBar/> */}
-      <HeaderMenu />
+      {/* <HeaderMenu />
       <HeroSection />
       <Graph />
       <Filter />
       <HomeHeader />
-      <HomeList />
+      <HomeList /> */}
+      {/* <Home/> */}
+      <ExpenseInputScreen/>
     </View>
   );
 };
@@ -42,9 +46,5 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 15,
   },
 });
