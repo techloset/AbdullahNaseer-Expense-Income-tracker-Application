@@ -16,6 +16,8 @@ import HomeHeader from './components/HomeHeader';
 import HomeList from './components/HomeList';
 import Home from './screens/HomeScreens/Home';
 import ExpenseInputScreen from './screens/InputScreens/ExpenseInputScreen';
+import IncomeInputScreen from './screens/InputScreens/IncomeInput';
+import AttachmentInputPopUp from './components/AttachmentInputPopUp';
 
 const App = () => {
   return (
@@ -36,7 +38,9 @@ const App = () => {
       <HomeHeader />
       <HomeList /> */}
       {/* <Home/> */}
-      {/* <ExpenseInputScreen/> */}
+      <ExpenseInputScreen/>
+      {/* <IncomeInputScreen/> */}
+      {/* <AttachmentInputPopUp/> */}
     </View>
   );
 };
