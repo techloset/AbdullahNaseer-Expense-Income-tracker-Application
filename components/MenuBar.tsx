@@ -40,6 +40,7 @@ const MenuBar = () => {
           <Text style={styles.menuItemText}>Profile</Text>
         </View>
       </View>
+      
     </View>
   );
 };

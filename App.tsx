@@ -38,8 +38,8 @@ const App = () => {
       <HomeHeader />
       <HomeList /> */}
       {/* <Home/> */}
-      <ExpenseInputScreen/>
-      {/* <IncomeInputScreen/> */}
+      {/* <ExpenseInputScreen/> */}
+      <IncomeInputScreen/>
       {/* <AttachmentInputPopUp/> */}
     </View>
   );
