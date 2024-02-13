@@ -36,7 +36,7 @@ const App = () => {
       <HomeHeader />
       <HomeList /> */}
       {/* <Home/> */}
-      <ExpenseInputScreen/>
+      {/* <ExpenseInputScreen/> */}
     </View>
   );
 };
