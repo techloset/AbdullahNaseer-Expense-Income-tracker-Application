@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    padding: 2,
+    padding: 2, 
   },
 });

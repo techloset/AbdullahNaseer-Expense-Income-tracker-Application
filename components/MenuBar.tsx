@@ -6,22 +6,37 @@ const MenuBar = () => {
     <View>
       <View style={styles.menu}>
         <View style={styles.menuItem}>
-        <Image style={styles.menuItemImg} source={require("../assets/home.png")} />
+          <Image
+            style={styles.menuItemImg}
+            source={require('../assets/home.png')}
+          />
           <Text style={styles.menuItemText}>Home</Text>
         </View>
         <View style={styles.menuItem}>
-        <Image style={styles.menuItemImg} source={require("../assets/transaction.png")} />
+          <Image
+            style={styles.menuItemImg}
+            source={require('../assets/transaction.png')}
+          />
           <Text style={styles.menuItemText}>Transaction</Text>
         </View>
         <View style={styles.addItemButton}>
-        <Image style={styles.menuItemImg} source={require("../assets/close.png")} />
+          <Image
+            style={styles.menuItemImg}
+            source={require('../assets/close.png')}
+          />
         </View>
         <View style={styles.menuItem}>
-        <Image style={styles.menuItemImg} source={require("../assets/piechart.png")} />
+          <Image
+            style={styles.menuItemImg}
+            source={require('../assets/piechart.png')}
+          />
           <Text style={styles.menuItemText}>Budget</Text>
         </View>
         <View style={styles.menuItem}>
-        <Image style={styles.menuItemImg} source={require("../assets/user.png")} />
+          <Image
+            style={styles.menuItemImg}
+            source={require('../assets/user.png')}
+          />
           <Text style={styles.menuItemText}>Profile</Text>
         </View>
       </View>
@@ -39,9 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'whitesmoke',
     width: '100%',
     paddingHorizontal: 18,
-    paddingVertical:16,
-    borderTopEndRadius:10,
-    borderTopStartRadius:10,
+    paddingVertical: 16,
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
   },
   menuItem: {
     // width: 50,
@@ -51,22 +66,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  menuItemImg:{
+  menuItemImg: {
     // height:32,
     // width:32,
   },
-  menuItemText:{
+  menuItemText: {
     fontSize: 10,
     fontWeight: 'bold',
   },
-  addItemButton:{
+  addItemButton: {
     width: 56,
     height: 56,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
-    backgroundColor:"#7F3DFF"
-  }
+    backgroundColor: '#7F3DFF',
+  },
 });
 
 
