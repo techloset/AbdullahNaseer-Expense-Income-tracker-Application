@@ -18,29 +18,12 @@ import Home from './screens/HomeScreens/Home';
 import ExpenseInputScreen from './screens/InputScreens/ExpenseInputScreen';
 import IncomeInputScreen from './screens/InputScreens/IncomeInput';
 import AttachmentInputPopUp from './components/AttachmentInputPopUp';
+import Navigation from './navigation/Navigation';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      {/* <Text>App</Text> */}
-      {/* <SignUp/> */}
-      {/* <LoginScreen/> */}
-      {/* <ForgetPassScreen/> */}
-      {/* <ProfileHome/> */}
-      {/* <UpdateProfileScreen/> */}
-      {/* <ResetPassword/> */}
-      {/* <ConfirmAlert/> */}
-      {/* <MenuBar/> */}
-      {/* <HeaderMenu />
-      <HeroSection />
-      <Graph />
-      <Filter />
-      <HomeHeader />
-      <HomeList /> */}
-      {/* <Home/> */}
-      {/* <ExpenseInputScreen/> */}
-      <IncomeInputScreen/>
-      {/* <AttachmentInputPopUp/> */}
+      <Navigation/>
     </View>
   );
 };

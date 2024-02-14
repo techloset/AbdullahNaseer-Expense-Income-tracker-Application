@@ -1,28 +1,48 @@
-import {View, Text, StyleSheet, TextInput, Image, Button} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import AppButton from '../../components/AppButton';
 import GoogleLoginButton from '../../components/GoogleLoginButton';
-import ForgetPassButton from '../../components/ForgetPassButton';
+import NavigationHeader from '../../components/NavigationHeader';
 
-const SignUp = () => {
+interface SignUpScreenProps {
+  navigation: any;
+}
+
+const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
-      {/* <View style={styles.navigationBar}>
-        <Text style={styles.arrowButton}>SignUp</Text>
-      </View> */}
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="Name" />
-        <TextInput style={styles.textInput} placeholder="Email" />
-        <View style={styles.password}>
-          <TextInput placeholder="Password" />
-          <Image source={require('../../assets/eye.png')} />
+      <NavigationHeader
+        title="Sign Up"
+        headerStyle={{textColor: 'black'}}
+        navigation={navigation}
+      />
+      <View style={styles.content}>
+        <View style={styles.inputContainer}>
+          <TextInput style={styles.textInput} placeholder="Name" />
+          <TextInput style={styles.textInput} placeholder="Email" />
+          <View style={styles.password}>
+            <TextInput placeholder="Password" />
+            <Image source={require('../../assets/eye.png')} />
+          </View>
+        </View>
+        <View style={styles.buttonContainer}>
+          <AppButton title={'Sign Up'} />
+          <GoogleLoginButton title={'Continue with Google'} />
+          <Text>
+            Already have an account?
+            <TouchableOpacity onPress={() => navigation.navigate('login')}>
+              <Text style={styles.spanText}>Login</Text>
+            </TouchableOpacity>
+          </Text>
         </View>
       </View>
-      <AppButton title={'sign up'} />
-      <GoogleLoginButton title={'Continue with Google'} />
-      <Text>
-        Already have an account? <Text style={styles.spanText}>Login</Text>{' '}
-      </Text>
     </View>
   );
 };
@@ -31,29 +51,26 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
     backgroundColor: '#F5FCFF',
-    height: '100%',
   },
-  navigationBar: {
-    flexDirection: 'row',
+  content: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    paddingHorizontal: 20,
   },
-  arrowButton: {},
   inputContainer: {
-    width: '90%',
+    width: '100%',
     marginBottom: 20,
   },
   textInput: {
     width: '100%',
     height: 56,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: 'whitesmoke',
     paddingHorizontal: 10,
     marginTop: 10,
   },
@@ -65,9 +82,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: 'whitesmoke',
     paddingHorizontal: 10,
     marginTop: 10,
+  },
+  buttonContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   spanText: {
     color: '#7F3DFF',
