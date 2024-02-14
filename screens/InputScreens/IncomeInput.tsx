@@ -1,22 +1,35 @@
-import {StyleSheet, TextInput, Text, View, TouchableOpacity, Modal, FlatList, ImageBackground, TouchableWithoutFeedback} from 'react-native';
-import React, { useState } from 'react';
+import {
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  FlatList,
+  ImageBackground,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import React, {useState} from 'react';
 import NavigationHeader from '../../components/NavigationHeader';
 import AppButton from '../../components/AppButton';
 import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
 
 const categories = [
-  { id: 1, name: 'Food' },
-  { id: 2, name: 'Transport' },
-  { id: 3, name: 'Others' },
+  {id: 1, name: 'Food'},
+  {id: 2, name: 'Transport'},
+  {id: 3, name: 'Others'},
 ];
+interface IncomeInputScreenProps {
+  navigation: any;
+}
 
-const IncomeInputScreen = () => {
+const IncomeInputScreen: React.FC<IncomeInputScreenProps> = ({navigation}) => {
   const [category, setCategory] = useState('');
   const [expenseName, setExpenseName] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [fileModalVisible, setFileModalVisible] = useState(false);
 
-  const selectCategory = (categoryName:string) => {
+  const selectCategory = (categoryName: string) => {
     setCategory(categoryName);
     setModalVisible(false);
   };
@@ -33,7 +46,11 @@ const IncomeInputScreen = () => {
     <TouchableWithoutFeedback onPress={handleOutsidePress}>
       <View style={styles.container}>
         <View style={styles.navigationContainer}>
-          <NavigationHeader title={'Income'} />
+          <NavigationHeader
+            title="Login"
+            headerStyle={{textColor: 'white'}}
+            navigation={navigation}
+          />
         </View>
         <View style={styles.displayContainer}>
           <Text style={styles.displayContainerHeading}>How Much ?</Text>
@@ -43,24 +60,21 @@ const IncomeInputScreen = () => {
           <View>
             <TouchableOpacity
               style={styles.textInput}
-              onPress={() => setModalVisible(true)}
-            >
+              onPress={() => setModalVisible(true)}>
               <Text>{category || 'Select Category'}</Text>
             </TouchableOpacity>
             <Modal
               animationType="slide"
               transparent={true}
-              visible={modalVisible}
-            >
+              visible={modalVisible}>
               <View style={styles.modalContainer}>
                 <FlatList
                   data={categories}
-                  keyExtractor={(item) => item.id.toString()}
+                  keyExtractor={item => item.id.toString()}
                   renderItem={({item}) => (
                     <TouchableOpacity
                       style={styles.categoryItem}
-                      onPress={() => selectCategory(item.name)}
-                    >
+                      onPress={() => selectCategory(item.name)}>
                       <Text>{item.name}</Text>
                     </TouchableOpacity>
                   )}
@@ -75,20 +89,18 @@ const IncomeInputScreen = () => {
             />
             <TouchableOpacity
               style={styles.fileInput}
-              onPress={toggleFileModal}
-            >
+              onPress={toggleFileModal}>
               <Text>Choose File</Text>
             </TouchableOpacity>
             <Modal
               animationType="fade"
               transparent={true}
-              visible={fileModalVisible}
-            >
+              visible={fileModalVisible}>
               <TouchableWithoutFeedback onPress={handleOutsidePress}>
                 <View style={styles.fileModalContainer}>
                   <View style={styles.modalBackground} />
                   <View style={styles.attachmentPopup}>
-                    <AttachmentInputPopUp/>
+                    <AttachmentInputPopUp />
                   </View>
                 </View>
               </TouchableWithoutFeedback>
@@ -185,3 +197,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+
+
+

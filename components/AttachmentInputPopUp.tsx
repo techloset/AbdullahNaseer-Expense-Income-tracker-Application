@@ -10,11 +10,11 @@ const AttachmentInputPopUp = () => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttonContainer}>
         <Image source={require('../assets/gallery.png')} />
-        <Text>Camera</Text>
+        <Text>Gallery</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttonContainer}>
         <Image source={require('../assets/file.png')} />
-        <Text>Camera</Text>
+        <Text>File</Text>
       </TouchableOpacity>
     </View>
   );
@@ -28,9 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // flex:1,
     backgroundColor: '#FFFFFF',
-    // borderRadius: 16,
     borderTopEndRadius: 16,
     borderTopStartRadius: 16,
   },
@@ -40,6 +38,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal:5,
     borderRadius: 16,
+    flex: 1,
   },
 });

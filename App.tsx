@@ -19,12 +19,17 @@ import ExpenseInputScreen from './screens/InputScreens/ExpenseInputScreen';
 import IncomeInputScreen from './screens/InputScreens/IncomeInput';
 import AttachmentInputPopUp from './components/AttachmentInputPopUp';
 import Navigation from './navigation/Navigation';
+import Transaction from './screens/HomeScreens/Transaction';
+import FilterTransactionPopup from './components/FilterTransactionPopup';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <Navigation/>
+      {/* <Navigation/> */}
       {/* <Home/> */}
+      {/* <IncomeInputScreen/> */}
+      {/* <Transaction/> */}
+      <FilterTransactionPopup/>
     </View>
   );
 };

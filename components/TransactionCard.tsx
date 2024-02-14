@@ -1,9 +1,9 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 const TransactionCard = () => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <View style={styles.detailsContainer}>
         <Image
           style={styles.inputImg}
@@ -20,7 +20,7 @@ const TransactionCard = () => {
         <Text style={styles.timeContainerCash}>-$120</Text>
         <Text style={styles.timeContainerTime}>10:00 PM</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

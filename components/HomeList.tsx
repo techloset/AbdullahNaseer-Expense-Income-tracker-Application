@@ -24,8 +24,6 @@
 //   },
 // });
 
-
-
 import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import TransactionCard from './TransactionCard';
