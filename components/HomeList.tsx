@@ -1,22 +1,28 @@
-// // import {FlatList, StyleSheet, Text, View} from 'react-native';
-// // import React from 'react';
-// // import TransactionCard from './TransactionCard';
+// import {FlatList, StyleSheet, Text, View} from 'react-native';
+// import React from 'react';
+// import TransactionCard from './TransactionCard';
 
-// // const HomeList = () => {
-// //   return (
-// //     <View style={styles.container}>
-// //     <TransactionCard/>
-// //     </View>
-// //   );
-// // };
+// const HomeList = () => {
+//   return (
+//     <View style={styles.container}>
+//     <TransactionCard/>
+//     <TransactionCard/>
+//     <TransactionCard/>
+//     <TransactionCard/>
+//     <TransactionCard/>
+//     <TransactionCard/>
 
-// // export default HomeList;
+//     </View>
+//   );
+// };
 
-// // const styles = StyleSheet.create({
-// //   container: {
-// //     margin:16,
-// //   },
-// // });
+// export default HomeList;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     margin:16,
+//   },
+// });
 
 
 

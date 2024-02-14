@@ -2,7 +2,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import SignUp from './screens/authScreens/SignUp';
 import LoginScreen from './screens/authScreens/LoginScreen';
-import ForgetPassScreen from './screens/ForgetPassScreen';
+import ForgetPassScreen from './screens/authScreens/ForgetPassScreen';
 import ProfileHome from './screens/ProfileScreens/ProfileHome';
 import UpdateProfileScreen from './screens/ProfileScreens/UpdateProfileScreen';
 import ResetPassword from './screens/ProfileScreens/ResetPassword';
@@ -24,6 +24,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Navigation/>
+      {/* <Home/> */}
     </View>
   );
 };

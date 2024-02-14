@@ -30,7 +30,7 @@
 //   }
 // });
 
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import HomeHeader from '../../components/HomeHeader';
 import HeroSection from '../../components/HeroSection';
@@ -52,7 +52,6 @@ const Home = () => {
         <HomeList />
       </View>
       <MenuBar />
-      
     </View>
   );
 };
@@ -68,3 +67,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
