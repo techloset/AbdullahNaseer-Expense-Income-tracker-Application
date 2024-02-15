@@ -3,7 +3,7 @@ import React from 'react';
 import NavigationHeader from '../../components/NavigationHeader';
 import AppButton from '../../components/AppButton';
 
-const ResetProfile = () => {
+const ResetPassword = () => {
   return (
     <View style={styles.container}>
       <NavigationHeader title={'Reset Password'} />
@@ -19,7 +19,7 @@ const ResetProfile = () => {
   );
 };
 
-export default ResetProfile;
+export default ResetPassword;
 
 const styles = StyleSheet.create({
   container: {

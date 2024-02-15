@@ -41,6 +41,9 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
               <Text style={styles.spanText}>Login</Text>
             </TouchableOpacity>
           </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text>HomeScreens</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -1,13 +1,20 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-const ProfileHome = () => {
+interface ProfileHomeProps {
+  navigation: any;
+}
+
+const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   return (
     <View>
       <View style={styles.profileHeader}>
         <View style={styles.UserProfile}>
           <View style={styles.ImageContainer}>
-            <Image style={styles.ProfileImage} source={require("../../assets/user.jpg")} />
+            <Image
+              style={styles.ProfileImage}
+              source={require('../../assets/user.jpg')}
+            />
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>
@@ -15,33 +22,43 @@ const ProfileHome = () => {
           </View>
         </View>
 
-        <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('UpdateProfileScreen')}>
           <Image source={require('../../assets/edit.png')} />
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.cardContainer}>
         <View style={styles.card}>
           <View style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
-              <Image style={styles.actionImage} source={require('../../assets/setting.png')} />
+              <Image
+                style={styles.actionImage}
+                source={require('../../assets/setting.png')}
+              />
             </View>
-            <View >
+            <View>
               <Text style={styles.actionText}>Setting</Text>
             </View>
           </View>
           <View style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
-              <Image style={styles.actionImage} source={require('../../assets/warning.png')} />
+              <Image
+                style={styles.actionImage}
+                source={require('../../assets/warning.png')}
+              />
             </View>
-            <View >
+            <View>
               <Text style={styles.actionText}>Reset Password</Text>
             </View>
           </View>
           <View style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
-              <Image style={styles.actionImage} source={require('../../assets/logout.png')} />
+              <Image
+                style={styles.actionImage}
+                source={require('../../assets/logout.png')}
+              />
             </View>
-            <View >
+            <View>
               <Text style={styles.actionText}>Logout</Text>
             </View>
           </View>
@@ -107,18 +124,13 @@ const styles = StyleSheet.create({
   },
   actionText: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: '500',
     marginLeft: 9,
   },
-  actionImgContainer: {
-
-  },
+  actionImgContainer: {},
   actionContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     alignItems: 'center',
     padding: 17,
-  }
+  },
 });
-
-
-
