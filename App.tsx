@@ -6,7 +6,7 @@ import Home from './screens/HomeScreens/Home';
 const App = () => {
   return (
     <View style={styles.container}>
-      <Navigation/>
+      <Navigation />
     </View>
   );
 };

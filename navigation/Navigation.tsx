@@ -45,8 +45,7 @@ const TabNavigation = () => (
       },
       tabBarActiveTintColor: 'tomato',
       tabBarInactiveTintColor: 'gray',
-    })}>          
-
+    })}>
     <Tab.Screen
       name="HomeScreen"
       component={Home}

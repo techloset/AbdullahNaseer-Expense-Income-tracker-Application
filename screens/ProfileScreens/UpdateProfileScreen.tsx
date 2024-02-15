@@ -109,19 +109,19 @@
 //   },
 // });
 
-
 import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
 import React from 'react';
 import NavigationHeader from '../../components/NavigationHeader';
 import AppButton from '../../components/AppButton';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation hook
 
 const UpdateProfileScreen = () => {
-  const navigation = useNavigation(); // Use useNavigation hook to get navigation object
+  // const navigation = useNavigation(); // Use useNavigation hook to get navigation object
 
   return (
     <View style={styles.container}>
-      <NavigationHeader title={"Update Profile"} navigation={navigation} /> {/* Pass navigation prop */}
+      <NavigationHeader title={'Update Profile'}  />
+      {/* Pass navigation prop */}
       <View style={styles.profileView}>
         <View style={styles.imageContainer}>
           <Image
@@ -145,16 +145,13 @@ const UpdateProfileScreen = () => {
         <TextInput style={styles.textInput} placeholder="Name" />
       </View>
       <View style={styles.UpdateProfileBtn}>
-        <AppButton title={"Update Profile"}/>
+        <AppButton title={'Update Profile'} />
       </View>
     </View>
   );
 };
 
 export default UpdateProfileScreen;
-
-
-
 
 const styles = StyleSheet.create({
   container: {

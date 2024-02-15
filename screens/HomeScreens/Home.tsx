@@ -43,14 +43,14 @@ import MenuBar from '../../components/MenuBar';
 const Home = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
+      <ScrollView style={styles.content}>
         <HeaderMenu />
         <HeroSection />
         <Graph />
         <Filter />
         <HomeHeader />
         <HomeList />
-      </View>
+      </ScrollView>
       <MenuBar />
     </View>
   );

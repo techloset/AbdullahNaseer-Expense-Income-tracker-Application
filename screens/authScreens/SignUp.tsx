@@ -21,7 +21,7 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
       <NavigationHeader
         title="Sign Up"
         headerStyle={{textColor: 'black'}}
-        navigation={navigation}
+        // navigation={navigation}
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>

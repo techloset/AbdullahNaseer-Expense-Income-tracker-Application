@@ -40,7 +40,9 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
               <Text style={styles.actionText}>Setting</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ResetPassword')}
+            style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
