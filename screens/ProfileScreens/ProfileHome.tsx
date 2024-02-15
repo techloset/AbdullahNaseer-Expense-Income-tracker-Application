@@ -29,7 +29,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
       </View>
       <View style={styles.cardContainer}>
         <View style={styles.card}>
-          <View style={styles.actionContainer}>
+          <TouchableOpacity style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
@@ -39,8 +39,8 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             <View>
               <Text style={styles.actionText}>Setting</Text>
             </View>
-          </View>
-          <View style={styles.actionContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
@@ -48,10 +48,14 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
               />
             </View>
             <View>
-              <Text style={styles.actionText}>Reset Password</Text>
+              <Text
+                style={styles.actionText}
+                onPress={navigation.navigate('ResetPassword')}>
+                Reset Password
+              </Text>
             </View>
-          </View>
-          <View style={styles.actionContainer}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
@@ -61,7 +65,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             <View>
               <Text style={styles.actionText}>Logout</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
