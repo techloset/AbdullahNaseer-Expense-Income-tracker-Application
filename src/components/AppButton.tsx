@@ -3,11 +3,12 @@ import React from 'react';
 
 interface AppButtonProps {
   title: string;
+  onPress: () => void
 }
 
-const AppButton: React.FC<AppButtonProps> = ({title}) => {
+const AppButton: React.FC<AppButtonProps> = ({title,onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );

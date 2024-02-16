@@ -17,7 +17,7 @@ const Testing = () => {
     try {
       console.log(text);
       await db.collection('todos').add({
-        title: "lorem lipsem",
+        title: text,
         completed: false,
       });
       setText('');

@@ -6,16 +6,30 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import AppButton from '../../components/AppButton';
 import GoogleLoginButton from '../../components/GoogleLoginButton';
 import NavigationHeader from '../../components/NavigationHeader';
-
+import auth from '@react-native-firebase/auth';
 interface SignUpScreenProps {
   navigation: any;
 }
 
 const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignup = async () => {
+    try {
+      const user = await auth().createUserWithEmailAndPassword(email, password);
+      console.log(user);
+      console.log('user created successfully');
+    } catch (error) {
+      console.error(error);
+      console.log('error creating user');
+    }
+  };
   return (
     <View style={styles.container}>
       <NavigationHeader
@@ -25,15 +39,29 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="Name" />
-          <TextInput style={styles.textInput} placeholder="Email" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Name"
+            value={name}
+            onChangeText={setName}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Email"
+            value={email}
+            onChangeText={value => setEmail(value)}
+          />
           <View style={styles.password}>
-            <TextInput placeholder="Password" />
+            <TextInput
+              placeholder="Password"
+              value={password}
+              onChangeText={value => setPassword(value)}
+            />
             <Image source={require('../../assets/eye.png')} />
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <AppButton title={'Sign Up'} />
+          <AppButton onPress={handleSignup} title={'Sign Up'} />
           <GoogleLoginButton title={'Continue with Google'} />
           <Text>
             Already have an account?
@@ -42,7 +70,7 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
             </TouchableOpacity>
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text>HomeScreens</Text>
+            <Text>HomeScreens</Text>
           </TouchableOpacity>
         </View>
       </View>
