@@ -3,7 +3,7 @@ import React from 'react';
 
 interface AppButtonProps {
   title: string;
-  onPress: () => void
+  onPress?: () => void
 }
 
 const AppButton: React.FC<AppButtonProps> = ({title,onPress}) => {

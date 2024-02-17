@@ -11,6 +11,7 @@ import ProfileHome from '../screens/ProfileScreens/ProfileHome';
 import UpdateProfileScreen from '../screens/ProfileScreens/UpdateProfileScreen';
 import ResetPassword from '../screens/ProfileScreens/ResetPassword';
 import IncomeInputScreen from '../screens/InputScreens/IncomeInput';
+import Budget from '../screens/HomeScreens/Budget';
 import ExpenseInputScreen from '../screens/InputScreens/ExpenseInputScreen';
 import {Image} from 'react-native';
 
@@ -18,6 +19,7 @@ import {Image} from 'react-native';
 import homeIcon from '../assets/home.png';
 import transactionIcon from '../assets/transaction.png';
 import profileIcon from '../assets/user.png';
+import budgetIcon from '../assets/piechart.png';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -34,6 +36,8 @@ const TabNavigation = () => (
           iconSource = focused ? transactionIcon : transactionIcon;
         } else if (route.name === 'ProfileHome') {
           iconSource = focused ? profileIcon : profileIcon;
+        } else if (route.name === 'Budget') {
+          iconSource = focused ? budgetIcon : budgetIcon;
         }
 
         return (
@@ -43,7 +47,7 @@ const TabNavigation = () => (
           />
         );
       },
-      tabBarActiveTintColor: 'tomato',
+      tabBarActiveTintColor: '#7F3DFF',
       tabBarInactiveTintColor: 'gray',
     })}>
     <Tab.Screen
@@ -54,6 +58,16 @@ const TabNavigation = () => (
     <Tab.Screen
       name="Transaction"
       component={Transaction}
+      options={{headerShown: false}}
+    />
+    {/* <Tab.Screen
+      name="Transaction"
+      component={Transaction}
+      options={{headerShown: false}}
+    /> */}
+    <Tab.Screen
+      name="Budget"
+      component={Budget}
       options={{headerShown: false}}
     />
     <Tab.Screen
