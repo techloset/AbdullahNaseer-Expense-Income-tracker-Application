@@ -1,16 +1,16 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import Navigation from './navigation/Navigation';
-import Home from './screens/HomeScreens/Home';
+import Home from './screens/Home/Home';
 import Testing from './screens/Testing/Testing';
-import DetailPage from './screens/InputScreens/DetailPage';
+import DetailPage from './screens/createTransaction/DetailPage/DetailPage';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      {/* <Navigation /> */}
+      <Navigation />
       {/* <Testing/> */}
-      <DetailPage/>
+      {/* <DetailPage/> */}
     </View>
   );
 };

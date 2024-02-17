@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState} from 'react';
-import AppButton from '../../components/AppButton';
-import GoogleLoginButton from '../../components/GoogleLoginButton';
-import NavigationHeader from '../../components/NavigationHeader';
+import AppButton from '../../../components/AppButton';
+import GoogleLoginButton from '../../../components/GoogleLoginButton';
+import NavigationHeader from '../../../components/NavigationHeader';
 import auth from '@react-native-firebase/auth';
 interface SignUpScreenProps {
   navigation: any;
@@ -27,7 +27,15 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
       console.log('user created successfully');
     } catch (error) {
       console.error(error);
-      console.log('error creating user');
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+
+      console.error(error);
     }
   };
   return (
@@ -57,7 +65,7 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
               value={password}
               onChangeText={value => setPassword(value)}
             />
-            <Image source={require('../../assets/eye.png')} />
+            <Image source={require('../../../assets/eye.png')} />
           </View>
         </View>
         <View style={styles.buttonContainer}>

@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import DetailPageHeader from '../../components/DetailsPageHeader';
-import AppButton from '../../components/AppButton';
+import DetailPageHeader from '../../../components/DetailsPageHeader';
+import AppButton from '../../../components/AppButton';
 
 const DetailPage = () => {
   return (

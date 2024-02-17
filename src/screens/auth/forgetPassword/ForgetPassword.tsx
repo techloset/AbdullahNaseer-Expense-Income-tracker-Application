@@ -1,19 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import AppButton from '../../components/AppButton';
-import NavigationHeader from '../../components/NavigationHeader';
+import {View, Text, StyleSheet, TextInput} from 'react-native';
+import AppButton from '../../../components/AppButton';
+import NavigationHeader from '../../../components/NavigationHeader';
 
 interface ForgetPassScreenProps {
   navigation: any;
 }
 
-const ForgetPassScreen: React.FC<ForgetPassScreenProps> = ({ navigation }) => {
+const ForgetPassScreen: React.FC<ForgetPassScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <NavigationHeader title="Forget Password" headerStyle={{ textColor: 'black'}} navigation={navigation} />
+      <NavigationHeader
+        title="Forget Password"
+        headerStyle={{textColor: 'black'}}
+        navigation={navigation}
+      />
       <View style={styles.content}>
         <Text style={styles.title}>
-          Don't worry. Enter your email and we'll send you a link to reset your password.
+          Don't worry. Enter your email and we'll send you a link to reset your
+          password.
         </Text>
         <View style={styles.inputContainer}>
           <TextInput style={styles.textInput} placeholder="Email" />

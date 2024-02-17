@@ -2,17 +2,17 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SignUp from '../screens/authScreens/SignUp';
-import LoginScreen from '../screens/authScreens/LoginScreen';
-import ForgetPassScreen from '../screens/authScreens/ForgetPassScreen';
-import Home from '../screens/HomeScreens/Home';
-import Transaction from '../screens/HomeScreens/Transaction';
-import ProfileHome from '../screens/ProfileScreens/ProfileHome';
-import UpdateProfileScreen from '../screens/ProfileScreens/UpdateProfileScreen';
-import ResetPassword from '../screens/ProfileScreens/ResetPassword';
-import IncomeInputScreen from '../screens/InputScreens/IncomeInput';
-import Budget from '../screens/HomeScreens/Budget';
-import ExpenseInputScreen from '../screens/InputScreens/ExpenseInputScreen';
+import SignUp from '../screens/auth/signup/SignUp';
+import LoginScreen from '../screens/auth/login/Login';
+import ForgetPassScreen from '../screens/auth/forgetPassword/ForgetPassword';
+import Home from '../screens/Home/Home';
+import Transaction from '../screens/Home/Transactions';
+import ProfileHome from '../screens/Profile/ProfileHome';
+import UpdateProfileScreen from '../screens/Profile/UpdateProfile';
+import ResetPassword from '../screens/Profile/ResetPassword';
+import IncomeInputScreen from '../screens/createTransaction/IncomeInput';
+import Budget from '../screens/Home/Budget';
+import ExpenseInputScreen from '../screens/createTransaction/expenseInput/ExpenseInput';
 import {Image} from 'react-native';
 
 // Import your custom icons
@@ -23,6 +23,9 @@ import budgetIcon from '../assets/piechart.png';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+const [initializing, setInitializing] = useState(true);
+const [user, setUser] = useState();
 
 const TabNavigation = () => (
   <Tab.Navigator

@@ -7,9 +7,9 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import AppButton from '../../components/AppButton';
-import GoogleLoginButton from '../../components/GoogleLoginButton';
-import NavigationHeader from '../../components/NavigationHeader';
+import AppButton from '../../../components/AppButton';
+import GoogleLoginButton from '../../../components/GoogleLoginButton';
+import NavigationHeader from '../../../components/NavigationHeader';
 
 interface LoginScreenProps {
   navigation: any;
@@ -28,7 +28,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           <TextInput style={styles.textInput} placeholder="Email" />
           <View style={styles.password}>
             <TextInput placeholder="Password" />
-            <Image source={require('../../assets/eye.png')} />
+            <Image source={require('../../../assets/eye.png')} />
           </View>
         </View>
         <AppButton title={'Login'}  />
