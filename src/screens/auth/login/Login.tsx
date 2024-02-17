@@ -7,15 +7,37 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import {useState} from 'react';
 import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
+import auth from '@react-native-firebase/auth';
 
 interface LoginScreenProps {
   navigation: any;
 }
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleLogin = async () => {
+    try {
+      const user = await auth().signInWithEmailAndPassword(email, password);
+      console.log(user);
+      console.log('login successful');
+    } catch (error) {
+      console.error(error);
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+
+      console.error(error);
+    }
+  };
   return (
     <View style={styles.container}>
       <NavigationHeader
@@ -25,13 +47,22 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="Email" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Email"
+            value={email}
+            onChangeText={value => setEmail(value)}
+          />
           <View style={styles.password}>
-            <TextInput placeholder="Password" />
+            <TextInput
+              placeholder="Password"
+              value={password}
+              onChangeText={value => setPassword(value)}
+            />
             <Image source={require('../../../assets/eye.png')} />
           </View>
         </View>
-        <AppButton title={'Login'} />
+        <AppButton onPress={handleLogin} title={'Login'} />
         <View style={styles.forgetContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate('ForgetPassScreen')}>

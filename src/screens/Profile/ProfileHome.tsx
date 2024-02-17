@@ -4,6 +4,13 @@ import React from 'react';
 interface ProfileHomeProps {
   navigation: any;
 }
+import auth from '@react-native-firebase/auth';
+
+const hnadleSignOut = () => {
+  auth()
+    .signOut()
+    .then(() => console.log('User signed out!'));
+};
 
 const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   return (
@@ -57,7 +64,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionContainer}>
+          <TouchableOpacity onPress={hnadleSignOut} style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
