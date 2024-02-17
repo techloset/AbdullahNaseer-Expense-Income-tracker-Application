@@ -57,14 +57,13 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
               />
             </View>
             <View>
-              <Text
-                style={styles.actionText}
-                onPress={navigation.navigate('ResetPassword')}>
-                Reset Password
-              </Text>
+              <Text style={styles.actionText}>Reset Password</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={hnadleSignOut} style={styles.actionContainer}>
+
+          <TouchableOpacity
+            onPress={hnadleSignOut}
+            style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
