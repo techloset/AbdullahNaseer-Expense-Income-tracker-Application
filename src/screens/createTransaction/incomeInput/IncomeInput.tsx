@@ -10,9 +10,9 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useState} from 'react';
-import NavigationHeader from '../../components/NavigationHeader';
-import AppButton from '../../components/AppButton';
-import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
+import NavigationHeader from '../../../components/NavigationHeader';
+import AppButton from '../../../components/AppButton';
+import AttachmentInputPopUp from '../../../components/AttachmentInputPopUp';
 
 const categories = [
   {id: 1, name: 'Food'},

@@ -21,7 +21,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
       <NavigationHeader
         title="Login"
         headerStyle={{textColor: 'black'}}
-        navigation={navigation}
+        // navigation={navigation}
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
@@ -31,7 +31,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             <Image source={require('../../../assets/eye.png')} />
           </View>
         </View>
-        <AppButton title={'Login'}  />
+        <AppButton title={'Login'} />
         <View style={styles.forgetContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate('ForgetPassScreen')}>
