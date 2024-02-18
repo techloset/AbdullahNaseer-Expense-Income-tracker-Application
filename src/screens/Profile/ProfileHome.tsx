@@ -1,6 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {Home} from '../../assets';
 
 interface ProfileHomeProps {
   navigation: any;
@@ -77,7 +76,6 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Home width={300} height={300} fill={"black"}/>
     </View>
   );
 };
