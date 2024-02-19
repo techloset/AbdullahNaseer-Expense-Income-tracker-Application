@@ -13,8 +13,8 @@ const App = () => {
     <Provider store={store}>
       <View style={styles.container}>
         {/* <CreateTransaction backgroundColor={'red'} /> */}
-        <CreateTransaction backgroundColor={'green'} />
-        {/* <Navigation /> */}
+        {/* <CreateTransaction backgroundColor={'green'} /> */}
+        <Navigation />
       </View>
     </Provider>
   );
