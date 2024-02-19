@@ -239,7 +239,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     money,
     setMoney,
     handleImageThrougGallery,
-    handleImageThroughCamera
+    handleImageThroughCamera,
+    handleSubmit
   } = useTransactionForm();
 
   return (
@@ -312,7 +313,7 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
             </Modal>
           </View>
           <View style={styles.continueButton}>
-            <AppButton title="Continue" onPress={logState} />
+            <AppButton title="Continue" onPress={handleSubmit} />
           </View>
         </View>
       </View>
