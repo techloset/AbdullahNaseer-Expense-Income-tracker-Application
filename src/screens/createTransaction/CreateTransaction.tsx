@@ -238,6 +238,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     logState,
     money,
     setMoney,
+    handleImageThrougGallery,
+    handleImageThroughCamera
   } = useTransactionForm();
 
   return (
@@ -300,7 +302,10 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
                 <View style={styles.fileModalContainer}>
                   <View style={styles.modalBackground} />
                   <View style={styles.attachmentPopup}>
-                    <AttachmentInputPopUp />
+                    <AttachmentInputPopUp
+                      handleImageThrougGallery={handleImageThrougGallery}
+                      handleImageThroughCamera={handleImageThroughCamera}
+                    />
                   </View>
                 </View>
               </TouchableWithoutFeedback>
