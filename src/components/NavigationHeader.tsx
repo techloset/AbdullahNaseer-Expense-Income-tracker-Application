@@ -4,7 +4,7 @@
 // interface NavigationHeaderProps {
 //   title: string;
 //   headerStyle?: ViewStyle & { textColor?: string }; // Extend ViewStyle with textColor property
-//   navigation: any; // Define navigation prop
+//   navigation: any;
 // }
 
 // const NavigationHeader: React.FC<NavigationHeaderProps> = ({
@@ -57,30 +57,20 @@
 // });
 
 
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 
 interface NavigationHeaderProps {
   title: string;
-  headerStyle?: ViewStyle & {textColor?: string};
+  headerStyle?: ViewStyle & { textColor?: string }; // Extend ViewStyle with textColor property
 }
 
-const NavigationHeader: React.FC<NavigationHeaderProps> = ({
-  title,
-  headerStyle,
-}) => {
-  const navigation = useNavigation();
+const NavigationHeader: React.FC<NavigationHeaderProps> = ({ title, headerStyle }) => {
+  const navigation = useNavigation(); // Use useNavigation hook to get navigation object
 
   const handleBack = () => {
-    navigation.goBack();
+    navigation.goBack(); // Navigate back when the arrow button is pressed
   };
 
   return (
@@ -90,9 +80,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           <Image source={require('../assets/arrow.png')} />
         </TouchableOpacity>
         <View style={styles.centerView}>
-          <Text style={[styles.headerText, {color: headerStyle?.textColor}]}>
-            {title}
-          </Text>
+          <Text style={[styles.headerText, { color: headerStyle?.textColor }]}>{title}</Text>
         </View>
       </View>
     </View>

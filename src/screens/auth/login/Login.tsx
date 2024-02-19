@@ -145,8 +145,8 @@ import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useLogin from './useLogin'; // Import the custom hook
 
-const LoginScreen = ({ navigation }) => {
-  const { email, setEmail, password, setPassword, error, loading, handleLogin } = useLogin();
+const LoginScreen = () => {
+  const { email, setEmail, password, setPassword, error, loading, handleLogin, navigation } = useLogin();
 
   return (
     <View style={styles.container}>

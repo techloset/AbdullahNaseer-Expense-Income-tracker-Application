@@ -1,17 +1,22 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import Navigation from './navigation/Navigation';
-import Home from './screens/Home/Home';
-import Testing from './screens/Testing/Testing';
-import DetailPage from './screens/createTransaction/DetailPage/DetailPage';
+
+import DetailPage from './screens/transactionDetail/TransactionDetail';
+import ExpenseInput from './screens/createTransaction/CreateTransaction';
+import {Provider} from 'react-redux';
+import {store} from './store/store';
+import CreateTransaction from './screens/createTransaction/CreateTransaction';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Navigation />
-      {/* <Testing/> */}
-      {/* <DetailPage/> */}
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        {/* <CreateTransaction backgroundColor={'red'} /> */}
+        <CreateTransaction backgroundColor={'green'} />
+        {/* <Navigation /> */}
+      </View>
+    </Provider>
   );
 };
 

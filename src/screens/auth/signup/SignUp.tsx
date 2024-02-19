@@ -1,49 +1,22 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
+import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from 'react-native';
 import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
-import auth from '@react-native-firebase/auth';
+import useSignup from './useSignup'; // Import the useSignup hook
+
 interface SignUpScreenProps {
   navigation: any;
 }
 
 const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSignup = async () => {
-    try {
-      const user = await auth().createUserWithEmailAndPassword(email, password);
-      console.log(user);
-      console.log('user created successfully');
-    } catch (error) {
-      console.error(error);
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
-
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-
-      console.error(error);
-    }
-  };
+  const { name, setName, email, setEmail, password, setPassword, error, loading, handleSignup } = useSignup();
   return (
     <View style={styles.container}>
       <NavigationHeader
         title="Sign Up"
         headerStyle={{textColor: 'black'}}
-        // navigation={navigation}
+        // navigation={navigation} 
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
@@ -57,19 +30,20 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
             style={styles.textInput}
             placeholder="Email"
             value={email}
-            onChangeText={value => setEmail(value)}
+            onChangeText={setEmail}
           />
           <View style={styles.password}>
             <TextInput
               placeholder="Password"
               value={password}
-              onChangeText={value => setPassword(value)}
+              onChangeText={setPassword}
             />
             <Image source={require('../../../assets/eye.png')} />
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <AppButton onPress={handleSignup} title={'Sign Up'} />
+          <AppButton onPress={handleSignup} title={loading ? 'Signing Up...' : 'Sign Up'} />
+          {error && <Text style={styles.errorText}>{error}</Text>}
           <GoogleLoginButton title={'Continue with Google'} />
           <Text>
             Already have an account?
@@ -131,5 +105,9 @@ const styles = StyleSheet.create({
   },
   spanText: {
     color: '#7F3DFF',
+  },
+  errorText: {
+    color: 'red',
+    marginTop: 10,
   },
 });

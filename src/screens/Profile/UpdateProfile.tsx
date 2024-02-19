@@ -115,7 +115,7 @@ import NavigationHeader from '../../components/NavigationHeader';
 import AppButton from '../../components/AppButton';
 import {useNavigation} from '@react-navigation/native'; // Import useNavigation hook
 
-const UpdateProfileScreen = () => {
+const UpdateProfile = () => {
   // const navigation = useNavigation(); // Use useNavigation hook to get navigation object
 
   return (
@@ -151,7 +151,7 @@ const UpdateProfileScreen = () => {
   );
 };
 
-export default UpdateProfileScreen;
+export default UpdateProfile;
 
 const styles = StyleSheet.create({
   container: {

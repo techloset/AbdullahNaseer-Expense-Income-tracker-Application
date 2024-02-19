@@ -30,7 +30,13 @@
 //   }
 // });
 
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import HomeHeader from '../../components/HomeHeader';
 import HeroSection from '../../components/HeroSection';
@@ -39,8 +45,11 @@ import Filter from '../../components/Filter';
 import HeaderMenu from '../../components/HeaderMenu';
 import HomeList from '../../components/HomeList';
 import MenuBar from '../../components/MenuBar';
+import {useNavigation} from '@react-navigation/native';
+import Navigation from '../../navigation/Navigation';
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <ScrollView style={styles.content}>
@@ -52,6 +61,12 @@ const Home = () => {
         <HomeList />
       </ScrollView>
       <MenuBar />
+      {/* <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('CreateTransaction', {backgroundColor: 'red'})
+        }>
+        <Text>press</Text>
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -67,4 +82,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-

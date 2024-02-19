@@ -1,0 +1,408 @@
+// import {
+//   StyleSheet,
+//   TextInput,
+//   Text,
+//   View,
+//   TouchableOpacity,
+//   Modal,
+//   FlatList,
+//   ImageBackground,
+//   TouchableWithoutFeedback,
+// } from 'react-native';
+// import React, {useState} from 'react';
+// import NavigationHeader from '../../components/NavigationHeader';
+// import AppButton from '../../components/AppButton';
+// import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
+
+// const categories = [
+//   {id: 1, name: 'Food'},
+//   {id: 2, name: 'Transport'},
+//   {id: 3, name: 'Others'},
+// ];
+
+// interface CreateTransactionProps {
+//   navigation?: any;
+//   backgroundColor?: string; // Define backgroundColor prop
+// }
+
+// const CreateTransaction: React.FC<CreateTransactionProps> = ({
+//   navigation,
+//   backgroundColor,
+// }) => {
+//   const [category, setCategory] = useState('');
+//   const [expenseName, setExpenseName] = useState('');
+//   const [modalVisible, setModalVisible] = useState(false);
+//   const [fileModalVisible, setFileModalVisible] = useState(false);
+
+//   const selectCategory = (categoryName: string) => {
+//     setCategory(categoryName);
+//     setModalVisible(false);
+//   };
+
+//   const toggleFileModal = () => {
+//     setFileModalVisible(!fileModalVisible);
+//   };
+
+//   const handleOutsidePress = () => {
+//     setFileModalVisible(false);
+//   };
+
+//   return (
+//     <TouchableWithoutFeedback onPress={handleOutsidePress}>
+//       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
+//         <View style={styles.navigationContainer}>
+//         </View>
+//         <View style={styles.displayContainer}>
+//           <Text style={styles.displayContainerHeading}>How Much ?</Text>
+//           <Text style={styles.displayContainerCash}>$0</Text>
+//         </View>
+//         <View style={[styles.inputContainer, {flex: fileModalVisible ? 5 : 2}]}>
+//           <View>
+//             <TouchableOpacity
+//               style={styles.textInput}
+//               onPress={() => setModalVisible(true)}>
+//               <Text>{category || 'Select Category'}</Text>
+//             </TouchableOpacity>
+//             <Modal
+//               animationType="slide"
+//               transparent={true}
+//               visible={modalVisible}>
+//               <View style={styles.modalContainer}>
+//                 <FlatList
+//                   data={categories}
+//                   keyExtractor={item => item.id.toString()}
+//                   renderItem={({item}) => (
+//                     <TouchableOpacity
+//                       style={styles.categoryItem}
+//                       onPress={() => selectCategory(item.name)}>
+//                       <Text>{item.name}</Text>
+//                     </TouchableOpacity>
+//                   )}
+//                 />
+//               </View>
+//             </Modal>
+//             <TextInput
+//               style={styles.textInput}
+//               placeholder="Expense Name"
+//               value={expenseName}
+//               onChangeText={text => setExpenseName(text)}
+//             />
+//             <TouchableOpacity
+//               style={styles.fileInput}
+//               onPress={toggleFileModal}>
+//               <Text>Choose File</Text>
+//             </TouchableOpacity>
+//             <Modal
+//               animationType="fade"
+//               transparent={true}
+//               visible={fileModalVisible}>
+//               <TouchableWithoutFeedback onPress={handleOutsidePress}>
+//                 <View style={styles.fileModalContainer}>
+//                   <View style={styles.modalBackground} />
+//                   <View style={styles.attachmentPopup}>
+//                     <AttachmentInputPopUp />
+//                   </View>
+//                 </View>
+//               </TouchableWithoutFeedback>
+//             </Modal>
+//           </View>
+//           <View style={styles.button}>
+//             <AppButton title="Continue" />
+//           </View>
+//         </View>
+//       </View>
+//     </TouchableWithoutFeedback>
+//   );
+// };
+
+// export default CreateTransaction;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     // backgroundColor: 'red', // Removed backgroundColor from here
+//   },
+//   displayContainer: {
+//     flex: 1,
+//     paddingTop: '25%',
+//     paddingHorizontal: 25,
+//   },
+//   displayContainerHeading: {
+//     fontSize: 18,
+//     fontWeight: '600',
+//     color: '#FCFCFC',
+//   },
+//   displayContainerCash: {
+//     fontSize: 64,
+//     fontWeight: '600',
+//     color: '#FCFCFC',
+//   },
+//   inputContainer: {
+//     backgroundColor: '#FFFFFF',
+//     borderTopRightRadius: 25,
+//     borderTopLeftRadius: 25,
+//   },
+//   navigationContainer: {
+//     padding: 16,
+//   },
+//   textInput: {
+//     height: 56,
+//     backgroundColor: 'white',
+//     borderRadius: 16,
+//     borderWidth: 1,
+//     borderColor: 'whitesmoke',
+//     paddingHorizontal: 10,
+//     margin: 16,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   fileInput: {
+//     height: 56,
+//     backgroundColor: '#DDDDDD',
+//     borderRadius: 16,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     margin: 16,
+//   },
+//   button: {
+//     margin: 16,
+//   },
+//   modalContainer: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+//   },
+//   categoryItem: {
+//     padding: 20,
+//     borderBottomWidth: 1,
+//     borderBottomColor: '#CCCCCC',
+//   },
+//   fileModalContainer: {
+//     flex: 1,
+//     justifyContent: 'flex-end',
+//   },
+//   modalBackground: {
+//     position: 'absolute',
+//     top: 0,
+//     left: 0,
+//     right: 0,
+//     bottom: 0,
+//     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+//   },
+//   attachmentPopup: {
+//     backgroundColor: 'white',
+//     borderTopRightRadius: 25,
+//     borderTopLeftRadius: 25,
+//     padding: 20,
+//   },
+// });
+
+import React from 'react';
+import {
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  FlatList,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import AppButton from '../../components/AppButton';
+import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
+import useTransactionForm from './useCreateTransaction';
+
+interface CreateTransactionProps {
+  navigation?: any;
+  backgroundColor?: string;
+}
+
+const CreateTransaction: React.FC<CreateTransactionProps> = ({
+  navigation,
+  backgroundColor,
+}) => {
+  const {
+    categories,
+    category,
+    expenseName,
+    modalVisible,
+    fileModalVisible,
+    selectCategory,
+    toggleFileModal,
+    handleOutsidePress,
+    setExpenseName,
+    setCategory,
+    setModalVisible,
+    setFileModalVisible,
+    logState,
+    money,
+    setMoney,
+  } = useTransactionForm();
+
+  return (
+    <TouchableWithoutFeedback onPress={handleOutsidePress}>
+      <View style={[styles.container, {backgroundColor}]}>
+        <View style={styles.navigationContainer}>
+          {/* <NavigationHeader title="Expense" /> */}
+        </View>
+        <View style={styles.displayContainer}>
+          <Text style={styles.displayContainerHeading}>How Much?</Text>
+          {/* <Text style={styles.displayContainerCash}>$0</Text> */}
+          <TextInput
+            style={[styles.displayContainerCash, styles.inputStyle]}
+            placeholder="$0"
+            value={money}
+            onChangeText={text => setMoney(text)}
+          />
+        </View>
+        <View style={[styles.inputContainer, {flex: fileModalVisible ? 5 : 2}]}>
+          <View>
+            <TouchableOpacity
+              style={styles.textInput}
+              onPress={() => setModalVisible(true)}>
+              <Text>{category || 'Select Category'}</Text>
+            </TouchableOpacity>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}>
+              <View style={styles.modalContainer}>
+                <FlatList
+                  data={categories}
+                  keyExtractor={item => item.id.toString()}
+                  renderItem={({item}) => (
+                    <TouchableOpacity
+                      style={styles.categoryItem}
+                      onPress={() => selectCategory(item.name)}>
+                      <Text>{item.name}</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            </Modal>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Expense Name"
+              value={expenseName}
+              onChangeText={text => setExpenseName(text)}
+            />
+            <TouchableOpacity
+              style={styles.fileInput}
+              onPress={toggleFileModal}>
+              <Text>Choose File</Text>
+            </TouchableOpacity>
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={fileModalVisible}>
+              <TouchableWithoutFeedback onPress={handleOutsidePress}>
+                <View style={styles.fileModalContainer}>
+                  <View style={styles.modalBackground} />
+                  <View style={styles.attachmentPopup}>
+                    <AttachmentInputPopUp />
+                  </View>
+                </View>
+              </TouchableWithoutFeedback>
+            </Modal>
+          </View>
+          <View style={styles.continueButton}>
+            <AppButton title="Continue" onPress={logState} />
+          </View>
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
+
+export default CreateTransaction;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  continueButton: {
+    margin: 16,
+  },
+  inputStyle: {
+    borderWidth: 0, // Remove border from input
+    backgroundColor: 'transparent', // Make background transparent
+    color: '#FCFCFC', // Text color
+    fontSize: 64, // Font size
+    fontWeight: '600', // Font weight
+  },
+  displayContainer: {
+    flex: 1,
+    paddingTop: '25%',
+    paddingHorizontal: 25,
+  },
+  displayContainerHeading: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#FCFCFC',
+  },
+  displayContainerCash: {
+    fontSize: 64,
+    fontWeight: '600',
+    color: '#FCFCFC',
+  },
+  inputContainer: {
+    backgroundColor: '#FFFFFF',
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+  },
+  navigationContainer: {
+    padding: 16,
+  },
+  textInput: {
+    height: 56,
+    backgroundColor: 'white',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'whitesmoke',
+    paddingHorizontal: 10,
+    margin: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fileInput: {
+    height: 56,
+    backgroundColor: '#DDDDDD',
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 16,
+  },
+  button: {
+    margin: 16,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  categoryItem: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCCCCC',
+  },
+  fileModalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  attachmentPopup: {
+    backgroundColor: 'white',
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+    padding: 20,
+  },
+});

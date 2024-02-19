@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import DetailPageHeader from '../../../components/DetailsPageHeader';
-import AppButton from '../../../components/AppButton';
+import DetailPageHeader from '../../components/DetailsPageHeader';
+import AppButton from '../../components/AppButton';
 
-const DetailPage = () => {
+const TransactionDetail = () => {
   return (
     <View style={styles.container}>
       <View style={styles.UpperContainer}>
@@ -51,7 +51,7 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default TransactionDetail;
 
 const styles = StyleSheet.create({
   container: {
