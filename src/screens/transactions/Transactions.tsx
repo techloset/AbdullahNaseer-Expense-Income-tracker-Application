@@ -6,9 +6,12 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import TransactionCard from '../../components/TransactionCard';
 import MenuBar from '../../components/MenuBar';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchTransactions} from '../../store/transactionsSlice';
+import {RootState} from '../../store/store';
 
 const Transaction = () => {
   // Dummy data for FlatList
@@ -23,7 +26,20 @@ const Transaction = () => {
     {id: '8', key: '8'},
     {id: '9', key: '9'},
   ];
+
   const renderItem = ({item}) => <TransactionCard key={item.id} />;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTransactions());
+  }, []);
+  // const state = useSelector(state => state);
+  // console.log('state', state);
+  const {isLoading, transactions, isError} = useSelector(
+    (state: RootState) => state.transactions,
+  );
+  console.log('transactions', transactions);
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>

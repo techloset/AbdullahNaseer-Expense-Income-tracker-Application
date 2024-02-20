@@ -11,7 +11,7 @@ import Home from '../screens/home/Home';
 import Transaction from '../screens/transactions/Transactions';
 import ProfileHome from '../screens/profile/Profile';
 import ResetPassword from '../screens/profile/ResetPassword';
-import Budget from '../screens/Budget/Budget';
+import Budget from '../screens/budget/Budget';
 import CreateTransaction from '../screens/createTransaction/CreateTransaction';
 import UpdateProfile from '../screens/profile/UpdateProfile';
 
