@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const TransactionCard = () => {
+const TransactionCard = ({id}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.detailsContainer}>
@@ -12,7 +12,7 @@ const TransactionCard = () => {
         <View style={styles.detailsTextContainer}>
           <Text style={styles.detailsContainerHeading}>Shopping</Text>
           <Text style={styles.detailsContaineDescription}>
-            Buy some Groceries
+            {id}
           </Text>
         </View>
       </View>

@@ -12,6 +12,7 @@ import MenuBar from '../../components/MenuBar';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchTransactions} from '../../store/transactionsSlice';
 import {RootState} from '../../store/store';
+import useTransaction from './useTransactions';
 
 const Transaction = () => {
   // Dummy data for FlatList
@@ -27,19 +28,23 @@ const Transaction = () => {
     {id: '9', key: '9'},
   ];
 
-  const renderItem = ({item}) => <TransactionCard key={item.id} />;
+  // const transactions = useTransaction();
+  const { transactionsState } = useTransaction();
+  // console.log(transactionsState)
 
-  const dispatch = useDispatch();
+  const renderItem = ({item}) => <TransactionCard key={item.id} id ={item.id} />;
+ 
 
-  useEffect(() => {
-    dispatch(fetchTransactions());
-  }, []);
-  // const state = useSelector(state => state);
-  // console.log('state', state);
-  const {isLoading, transactions, isError} = useSelector(
-    (state: RootState) => state.transactions,
-  );
-  console.log('transactions', transactions);
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchTransactions());
+  // }, []);
+  // const {isLoading, transactions, isError} = useSelector(
+  //   (state: RootState) => state.transactions,
+  // );
+  // console.log('transactions', transactions);
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -58,8 +63,10 @@ const Transaction = () => {
       <View>
         <Text style={styles.headingText}>Today</Text>
       </View>
-      <FlatList style={styles.flatList} data={data} renderItem={renderItem} />
+      {/* <FlatList style={styles.flatList} data={data} renderItem={renderItem} /> */}
+      <FlatList style={styles.flatList} data={transactionsState} renderItem={renderItem} />
       <MenuBar />
+      
     </View>
   );
 };
