@@ -2,18 +2,20 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import AppButton from '../../../components/AppButton';
 import NavigationHeader from '../../../components/NavigationHeader';
+import useForgetPassword from './useForgetPassword';
 
 interface ForgetPassScreenProps {
   navigation: any;
 }
 
 const ForgetPassScreen: React.FC<ForgetPassScreenProps> = ({navigation}) => {
+  const {email, setEmail, forgotPassword} = useForgetPassword();
   return (
     <View style={styles.container}>
       <NavigationHeader
         title="Forget Password"
         headerStyle={{textColor: 'black'}}
-        navigation={navigation}
+        // navigation={navigation}
       />
       <View style={styles.content}>
         <Text style={styles.title}>
@@ -21,9 +23,13 @@ const ForgetPassScreen: React.FC<ForgetPassScreenProps> = ({navigation}) => {
           password.
         </Text>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="Email" />
+          <TextInput
+            onChangeText={setEmail}
+            style={styles.textInput}
+            placeholder="Email"
+          />
         </View>
-        <AppButton title={'Send Email'} />
+        <AppButton onPress={forgotPassword} title={'Send Email'} />
       </View>
     </View>
   );

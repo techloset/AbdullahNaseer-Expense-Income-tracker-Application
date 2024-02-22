@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import { db } from '../config/firebase';
+import {db} from '../config/firebase';
 import auth from '@react-native-firebase/auth';
 
 // Define type for the transaction object
@@ -17,7 +17,6 @@ export const fetchTransactions = createAsyncThunk<Transaction[]>(
     const data = await db.collection(`todos`).get();
     return data.docs.map(doc => ({
       id: doc.id,
-      // Add other properties of the transaction object if needed
     }));
   },
 );
