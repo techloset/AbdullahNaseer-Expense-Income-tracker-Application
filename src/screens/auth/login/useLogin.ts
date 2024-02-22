@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import auth from '@react-native-firebase/auth';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 const useLogin = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
@@ -23,7 +23,16 @@ const useLogin = () => {
     }
   };
 
-  return { email, setEmail, password, setPassword, error, loading, handleLogin, navigation };
+  return {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    loading,
+    handleLogin,
+    navigation,
+  };
 };
 
 export default useLogin;
