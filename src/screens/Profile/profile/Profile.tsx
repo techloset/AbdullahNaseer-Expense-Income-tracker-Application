@@ -20,7 +20,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           <View style={styles.ImageContainer}>
             <Image
               style={styles.ProfileImage}
-              source={require('../../assets/user.jpg')}
+              source={require('../../../assets/user.jpg')}
             />
           </View>
           <View style={styles.ProfileText}>
@@ -31,7 +31,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => navigation.navigate('UpdateProfileScreen')}>
-          <Image source={require('../../assets/edit.png')} />
+          <Image source={require('../../../assets/edit.png')} />
         </TouchableOpacity>
       </View>
       <View style={styles.cardContainer}>
@@ -40,7 +40,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
-                source={require('../../assets/setting.png')}
+                source={require('../../../assets/setting.png')}
               />
             </View>
             <View>
@@ -53,7 +53,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
-                source={require('../../assets/warning.png')}
+                source={require('../../../assets/warning.png')}
               />
             </View>
             <View>
@@ -67,7 +67,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             <View style={styles.actionImgContainer}>
               <Image
                 style={styles.actionImage}
-                source={require('../../assets/logout.png')}
+                source={require('../../../assets/logout.png')}
               />
             </View>
             <View>

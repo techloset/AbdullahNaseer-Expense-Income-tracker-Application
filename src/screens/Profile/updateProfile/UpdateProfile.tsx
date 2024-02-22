@@ -111,8 +111,8 @@
 
 import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
 import React from 'react';
-import NavigationHeader from '../../components/NavigationHeader';
-import AppButton from '../../components/AppButton';
+import NavigationHeader from '../../../components/NavigationHeader';
+import AppButton from '../../../components/AppButton';
 import {useNavigation} from '@react-navigation/native'; // Import useNavigation hook
 
 const UpdateProfile = () => {
@@ -126,13 +126,13 @@ const UpdateProfile = () => {
         <View style={styles.imageContainer}>
           <Image
             style={styles.userImage}
-            source={require('../../assets/user.jpg')}
+            source={require('../../../assets/user.jpg')}
           />
         </View>
         <View style={styles.editButtonContainer}>
           <View style={styles.editButton}>
             <Image
-              source={require('../../assets/edit.png')}
+              source={require('../../../assets/edit.png')}
               style={styles.editIcon}
             />
           </View>
