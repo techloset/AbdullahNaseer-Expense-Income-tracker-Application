@@ -1,9 +1,19 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchTransactions} from '../../store/transactionsSlice';
 import {RootState} from '../../store/store';
 
-const useTransactions = () => {
+interface useTransactionsProps{
+
+}
+
+interface useTransactionReturn{
+  isLoading: boolean;
+  transactions: any;
+  isError: boolean;
+}
+
+const useTransactions:React.FC<useTransactionsProps> = () => {
  
   const dispatch = useDispatch();
   const [transactionsState,setTransactionsState] = useState(null)

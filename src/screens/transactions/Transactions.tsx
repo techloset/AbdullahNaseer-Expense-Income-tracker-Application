@@ -129,10 +129,14 @@ import TransactionCard from '../../components/TransactionCard';
 import MenuBar from '../../components/MenuBar';
 import useTransactions from './useTransactions';
 
-const Transaction = () => {
+interface TransactionProps{
+
+}
+
+const Transaction:React.FC<TransactionProps> = () => {
   const { transactionsState, isLoading, isError } = useTransactions();
 
-  const renderItem = ({ item }) => <TransactionCard id={item.id} category={item.category} />;
+  const renderItem = ({ item }) => <TransactionCard key={item.id} id={item.id} category={item.category} />;
 
   return (
     <View style={styles.container}>

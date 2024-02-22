@@ -64,12 +64,15 @@
 //   },
 // });
 
-
-
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const TransactionCard = ({ id,category }) => {
+interface TransactionCardProps {
+  id: string;
+  category: string;
+}
+
+const TransactionCard: React.FC<TransactionCardProps> = ({id, category}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.detailsContainer}>
