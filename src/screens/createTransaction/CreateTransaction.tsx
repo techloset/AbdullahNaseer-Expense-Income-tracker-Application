@@ -128,7 +128,7 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
             )}
             {image && (
               <View style={styles.ImagePreviewContainer}>
-                  <Image style={styles.previewImage} source={require("../../assets/user.jpg")} />
+                  <Image style={styles.previewImage} source={{uri:image.path}} />
               </View>
             )}
 
