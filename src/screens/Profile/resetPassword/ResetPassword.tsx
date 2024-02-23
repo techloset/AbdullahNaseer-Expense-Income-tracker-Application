@@ -55,9 +55,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: 'whitesmoke',
     paddingHorizontal: 10,
     marginTop: 24,
+    color:"black"
   },
   resetPasswordBtn: {
     position: 'absolute',

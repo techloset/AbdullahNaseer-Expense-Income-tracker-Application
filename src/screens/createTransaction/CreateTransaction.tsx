@@ -85,6 +85,7 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
           <TextInput
             style={[styles.displayContainerCash, styles.inputStyle]}
             placeholder="$0"
+            placeholderTextColor={"white"}
             value={money}
             onChangeText={text => setMoney(text)}
           />

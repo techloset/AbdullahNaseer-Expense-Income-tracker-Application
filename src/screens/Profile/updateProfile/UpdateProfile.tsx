@@ -200,6 +200,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 9,
     marginTop: 10,
+    color:"black"
   },
   textInput: {
     width: '100%',
@@ -207,8 +208,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: 'whitesmoke',
     paddingHorizontal: 10,
+    color:"black"
   },
   UpdateProfileBtn: {
     position: 'absolute',

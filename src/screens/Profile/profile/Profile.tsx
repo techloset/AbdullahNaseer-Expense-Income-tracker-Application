@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 24,
     fontWeight: '600',
+    color:"black"
   },
   ProfileText: {
     marginLeft: 16,
@@ -138,6 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginLeft: 9,
+    color:"black"
   },
   actionImgContainer: {},
   actionContainer: {
