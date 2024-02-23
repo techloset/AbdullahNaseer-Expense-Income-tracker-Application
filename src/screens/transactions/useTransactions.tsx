@@ -3,20 +3,23 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchTransactions} from '../../store/transactionsSlice';
 import {RootState} from '../../store/store';
 
-interface useTransactionsProps{
+interface useTransactionsProps {}
 
-}
-
-interface useTransactionReturn{
+interface useTransactionReturn {
   isLoading: boolean;
   transactions: any;
   isError: boolean;
 }
 
-const useTransactions:React.FC<useTransactionsProps> = () => {
- 
+const useTransactions: React.FC<useTransactionsProps> = () => {
   const dispatch = useDispatch();
-  const [transactionsState,setTransactionsState] = useState(null)
+  const [transactionsState, setTransactionsState] = useState(null);
+  const [showFilter, setShowFilter] = useState(false);
+
+  const handleFilterModelShow = () => {
+    setShowFilter(!showFilter);
+    console.log("sss")
+  };
 
   useEffect(() => {
     dispatch(fetchTransactions());
@@ -24,7 +27,7 @@ const useTransactions:React.FC<useTransactionsProps> = () => {
   const {isLoading, transactions, isError} = useSelector(
     (state: RootState) => state.transactions,
   );
-  console.log('transactions from hook', transactions);
+  // console.log('transactions from hook', transactions);
   // setTransactionsState(transactions)
   useEffect(() => {
     if (transactions) {
@@ -33,13 +36,16 @@ const useTransactions:React.FC<useTransactionsProps> = () => {
     }
   }, [transactions]);
 
-  return{
+  return {
     isLoading,
     transactions,
     isError,
     setTransactionsState,
-    transactionsState
-  }
+    transactionsState,
+    handleFilterModelShow,
+    showFilter,
+    setShowFilter
+  };
 };
 
 export default useTransactions;

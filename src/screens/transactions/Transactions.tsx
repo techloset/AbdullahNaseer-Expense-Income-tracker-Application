@@ -118,16 +118,25 @@ import {
   View,
   Image,
   FlatList,
+  Modal,
 } from 'react-native';
 import React from 'react';
 import TransactionCard from '../../components/TransactionCard';
 import MenuBar from '../../components/MenuBar';
 import useTransactions from './useTransactions';
+import FilterTransactionPopup from '../../components/FilterTransactionPopup';
 
 interface TransactionProps {}
 
 const Transaction: React.FC<TransactionProps> = () => {
-  const {transactionsState, isLoading, isError} = useTransactions();
+  const {
+    transactionsState,
+    isLoading,
+    isError,
+    handleFilterModelShow,
+    showFilter,
+    setShowFilter,
+  } = useTransactions();
 
   const renderItem = ({item}) => (
     <TransactionCard key={item.id} id={item.id} category={item.category} />
@@ -140,7 +149,9 @@ const Transaction: React.FC<TransactionProps> = () => {
           <Image source={require('../../assets/dropdown.png')} />
           <Text style={styles.filterButtonText}>Month</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.burgerIcon}>
+        <TouchableOpacity
+          onPress={handleFilterModelShow}
+          style={styles.burgerIcon}>
           <Image source={require('../../assets/burgerIcon.png')} />
         </TouchableOpacity>
       </View>
@@ -162,6 +173,18 @@ const Transaction: React.FC<TransactionProps> = () => {
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
+      )}
+      {showFilter && (
+        <Modal
+          style={styles.modelContainer}
+          animationType="slide"
+          transparent={true}
+          visible={true}
+          onRequestClose={() => setShowFilter(false)}>
+          <View style={styles.modelBackground}>
+            <FilterTransactionPopup />
+          </View>
+        </Modal>
       )}
     </View>
   );
@@ -189,8 +212,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  filterButtonText:{
-fontSize:14,
+  filterButtonText: {
+    fontSize: 14,
     fontWeight: '500',
   },
   burgerIcon: {
@@ -215,16 +238,30 @@ fontSize:14,
     width: '100%',
     alignSelf: 'center',
   },
-  alertContainerText:{
-    fontSize:16,
+  alertContainerText: {
+    fontSize: 16,
     fontWeight: '400',
-    color:"#7F3DFF"
+    color: '#7F3DFF',
   },
   headingText: {
     fontSize: 18,
     fontWeight: '600',
-    color:"black",
-    marginBottom:10,
+    color: 'black',
+    marginBottom: 10,
+  },
+  modelContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modelBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   flatList: {},
 });
