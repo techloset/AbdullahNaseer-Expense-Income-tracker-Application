@@ -144,7 +144,11 @@ const HeroSection = () => {
 export default HeroSection;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    backgroundColor:"#FFF6E5",
+    borderBottomRightRadius:16,
+    borderBottomLeftRadius:16,
+  },
   heading: {
     alignItems: 'center',
   },
@@ -154,6 +158,7 @@ const styles = StyleSheet.create({
   balanceText: {
     fontSize: 48,
     fontWeight: '600',
+    color: 'black',
   },
   cardsContainer: {
     margin: 16,

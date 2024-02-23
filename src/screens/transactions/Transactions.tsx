@@ -33,9 +33,6 @@
 //   // console.log(transactionsState)
 
 //   const renderItem = ({item}) => <TransactionCard key={item.id} id ={item.id}/>;
- 
-
-
 
 //   return (
 //     <View style={styles.container}>
@@ -58,7 +55,7 @@
 //       {/* <FlatList style={styles.flatList} data={data} renderItem={renderItem} /> */}
 //       <FlatList style={styles.flatList} data={transactionsState} renderItem={renderItem} />
 //       <MenuBar />
-      
+
 //     </View>
 //   );
 // };
@@ -114,8 +111,6 @@
 //   flatList: {},
 // });
 
-
-
 import {
   StyleSheet,
   Text,
@@ -129,28 +124,28 @@ import TransactionCard from '../../components/TransactionCard';
 import MenuBar from '../../components/MenuBar';
 import useTransactions from './useTransactions';
 
-interface TransactionProps{
+interface TransactionProps {}
 
-}
+const Transaction: React.FC<TransactionProps> = () => {
+  const {transactionsState, isLoading, isError} = useTransactions();
 
-const Transaction:React.FC<TransactionProps> = () => {
-  const { transactionsState, isLoading, isError } = useTransactions();
-
-  const renderItem = ({ item }) => <TransactionCard key={item.id} id={item.id} category={item.category} />;
+  const renderItem = ({item}) => (
+    <TransactionCard key={item.id} id={item.id} category={item.category} />
+  );
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <TouchableOpacity style={styles.filterButton}>
           <Image source={require('../../assets/dropdown.png')} />
-          <Text>Month</Text>
+          <Text style={styles.filterButtonText}>Month</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.burgerIcon}>
           <Image source={require('../../assets/burgerIcon.png')} />
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.alertContainer}>
-        <Text>See your financial report</Text>
+        <Text style={styles.alertContainerText}>See your financial report</Text>
         <Image source={require('../../assets/arrowright.png')} />
       </TouchableOpacity>
       <View>
@@ -168,7 +163,6 @@ const Transaction:React.FC<TransactionProps> = () => {
           keyExtractor={item => item.id}
         />
       )}
-      <MenuBar />
     </View>
   );
 };
@@ -195,6 +189,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  filterButtonText:{
+fontSize:14,
+    fontWeight: '500',
+  },
   burgerIcon: {
     height: 40,
     width: 40,
@@ -217,9 +215,16 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
+  alertContainerText:{
+    fontSize:16,
+    fontWeight: '400',
+    color:"#7F3DFF"
+  },
   headingText: {
     fontSize: 18,
     fontWeight: '600',
+    color:"black",
+    marginBottom:10,
   },
   flatList: {},
 });

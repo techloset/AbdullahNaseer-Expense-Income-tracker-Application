@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: '#fff',
+    backgroundColor: '#FFF6E5',
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: 'black'
   },
   notification: {
     height: 30,

@@ -83,7 +83,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({id, category}) => {
         <View style={styles.detailsTextContainer}>
           {/* Render the transaction id */}
           <Text style={styles.detailsContainerHeading}>{category}</Text>
-          <Text style={styles.detailsContaineDescription}>{id}</Text>
+          <Text style={styles.detailsContaineDescription}> waht color is your bugate</Text>
         </View>
       </View>
       <View style={styles.timeContainer}>
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     height: 90,
     paddingHorizontal: 16,
     borderRadius: 16,
+    marginBottom:8,
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -118,9 +119,11 @@ const styles = StyleSheet.create({
   detailsContainerHeading: {
     fontSize: 16,
     fontWeight: '500',
+    color:"black"
   },
   detailsContaineDescription: {
     fontSize: 13,
+    fontWeight:"500",
   },
   timeContainer: {},
   timeContainerCash: {

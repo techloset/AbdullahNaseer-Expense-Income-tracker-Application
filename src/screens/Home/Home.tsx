@@ -60,13 +60,6 @@ const Home = () => {
         <HomeHeader />
         <HomeList />
       </ScrollView>
-      <MenuBar />
-      {/* <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('CreateTransaction', {backgroundColor: 'red'})
-        }>
-        <Text>press</Text>
-      </TouchableOpacity> */}
     </View>
   );
 };
