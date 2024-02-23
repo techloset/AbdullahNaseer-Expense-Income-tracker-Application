@@ -152,7 +152,9 @@ const useCreateTransaction = () => {
     handleImageThroughCamera,
     handleSubmit,
     transactionType, 
-    setTransactionType
+    setTransactionType,
+    image,
+    setImage
   };
 };
 

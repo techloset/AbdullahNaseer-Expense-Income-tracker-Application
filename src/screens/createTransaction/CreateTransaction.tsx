@@ -8,11 +8,13 @@ import {
   Modal,
   FlatList,
   TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 import AppButton from '../../components/AppButton';
 import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
 import useTransactionForm from './useCreateTransaction';
 import NavigationHeader from '../../components/NavigationHeader';
+
 
 interface CreateTransactionProps {
   navigation?: any;
@@ -44,6 +46,7 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     handleSubmit,
     transactionType,
     setTransactionType,
+    image,
   } = useTransactionForm();
 
   return (
@@ -51,7 +54,10 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
       <View
         style={[
           styles.container,
-          {backgroundColor: transactionType === 'Expense' ? 'red' : 'green'},
+          {
+            backgroundColor:
+              transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
+          },
         ]}>
         <NavigationHeader title={transactionType} />
         {/* Add buttons to toggle between Expense and Income */}
@@ -113,15 +119,24 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
               value={expenseName}
               onChangeText={text => setExpenseName(text)}
             />
-            <TouchableOpacity
-              style={styles.fileInput}
-              onPress={toggleFileModal}>
-              <Text>Choose File</Text>
-            </TouchableOpacity>
+            {!image && (
+              <TouchableOpacity
+                style={styles.fileInput}
+                onPress={toggleFileModal}>
+                <Text>Attachment</Text>
+              </TouchableOpacity>
+            )}
+            {image && (
+              <View style={styles.ImagePreviewContainer}>
+                  <Image style={styles.previewImage} source={require("../../assets/user.jpg")} />
+              </View>
+            )}
+
             <Modal
               animationType="fade"
               transparent={true}
-              visible={fileModalVisible}>
+              visible={fileModalVisible}
+              onRequestClose={toggleFileModal}>
               <TouchableWithoutFeedback onPress={handleOutsidePress}>
                 <View style={styles.fileModalContainer}>
                   <View style={styles.modalBackground} />
@@ -160,13 +175,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 20,
     marginHorizontal: 10,
-    backgroundColor: '#DDD', // Default button background color
+    backgroundColor: '#FCFCFC',
   },
   activeButton: {
-    backgroundColor: '#7F3DFF', // Active button background color
+    backgroundColor: 'yellow',
   },
   toggleButtonText: {
-    color: '#333', 
+    color: '#333',
   },
   displayContainer: {
     flex: 1,
@@ -208,11 +223,12 @@ const styles = StyleSheet.create({
   },
   fileInput: {
     height: 56,
-    backgroundColor: '#DDDDDD',
     borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 16,
+    borderWidth: 1,
+    borderStyle: 'dashed',
   },
   button: {
     margin: 16,
@@ -249,4 +265,15 @@ const styles = StyleSheet.create({
   continueButton: {
     margin: 16,
   },
+  ImagePreviewContainer: {
+    height:90,
+    width:"90%",
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    marginHorizontal: 16,
+  },
+  previewImage:{
+    width: 90,
+    height: 90,
+  }
 });
