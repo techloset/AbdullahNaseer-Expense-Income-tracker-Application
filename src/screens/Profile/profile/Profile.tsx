@@ -30,8 +30,8 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
         </View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('UpdateProfileScreen')}>
-          <Image source={require('../../../assets/edit.png')} />
+          onPress={() => navigation.navigate('UpdateProfile')}>
+          <Image source={require('../../../assets/edit.png')}/>
         </TouchableOpacity>
       </View>
       <View style={styles.cardContainer}>

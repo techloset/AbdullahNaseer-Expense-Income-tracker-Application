@@ -46,6 +46,11 @@ const useCreateTransaction = () => {
     });
   };
 
+  const toggleCategoryModal = () => {
+    console.log(" modal")
+    setModalVisible(!modalVisible); 
+  }
+
   useEffect(() => {
     console.log('use effect img', image);
   }, [image]);
@@ -154,7 +159,8 @@ const useCreateTransaction = () => {
     transactionType, 
     setTransactionType,
     image,
-    setImage
+    setImage,
+    toggleCategoryModal
   };
 };
 

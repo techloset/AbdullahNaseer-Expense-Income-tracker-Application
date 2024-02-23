@@ -8,13 +8,12 @@ import {
   Modal,
   FlatList,
   TouchableWithoutFeedback,
-  Image
+  Image,
 } from 'react-native';
 import AppButton from '../../components/AppButton';
 import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
 import useTransactionForm from './useCreateTransaction';
 import NavigationHeader from '../../components/NavigationHeader';
-
 
 interface CreateTransactionProps {
   navigation?: any;
@@ -47,6 +46,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     transactionType,
     setTransactionType,
     image,
+    setImage,
+    toggleCategoryModal,
   } = useTransactionForm();
 
   return (
@@ -98,7 +99,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
             <Modal
               animationType="slide"
               transparent={true}
-              visible={modalVisible}>
+              visible={modalVisible}
+              onRequestClose={toggleCategoryModal}>
               <View style={styles.modalContainer}>
                 <FlatList
                   data={categories}
@@ -128,7 +130,12 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
             )}
             {image && (
               <View style={styles.ImagePreviewContainer}>
-                  <Image style={styles.previewImage} source={{uri:image.path}} />
+                <TouchableOpacity
+                  onPress={() => setImage(null)}
+                  style={styles.imageRemoveBtn}>
+                  <Text style={styles.imageRemoveBtnText}>X</Text>
+                </TouchableOpacity>
+                <Image style={styles.previewImage} source={{uri: image.path}} />
               </View>
             )}
 
@@ -266,14 +273,31 @@ const styles = StyleSheet.create({
     margin: 16,
   },
   ImagePreviewContainer: {
-    height:90,
-    width:"90%",
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    height: 90,
+    position: 'relative',
+    width: 90,
     marginHorizontal: 16,
   },
-  previewImage:{
+  previewImage: {
     width: 90,
     height: 90,
-  }
+  },
+  imageRemoveBtn: {
+    position: 'absolute',
+    bottom: 70,
+    left: 75,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#00000052',
+    borderWidth: 1,
+    borderColor: 'whitesmoke',
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 9999,
+  },
+  imageRemoveBtnText: {
+    color: 'white',
+  },
 });
