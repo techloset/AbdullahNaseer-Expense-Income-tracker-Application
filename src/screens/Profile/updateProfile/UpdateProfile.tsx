@@ -109,7 +109,7 @@
 //   },
 // });
 
-import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
+import {StyleSheet, Text, View, Image, TextInput, ScrollView} from 'react-native';
 import React from 'react';
 import NavigationHeader from '../../../components/NavigationHeader';
 import AppButton from '../../../components/AppButton';
@@ -119,7 +119,8 @@ const UpdateProfile = () => {
   // const navigation = useNavigation(); // Use useNavigation hook to get navigation object
 
   return (
-    <View style={styles.container}>
+
+<View style={styles.container}>
       <NavigationHeader title={'Update Profile'}  />
       {/* Pass navigation prop */}
       <View style={styles.profileView}>
@@ -148,6 +149,9 @@ const UpdateProfile = () => {
         <AppButton title={'Update Profile'} />
       </View>
     </View>
+      
+
+   
   );
 };
 
@@ -219,3 +223,4 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+

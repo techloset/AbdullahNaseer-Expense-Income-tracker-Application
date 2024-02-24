@@ -1,15 +1,25 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import storage, { FirebaseStorageTypes } from '@react-native-firebase/storage';
-import ImagePicker, { Image as PickedImage } from 'react-native-image-crop-picker';
-import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { db } from '../../config/firebase';
+import storage, {FirebaseStorageTypes} from '@react-native-firebase/storage';
+import other from "../../assets/other.png"
+import food from "../../assets/food.png"
+import transportation from "../../assets/transport.png"
+import salary from "../../assets/salary.png"
+import subscription from "../../assets/subscription.png"
+import shopping from "../../assets/shopping.png"
+
+import ImagePicker, {
+  Image as PickedImage,
+} from 'react-native-image-crop-picker';
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
 
 // Define types
 interface Category {
   id: number;
   name: string;
+  image: any;
 }
 
 interface TransactionData {
@@ -22,9 +32,14 @@ interface TransactionData {
 // Define hook
 const useCreateTransaction = () => {
   const [categories, setCategories] = useState<Category[]>([
-    { id: 1, name: 'Food' },
-    { id: 2, name: 'Transport' },
-    { id: 3, name: 'Others' },
+    // { id: 1, name: 'Food' },
+    // { id: 2, name: 'Transport' },
+    // { id: 3, name: 'Others' },
+    {id: 1, name: 'Shopping', image: shopping},
+    {id: 2, name: 'Subscription', image: subscription},
+    {id: 3, name: 'Food', image: food},
+    {id: 4, name: 'Salary', image: salary},
+    {id: 5, name: 'Transportation', image: transportation},
   ]);
   const [category, setCategory] = useState<string>('');
   const [expenseName, setExpenseName] = useState<string>('');
@@ -43,13 +58,14 @@ const useCreateTransaction = () => {
     }).then(pickedImage => {
       setImage(pickedImage);
       console.log(pickedImage);
+      setFileModalVisible(false);
     });
   };
 
   const toggleCategoryModal = () => {
-    console.log(" modal")
-    setModalVisible(!modalVisible); 
-  }
+    console.log(' modal');
+    setModalVisible(!modalVisible);
+  };
 
   useEffect(() => {
     console.log('use effect img', image);
@@ -64,6 +80,7 @@ const useCreateTransaction = () => {
     }).then(pickedImage => {
       setImage(pickedImage);
       console.log(pickedImage);
+      setFileModalVisible(false);
     });
   };
 
@@ -102,7 +119,9 @@ const useCreateTransaction = () => {
       // Upload the image to Firebase Storage
       let imageUrl: string | null = null;
       if (image) {
-        const imageRef = storage().ref(`/images/${userEmail}/${imageId}_${image.path}`);
+        const imageRef = storage().ref(
+          `/images/${userEmail}/${imageId}_${image.path}`,
+        );
         await imageRef.putFile(image.path);
         imageUrl = await imageRef.getDownloadURL();
       }
@@ -118,7 +137,11 @@ const useCreateTransaction = () => {
       // Concatenate the user's email and image ID to create a unique collection name
       const collectionName: string = `${userEmail}`;
 
-      const docRef = await db.collection('users').doc(collectionName).collection(`${transactionType}`).add(transactionData);
+      const docRef = await db
+        .collection('users')
+        .doc(collectionName)
+        .collection(`${transactionType}`)
+        .add(transactionData);
 
       console.log('Successfully added transaction:', docRef.id);
     } catch (error) {
@@ -156,11 +179,11 @@ const useCreateTransaction = () => {
     handleImageThrougGallery,
     handleImageThroughCamera,
     handleSubmit,
-    transactionType, 
+    transactionType,
     setTransactionType,
     image,
     setImage,
-    toggleCategoryModal
+    toggleCategoryModal,
   };
 };
 

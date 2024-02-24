@@ -87,8 +87,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({id, category}) => {
         </View>
       </View>
       <View style={styles.timeContainer}>
-        {/* You can render other transaction details here */}
-        {/* For example, amount and time */}
+        
         <Text style={styles.timeContainerCash}>-$120</Text>
         <Text style={styles.timeContainerTime}>10:00 PM</Text>
       </View>

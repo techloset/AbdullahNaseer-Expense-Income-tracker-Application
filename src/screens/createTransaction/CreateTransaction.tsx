@@ -9,6 +9,7 @@ import {
   FlatList,
   TouchableWithoutFeedback,
   Image,
+  ScrollView,
 } from 'react-native';
 import AppButton from '../../components/AppButton';
 import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
@@ -51,119 +52,130 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
   } = useTransactionForm();
 
   return (
-    <TouchableWithoutFeedback onPress={handleOutsidePress}>
-      <View
-        style={[
-          styles.container,
-          {
-            backgroundColor:
-              transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
-          },
-        ]}>
-        <NavigationHeader title={transactionType} />
-        {/* Add buttons to toggle between Expense and Income */}
-        <View style={styles.toggleButtonsContainer}>
-          <TouchableOpacity
-            style={[
-              styles.toggleButton,
-              transactionType === 'Expense' && styles.activeButton,
-            ]}
-            onPress={() => setTransactionType('Expense')}>
-            <Text style={styles.toggleButtonText}>Expense</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.toggleButton,
-              transactionType === 'Income' && styles.activeButton,
-            ]}
-            onPress={() => setTransactionType('Income')}>
-            <Text style={styles.toggleButtonText}>Income</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.displayContainer}>
-          <Text style={styles.displayContainerHeading}>How Much?</Text>
-          <TextInput
-            style={[styles.displayContainerCash, styles.inputStyle]}
-            placeholder="$0"
-            placeholderTextColor={"white"}
-            value={money}
-            onChangeText={text => setMoney(text)}
+    <ScrollView>
+      <TouchableWithoutFeedback onPress={handleOutsidePress}>
+        <View
+          style={[
+            styles.container,
+            {
+              backgroundColor:
+                transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
+            },
+          ]}>
+          <NavigationHeader
+            title={transactionType}
+            headerStyle={{textColor: 'white'}}
           />
-        </View>
-        <View style={[styles.inputContainer, {flex: fileModalVisible ? 5 : 2}]}>
-          <View>
+          {/* Add buttons to toggle between Expense and Income */}
+          <View style={styles.toggleButtonsContainer}>
             <TouchableOpacity
-              style={styles.textInput}
-              onPress={() => setModalVisible(true)}>
-              <Text>{category || 'Select Category'}</Text>
+              style={[
+                styles.toggleButton,
+                transactionType === 'Expense' && styles.activeButton,
+              ]}
+              onPress={() => setTransactionType('Expense')}>
+              <Text style={styles.toggleButtonText}>Expense</Text>
             </TouchableOpacity>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={toggleCategoryModal}>
-              <View style={styles.modalContainer}>
-                <FlatList
-                  data={categories}
-                  keyExtractor={item => item.id.toString()}
-                  renderItem={({item}) => (
-                    <TouchableOpacity
-                      style={styles.categoryItem}
-                      onPress={() => selectCategory(item.name)}>
-                      <Text>{item.name}</Text>
-                    </TouchableOpacity>
-                  )}
-                />
-              </View>
-            </Modal>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Description"
-              value={expenseName}
-              onChangeText={text => setExpenseName(text)}
-            />
-            {!image && (
-              <TouchableOpacity
-                style={styles.fileInput}
-                onPress={toggleFileModal}>
-                <Text>Attachment</Text>
-              </TouchableOpacity>
-            )}
-            {image && (
-              <View style={styles.ImagePreviewContainer}>
-                <TouchableOpacity
-                  onPress={() => setImage(null)}
-                  style={styles.imageRemoveBtn}>
-                  <Text style={styles.imageRemoveBtnText}>X</Text>
-                </TouchableOpacity>
-                <Image style={styles.previewImage} source={{uri: image.path}} />
-              </View>
-            )}
-
-            <Modal
-              animationType="fade"
-              transparent={true}
-              visible={fileModalVisible}
-              onRequestClose={toggleFileModal}>
-              <TouchableWithoutFeedback onPress={handleOutsidePress}>
-                <View style={styles.fileModalContainer}>
-                  <View style={styles.modalBackground} />
-                  <View style={styles.attachmentPopup}>
-                    <AttachmentInputPopUp
-                      handleImageThrougGallery={handleImageThrougGallery}
-                      handleImageThroughCamera={handleImageThroughCamera}
-                    />
-                  </View>
-                </View>
-              </TouchableWithoutFeedback>
-            </Modal>
+            <TouchableOpacity
+              style={[
+                styles.toggleButton,
+                transactionType === 'Income' && styles.activeButton,
+              ]}
+              onPress={() => setTransactionType('Income')}>
+              <Text style={styles.toggleButtonText}>Income</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.continueButton}>
-            <AppButton title="Continue" onPress={handleSubmit} />
+          <View style={styles.displayContainer}>
+            <Text style={styles.displayContainerHeading}>How Much?</Text>
+            <TextInput
+              style={[styles.displayContainerCash, styles.inputStyle]}
+              placeholder="$0"
+              keyboardType="numeric"
+              placeholderTextColor={'white'}
+              value={money}
+              onChangeText={text => setMoney(text)}
+            />
+          </View>
+          <View
+            style={[styles.inputContainer, {flex: fileModalVisible ? 5 : 2}]}>
+            <View>
+              <TouchableOpacity
+                style={styles.textInput}
+                onPress={() => setModalVisible(true)}>
+                <Text>{category || 'Select Category'}</Text>
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={toggleCategoryModal}>
+                <View style={styles.modalContainer}>
+                  <FlatList
+                    data={categories}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({item}) => (
+                      <TouchableOpacity
+                        style={styles.categoryItemContainer}
+                        onPress={() => selectCategory(item.name)}>
+                        <Image source={item.image} />
+                        <Text style={styles.categoryItemText}>{item.name}</Text>
+                      </TouchableOpacity>
+                    )}
+                  />
+                </View>
+              </Modal>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Description"
+                value={expenseName}
+                onChangeText={text => setExpenseName(text)}
+              />
+              {!image && (
+                <TouchableOpacity
+                  style={styles.fileInput}
+                  onPress={toggleFileModal}>
+                  <Text>Attachment</Text>
+                </TouchableOpacity>
+              )}
+              {image && (
+                <View style={styles.ImagePreviewContainer}>
+                  <TouchableOpacity
+                    onPress={() => setImage(null)}
+                    style={styles.imageRemoveBtn}>
+                    <Text style={styles.imageRemoveBtnText}>X</Text>
+                  </TouchableOpacity>
+                  <Image
+                    style={styles.previewImage}
+                    source={{uri: image.path}}
+                  />
+                </View>
+              )}
+
+              <Modal
+                animationType="fade"
+                transparent={true}
+                visible={fileModalVisible}
+                onRequestClose={toggleFileModal}>
+                <TouchableWithoutFeedback onPress={handleOutsidePress}>
+                  <View style={styles.fileModalContainer}>
+                    <View style={styles.modalBackground} />
+                    <View style={styles.attachmentPopup}>
+                      <AttachmentInputPopUp
+                        handleImageThrougGallery={handleImageThrougGallery}
+                        handleImageThroughCamera={handleImageThroughCamera}
+                      />
+                    </View>
+                  </View>
+                </TouchableWithoutFeedback>
+              </Modal>
+            </View>
+            <View style={styles.continueButton}>
+              <AppButton title="Continue" onPress={handleSubmit} />
+            </View>
           </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   );
 };
 
@@ -247,10 +259,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  categoryItem: {
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC',
+  categoryItemContainer: {
+    // borderWidth: 1,	
+    justifyContent:"space-between",
+    alignItems: 'center',
+    flexDirection: 'row',
+    width:"90%",
+    margin:16,
+  },
+  categoryItemText: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '600',
   },
   fileModalContainer: {
     flex: 1,
