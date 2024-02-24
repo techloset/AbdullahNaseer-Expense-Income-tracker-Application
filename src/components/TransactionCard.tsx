@@ -66,29 +66,47 @@
 
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface TransactionCardProps {
   id: string;
   category: string;
+  description: string;
+  money: string;
+  transactionType: string;
+  key: string;
 }
 
-const TransactionCard: React.FC<TransactionCardProps> = ({id, category}) => {
+const TransactionCard: React.FC<TransactionCardProps> = ({
+  id,
+  category,
+  description,
+  money,
+  transactionType,
+  key,
+}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.detailsContainer}>
         <Image
           style={styles.inputImg}
-          source={require('../assets/inputImg.png')}
+          source={require(`../assets/other.png`)}
         />
         <View style={styles.detailsTextContainer}>
           {/* Render the transaction id */}
           <Text style={styles.detailsContainerHeading}>{category}</Text>
-          <Text style={styles.detailsContaineDescription}> waht color is your bugate</Text>
+          <Text style={styles.detailsContaineDescription}>{description}</Text>
         </View>
       </View>
       <View style={styles.timeContainer}>
-        
-        <Text style={styles.timeContainerCash}>-$120</Text>
+        <Text
+          style={[
+            styles.timeContainerCash,
+            transactionType === 'Expense' ? {color: 'red'} : {color: 'green'},
+          ]}>
+          ${money}
+        </Text>
+
         <Text style={styles.timeContainerTime}>10:00 PM</Text>
       </View>
     </TouchableOpacity>
@@ -106,7 +124,7 @@ const styles = StyleSheet.create({
     height: 90,
     paddingHorizontal: 16,
     borderRadius: 16,
-    marginBottom:8,
+    marginBottom: 8,
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -118,16 +136,16 @@ const styles = StyleSheet.create({
   detailsContainerHeading: {
     fontSize: 16,
     fontWeight: '500',
-    color:"black"
+    color: 'black',
   },
   detailsContaineDescription: {
     fontSize: 13,
-    fontWeight:"500",
+    fontWeight: '500',
   },
   timeContainer: {},
   timeContainerCash: {
     fontSize: 16,
-    color: 'red',
+    // color: 'red',
     fontWeight: '600',
   },
   timeContainerTime: {

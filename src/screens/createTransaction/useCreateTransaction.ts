@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import storage, {FirebaseStorageTypes} from '@react-native-firebase/storage';
-import other from "../../assets/other.png"
-import food from "../../assets/food.png"
-import transportation from "../../assets/transport.png"
-import salary from "../../assets/salary.png"
-import subscription from "../../assets/subscription.png"
-import shopping from "../../assets/shopping.png"
+import other from '../../assets/other.png';
+import food from '../../assets/food.png';
+import transportation from '../../assets/transport.png';
+import salary from '../../assets/salary.png';
+import subscription from '../../assets/subscription.png';
+import shopping from '../../assets/shopping.png';
 
 import ImagePicker, {
   Image as PickedImage,
@@ -23,10 +23,12 @@ interface Category {
 }
 
 interface TransactionData {
-  expenseName: string;
+  description: string;
   category: string;
   money: string;
   imageUrl: string | null;
+  transactionType: string;
+  timestamp: string;
 }
 
 // Define hook
@@ -42,12 +44,14 @@ const useCreateTransaction = () => {
     {id: 5, name: 'Transportation', image: transportation},
   ]);
   const [category, setCategory] = useState<string>('');
-  const [expenseName, setExpenseName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [money, setMoney] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [transactionType, setTransactionType] = useState('Expense');
   const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
   const [image, setImage] = useState<PickedImage | null>(null);
+  const now = new Date();
+const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
 
   const handleImageThrougGallery = () => {
     console.log('press image');
@@ -99,21 +103,15 @@ const useCreateTransaction = () => {
 
   const handleSubmit = async () => {
     console.log('submit button');
-    console.log(expenseName, category, money);
-
-    // Check if any required fields are empty
-    if (!expenseName || !category || !money) {
+    console.log(description, category, money);
+    if (!description || !category || !money) {
       console.error('Required fields are empty');
       return;
     }
-
     try {
       console.log('in the try');
-
-      // Get current user email
       const userEmail: string = auth().currentUser?.email || '';
 
-      // Generate a unique image ID
       const imageId: number = Date.now(); // You can use any method to generate a unique ID for the image
 
       // Upload the image to Firebase Storage
@@ -128,10 +126,12 @@ const useCreateTransaction = () => {
 
       // Add transaction details to Firestore under the user's collection
       const transactionData: TransactionData = {
-        expenseName: expenseName,
+        description: description,
         category: category,
         money: money,
-        imageUrl: imageUrl, // Add image URL to the transaction data
+        imageUrl: imageUrl,
+        transactionType: transactionType,
+        timestamp: timeString, // Add current time
       };
 
       // Concatenate the user's email and image ID to create a unique collection name
@@ -163,13 +163,13 @@ const useCreateTransaction = () => {
   return {
     categories,
     category,
-    expenseName,
+    description,
     modalVisible,
     fileModalVisible,
     selectCategory,
     toggleFileModal,
     handleOutsidePress,
-    setExpenseName,
+    setDescription,
     setCategory,
     setModalVisible,
     setFileModalVisible,

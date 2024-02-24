@@ -28,13 +28,13 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
   const {
     categories,
     category,
-    expenseName,
+    description,
     modalVisible,
     fileModalVisible,
     selectCategory,
     toggleFileModal,
     handleOutsidePress,
-    setExpenseName,
+    setDescription,
     setCategory,
     setModalVisible,
     setFileModalVisible,
@@ -127,8 +127,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
               <TextInput
                 style={styles.textInput}
                 placeholder="Description"
-                value={expenseName}
-                onChangeText={text => setExpenseName(text)}
+                value={description}
+                onChangeText={text => setDescription(text)}
               />
               {!image && (
                 <TouchableOpacity

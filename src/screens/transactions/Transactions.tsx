@@ -139,7 +139,7 @@ const Transaction: React.FC<TransactionProps> = () => {
   } = useTransactions();
 
   const renderItem = ({item}) => (
-    <TransactionCard key={item.id} id={item.id} category={item.category} />
+    <TransactionCard key={item.id} id={item.id} description={item.description} category={item.category} money={item.money} transactionType={item.transactionType}   />
   );
 
   return (
