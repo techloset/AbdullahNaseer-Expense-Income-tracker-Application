@@ -6,7 +6,7 @@ import food from '../../assets/food.png';
 import transportation from '../../assets/transport.png';
 import salary from '../../assets/salary.png';
 import subscription from '../../assets/subscription.png';
-import shopping from '../../assets/shopping.png';
+import shopping from '../../assets/shopping.png'; 
 
 import ImagePicker, {
   Image as PickedImage,
