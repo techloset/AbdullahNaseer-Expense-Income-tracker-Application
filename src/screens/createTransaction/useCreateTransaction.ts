@@ -14,6 +14,7 @@ import ImagePicker, {
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
+import { Alert } from 'react-native';
 
 // Define types
 interface Category {
@@ -21,6 +22,7 @@ interface Category {
   name: string;
   image: any;
 }
+
 
 interface TransactionData {
   description: string;
@@ -34,9 +36,6 @@ interface TransactionData {
 // Define hook
 const useCreateTransaction = () => {
   const [categories, setCategories] = useState<Category[]>([
-    // { id: 1, name: 'Food' },
-    // { id: 2, name: 'Transport' },
-    // { id: 3, name: 'Others' },
     {id: 1, name: 'Shopping', image: shopping},
     {id: 2, name: 'Subscription', image: subscription},
     {id: 3, name: 'Food', image: food},
@@ -47,6 +46,7 @@ const useCreateTransaction = () => {
   const [description, setDescription] = useState<string>('');
   const [money, setMoney] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [transactionType, setTransactionType] = useState('Expense');
   const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
   const [image, setImage] = useState<PickedImage | null>(null);
@@ -110,10 +110,9 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
     }
     try {
       console.log('in the try');
+      setLoading(true);
       const userEmail: string = auth().currentUser?.email || '';
-
       const imageId: number = Date.now(); // You can use any method to generate a unique ID for the image
-
       // Upload the image to Firebase Storage
       let imageUrl: string | null = null;
       if (image) {
@@ -123,8 +122,6 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
         await imageRef.putFile(image.path);
         imageUrl = await imageRef.getDownloadURL();
       }
-
-      // Add transaction details to Firestore under the user's collection
       const transactionData: TransactionData = {
         description: description,
         category: category,
@@ -144,6 +141,12 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
         .add(transactionData);
 
       console.log('Successfully added transaction:', docRef.id);
+      setDescription('');
+      setCategory('');
+      setMoney('');
+      setImage(null);
+      setLoading(false);
+      Alert.alert('Transaction added successfully')
     } catch (error) {
       console.error(error);
     }
@@ -184,6 +187,8 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
     image,
     setImage,
     toggleCategoryModal,
+    loading,
+    setLoading,
   };
 };
 

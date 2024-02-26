@@ -49,6 +49,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     image,
     setImage,
     toggleCategoryModal,
+    loading,
+    setLoading,
   } = useTransactionForm();
 
   return (
@@ -170,7 +172,11 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
               </Modal>
             </View>
             <View style={styles.continueButton}>
-              <AppButton title="Continue" onPress={handleSubmit} />
+              <AppButton
+                disabled={loading? true : false}
+                title={loading ? `Sending...` : `Continue`}
+                onPress={handleSubmit}
+              />
             </View>
           </View>
         </View>
@@ -260,12 +266,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   categoryItemContainer: {
-    // borderWidth: 1,	
-    justifyContent:"space-between",
+    // borderWidth: 1,
+    justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    width:"90%",
-    margin:16,
+    width: '90%',
+    margin: 16,
   },
   categoryItemText: {
     color: 'white',

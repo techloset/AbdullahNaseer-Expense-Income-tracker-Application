@@ -4,11 +4,12 @@ import React from 'react';
 interface AppButtonProps {
   title: string;
   onPress?: () => void
+  disabled?: boolean
 }
 
-const AppButton: React.FC<AppButtonProps> = ({title,onPress}) => {
+const AppButton: React.FC<AppButtonProps> = ({title,onPress,disabled}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity disabled={disabled} onPress={onPress} style={styles.container}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
