@@ -38,7 +38,6 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     setCategory,
     setModalVisible,
     setFileModalVisible,
-    logState,
     money,
     setMoney,
     handleImageThrougGallery,
