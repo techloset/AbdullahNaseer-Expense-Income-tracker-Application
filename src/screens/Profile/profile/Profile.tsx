@@ -5,16 +5,20 @@ interface ProfileHomeProps {
   navigation: any;
 }
 import auth from '@react-native-firebase/auth';
+import ConfirmAlert from '../../../components/ConfirmAlert';
+import useProfile from './useProfile';
 
-const hnadleSignOut = () => {
-  auth()
-    .signOut()
-    .then(() => console.log('User signed out!'));
-};
+// const hnadleSignOut = () => {
+//   auth()
+//     .signOut()
+//     .then(() => console.log('User signed out!'));
+// };
 
 const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
+  const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
+    useProfile();
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <View style={styles.profileHeader}>
         <View style={styles.UserProfile}>
           <View style={styles.ImageContainer}>
@@ -29,9 +33,8 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </View>
         </View>
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('UpdateProfile')}>
-          <Image source={require('../../../assets/edit.png')}/>
+        <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile')}>
+          <Image source={require('../../../assets/edit.png')} />
         </TouchableOpacity>
       </View>
       <View style={styles.cardContainer}>
@@ -62,7 +65,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={hnadleSignOut}
+            onPress={() => setConfirmAlert(true)}
             style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image
@@ -76,6 +79,13 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
+      <ConfirmAlert
+        visible={confirmAlert}
+        title={'Logout?'}
+        message={'Are you sure you want to logout?'}
+        onYesPress={handleSignOut}
+        onNoPress={handleCancelSignOut}
+      />
     </View>
   );
 };
@@ -83,6 +93,9 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
 export default ProfileHome;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   profileHeader: {
     margin: 16,
     flexDirection: 'row',
@@ -114,7 +127,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 24,
     fontWeight: '600',
-    color:"black"
+    color: 'black',
   },
   ProfileText: {
     marginLeft: 16,
@@ -139,7 +152,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginLeft: 9,
-    color:"black"
+    color: 'black',
   },
   actionImgContainer: {},
   actionContainer: {

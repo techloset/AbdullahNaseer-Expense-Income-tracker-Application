@@ -209,7 +209,7 @@ import CreateTransaction from '../screens/createTransaction/CreateTransaction';
 import UpdateProfile from '../screens/profile/updateProfile/UpdateProfile';
 
 import { Image } from 'react-native';
-import { User } from '../types/declarations';
+import { User } from '../types/types';
 
 import homeIcon from '../assets/home.png';
 import transactionIcon from '../assets/transaction.png';

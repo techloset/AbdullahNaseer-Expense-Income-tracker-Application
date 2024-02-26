@@ -22,8 +22,6 @@ interface Category {
   name: string;
   image: any;
 }
-
-
 interface TransactionData {
   description: string;
   category: string;
@@ -152,17 +150,6 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
     }
   };
 
-  const logState = () => {
-    console.log('pressing');
-    console.log({
-      categories,
-      category,
-      expenseName,
-      modalVisible,
-      fileModalVisible,
-    });
-  };
-
   return {
     categories,
     category,
@@ -178,7 +165,6 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
     setFileModalVisible,
     money,
     setMoney,
-    logState,
     handleImageThrougGallery,
     handleImageThroughCamera,
     handleSubmit,
