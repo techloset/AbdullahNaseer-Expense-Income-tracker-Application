@@ -146,6 +146,8 @@ const Transaction: React.FC<TransactionProps> = () => {
       description={item.description}
       money={item.money}
       transactionType={item.transactionType}
+      imageUrl={item.imageUrl}
+      timestamp={item.timestamp}
     />
   );
 

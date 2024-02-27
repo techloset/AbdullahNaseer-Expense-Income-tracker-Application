@@ -76,6 +76,8 @@ interface TransactionCardProps {
   money: string;
   transactionType: string;
   key: string;
+  imageUrl: string;
+  timeStamp: string;
 }
 
 const TransactionCard: React.FC<TransactionCardProps> = ({
@@ -84,6 +86,8 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
   description,
   money,
   transactionType,
+  imageUrl,
+  timeStamp,
 }) => {
   const navigation = useNavigation();
   const onPressHandler = () => {
@@ -94,7 +98,9 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       description: description,
       money: money,
       transactionType: transactionType,
-      // imageUrl: imageUrl,
+      imageUrl: imageUrl,
+      timestamp: timeStamp,
+      
     });
   };
 

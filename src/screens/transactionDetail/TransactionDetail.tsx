@@ -6,18 +6,31 @@ import {useRoute} from '@react-navigation/native';
 
 const TransactionDetail = () => {
   const route = useRoute();
-  const {docId, category, description, money, transactionType, imageUrl} =
-    route.params;
+  const {
+    docId,
+    category,
+    description,
+    money,
+    transactionType,
+    imageUrl,
+    timeStamp,
+  } = route.params;
+  console.log('imageUrl', imageUrl);
   return (
     <View style={styles.container}>
-      <View style={styles.UpperContainer}>
+      <View
+        style={[
+          styles.UpperContainer,
+          {
+            backgroundColor:
+              transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
+          },
+        ]}>
         <DetailPageHeader />
         <View style={styles.UpperContainerText}>
-          <Text style={styles.uppercontainerCashText}>$120</Text>
+          <Text style={styles.uppercontainerCashText}>${money}</Text>
           <Text style={styles.uppercontainerHeadingText}>Buy Some Grocery</Text>
-          <Text style={styles.upperContainerDateText}>
-            Saturday 4 June 2021 16:20
-          </Text>
+          <Text style={styles.upperContainerDateText}>{timeStamp}</Text>
         </View>
         <View style={styles.CategoryContainer}>
           <View>
@@ -45,7 +58,7 @@ const TransactionDetail = () => {
         <Text>{description}</Text>
         <Text style={styles.lowerContainerHeading}>Attachment</Text>
         <View style={styles.preview}>
-          {/* <Image source={{uri: `${imageUrl}`}} /> */}
+          <Image style={styles.image} source={{uri: `${imageUrl}`}} />
         </View>
         <AppButton title="Edit" />
       </View>
@@ -58,6 +71,10 @@ export default TransactionDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  image: {
+    height: 116,
+    width: 116,
   },
   UpperContainer: {
     backgroundColor: '#FD3C4A',
