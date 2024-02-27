@@ -99,8 +99,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       money: money,
       transactionType: transactionType,
       imageUrl: imageUrl,
-      timestamp: timeStamp,
-      
+      timestamp: timeStamp,  
     });
   };
 
