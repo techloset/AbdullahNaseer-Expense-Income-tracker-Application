@@ -15,7 +15,6 @@ const ForgetPassScreen: React.FC<ForgetPassScreenProps> = ({navigation}) => {
       <NavigationHeader
         title="Forget Password"
         headerStyle={{textColor: 'black'}}
-        // navigation={navigation}
       />
       <View style={styles.content}>
         <Text style={styles.title}>
