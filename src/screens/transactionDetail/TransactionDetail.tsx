@@ -1,9 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import DetailPageHeader from '../../components/DetailsPageHeader';
 import AppButton from '../../components/AppButton';
+import {useRoute} from '@react-navigation/native';
 
 const TransactionDetail = () => {
+  const route = useRoute();
+  const {docId, category, description, money, transactionType, imageUrl} =
+    route.params;
   return (
     <View style={styles.container}>
       <View style={styles.UpperContainer}>
@@ -18,15 +22,15 @@ const TransactionDetail = () => {
         <View style={styles.CategoryContainer}>
           <View>
             <Text>Type</Text>
-            <Text>Expense</Text>
+            <Text>{transactionType}</Text>
           </View>
           <View>
-            <Text>Type</Text>
-            <Text>Expense</Text>
+            <Text>category</Text>
+            <Text>{category}</Text>
           </View>
           <View>
-            <Text>Type</Text>
-            <Text>Expense</Text>
+            <Text>Wallet</Text>
+            <Text>Wallet</Text>
           </View>
         </View>
       </View>
@@ -38,13 +42,11 @@ const TransactionDetail = () => {
       />
       <View style={styles.lowerContainer}>
         <Text style={styles.lowerContainerHeading}>Description</Text>
-        <Text>
-          Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-          sint. Velit officia consequat duis enim velit mollit. Exercitation
-          veniam consequat sunt nostrud amet.
-        </Text>
+        <Text>{description}</Text>
         <Text style={styles.lowerContainerHeading}>Attachment</Text>
-        <View style={styles.preview}></View>
+        <View style={styles.preview}>
+          {/* <Image source={{uri: `${imageUrl}`}} /> */}
+        </View>
         <AppButton title="Edit" />
       </View>
     </View>
@@ -119,4 +121,3 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
 });
-

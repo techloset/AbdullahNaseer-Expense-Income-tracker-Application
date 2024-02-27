@@ -8,12 +8,6 @@ import auth from '@react-native-firebase/auth';
 import ConfirmAlert from '../../../components/ConfirmAlert';
 import useProfile from './useProfile';
 
-// const hnadleSignOut = () => {
-//   auth()
-//     .signOut()
-//     .then(() => console.log('User signed out!'));
-// };
-
 const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
     useProfile();

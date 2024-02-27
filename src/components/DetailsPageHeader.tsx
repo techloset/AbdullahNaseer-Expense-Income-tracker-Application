@@ -1,12 +1,18 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const DetailPageHeader = () => {
+  const navigation = useNavigation();
+
+  const handleBack = () => {
+    navigation.goBack();
+  };
   return (
     <View>
       <View style={styles.container}>
         <View style={styles.navigationHeader}>
-          <TouchableOpacity style={styles.arrowButton}>
+          <TouchableOpacity onPress={handleBack} style={styles.arrowButton}>
             <Image source={require('../assets/arrow.png')} />
           </TouchableOpacity>
           <View style={styles.centerView}>
@@ -17,8 +23,6 @@ const DetailPageHeader = () => {
           </TouchableOpacity>
         </View>
       </View>
-
-      
     </View>
   );
 };

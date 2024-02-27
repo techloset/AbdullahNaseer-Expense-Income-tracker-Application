@@ -67,6 +67,7 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {useNavigation} from '@react-navigation/native';
 
 interface TransactionCardProps {
   id: string;
@@ -83,17 +84,28 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
   description,
   money,
   transactionType,
-  key,
 }) => {
+  const navigation = useNavigation();
+  const onPressHandler = () => {
+    // Navigate to TransactionDetail screen with the parameters
+    navigation.navigate('TransactionDetail', {
+      docId: id,
+      category: category,
+      description: description,
+      money: money,
+      transactionType: transactionType,
+      // imageUrl: imageUrl,
+    });
+  };
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={onPressHandler} style={styles.container}>
       <View style={styles.detailsContainer}>
         <Image
           style={styles.inputImg}
           source={require(`../assets/other.png`)}
         />
         <View style={styles.detailsTextContainer}>
-          {/* Render the transaction id */}
           <Text style={styles.detailsContainerHeading}>{category}</Text>
           <Text style={styles.detailsContaineDescription}>{description}</Text>
         </View>

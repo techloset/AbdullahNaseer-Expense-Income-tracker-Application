@@ -91,8 +91,7 @@
 //       }
 //     })}
 //     >
-    
-    
+
 //     {/* > */}
 //     <Tab.Screen
 //       name="HomeScreen"
@@ -190,11 +189,10 @@
 
 // export default Navigation;
 
-
-import React, { useState, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, {useState, useEffect} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import auth from '@react-native-firebase/auth';
 
 import SignUp from '../screens/auth/signup/SignUp';
@@ -208,14 +206,15 @@ import Budget from '../screens/budget/Budget';
 import CreateTransaction from '../screens/createTransaction/CreateTransaction';
 import UpdateProfile from '../screens/profile/updateProfile/UpdateProfile';
 
-import { Image } from 'react-native';
-import { User } from '../types/types';
+import {Image} from 'react-native';
+import {User} from '../types/types';
 
 import homeIcon from '../assets/home.png';
 import transactionIcon from '../assets/transaction.png';
 import profileIcon from '../assets/user.png';
 import budgetIcon from '../assets/piechart.png';
 import addIcon from '../assets/add.png';
+import TransactionDetail from '../screens/transactionDetail/TransactionDetail';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -229,8 +228,8 @@ type NavigationRoute =
 
 const TabNavigation = () => (
   <Tab.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
+    screenOptions={({route}) => ({
+      tabBarIcon: ({focused, color, size}) => {
         let iconSource;
         let iconStyle = {}; // Separate styling for the middle icon
 
@@ -243,7 +242,7 @@ const TabNavigation = () => (
             break;
           case 'CreateTransaction':
             iconSource = addIcon;
-            iconStyle = { width: 50, height: 50 }; // Example different size for middle icon
+            iconStyle = {width: 50, height: 50}; // Example different size for middle icon
             break;
           case 'ProfileHome':
             iconSource = focused ? profileIcon : profileIcon;
@@ -259,7 +258,7 @@ const TabNavigation = () => (
         return (
           <Image
             source={iconSource}
-            style={{ width: size, height: size, tintColor: color, ...iconStyle }}
+            style={{width: size, height: size, tintColor: color, ...iconStyle}}
           />
         );
       },
@@ -270,33 +269,32 @@ const TabNavigation = () => (
         height: 70,
         backgroundColor: '#FCFCFC',
       },
-    })}
-  >
+    })}>
     {/* Your Tab.Screen components */}
     <Tab.Screen
       name="HomeScreen"
       component={Home}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <Tab.Screen
       name="Transaction"
       component={Transaction}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <Tab.Screen
       name="CreateTransaction"
       component={CreateTransaction}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <Tab.Screen
       name="Budget"
       component={Budget}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <Tab.Screen
       name="ProfileHome"
       component={ProfileHome}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
   </Tab.Navigator>
 );
@@ -325,40 +323,45 @@ const Navigation = () => {
             <Stack.Screen
               name="Home"
               component={TabNavigation}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
             <Stack.Screen
               name="UpdateProfile"
               component={UpdateProfile}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
             <Stack.Screen
               name="ResetPassword"
               component={ResetPassword}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
             <Stack.Screen
               name="CreateTransaction"
               component={CreateTransaction}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="TransactionDetail"
+              component={TransactionDetail}
+              options={{headerShown: false}}
             />
           </>
         ) : (
           <>
             <Stack.Screen
               name="signup"
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
               component={SignUp}
             />
             <Stack.Screen
               name="login"
               component={LoginScreen}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
             <Stack.Screen
               name="ForgetPassScreen"
               component={ForgetPassScreen}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
           </>
         )}

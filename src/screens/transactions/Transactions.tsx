@@ -139,7 +139,14 @@ const Transaction: React.FC<TransactionProps> = () => {
   } = useTransactions();
 
   const renderItem = ({item}) => (
-    <TransactionCard key={item.id} id={item.id} description={item.description} category={item.category} money={item.money} transactionType={item.transactionType}   />
+    <TransactionCard
+      key={item.id}
+      id={item.id}
+      category={item.category}
+      description={item.description}
+      money={item.money}
+      transactionType={item.transactionType}
+    />
   );
 
   return (
@@ -167,6 +174,12 @@ const Transaction: React.FC<TransactionProps> = () => {
       ) : isError ? (
         <Text>Error fetching transactions</Text>
       ) : (
+        // <FlatList
+        //   style={styles.flatList}
+        //   data={transactionsState}
+        //   renderItem={renderItem}
+        //   keyExtractor={item => item.id}
+        // />
         <FlatList
           style={styles.flatList}
           data={transactionsState}
