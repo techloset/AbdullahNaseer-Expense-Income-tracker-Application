@@ -123,7 +123,7 @@ const useCreateTransaction = () => {
       let imageUrl: string | null = null;
       if (image) {
         const imageRef = storage().ref(
-          `/images/${userEmail}/${imageId}_${image.path}`,
+          `/images/${userEmail}/${imageId}`,
         );
         await imageRef.putFile(image.path);
         imageUrl = await imageRef.getDownloadURL();
