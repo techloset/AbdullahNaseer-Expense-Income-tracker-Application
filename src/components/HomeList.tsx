@@ -60,19 +60,25 @@
 // //     height: 300,
 // //   },
 // // });
-
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import TransactionCard from './TransactionCard';
 import useHome from '../screens/home/useHome';
 
 const HomeList = () => {
   const {isLoading, isError, transactions} = useHome();
+
   return (
     <View style={styles.container}>
-      {transactions.map((item, index) => (
-        <TransactionCard key={index} {...item} />
-      ))}
+      {isLoading ? (
+        <Text>Loading...</Text>
+      ) : isError ? (
+        <Text>Error occurred. Please try again later.</Text>
+      ) : (
+        transactions.map((item, index) => (
+          <TransactionCard key={index} {...item} />
+        ))
+      )}
     </View>
   );
 };

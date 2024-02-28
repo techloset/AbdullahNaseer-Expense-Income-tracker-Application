@@ -3,7 +3,7 @@ import React from 'react';
 import DetailPageHeader from '../../components/DetailsPageHeader';
 import AppButton from '../../components/AppButton';
 import {useRoute} from '@react-navigation/native';
-
+import useTransactionDetail from './useTransactionDetail';
 
 interface TransactionDetailParams {
   TransactionDetail: {
@@ -19,7 +19,9 @@ interface TransactionDetailParams {
 
 const TransactionDetail: React.FC = () => {
   const route = useRoute();
-  
+
+  const {handleDelete} = useTransactionDetail();
+
   const {
     docId,
     category,
@@ -40,7 +42,7 @@ const TransactionDetail: React.FC = () => {
               transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
           },
         ]}>
-        <DetailPageHeader />
+        <DetailPageHeader onPress={()=>handleDelete(transactionType,docId)} />
         <View style={styles.UpperContainerText}>
           <Text style={styles.uppercontainerCashText}>${money}</Text>
           <Text style={styles.uppercontainerHeadingText}>Buy Some Grocery</Text>

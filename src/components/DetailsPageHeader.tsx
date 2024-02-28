@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-const DetailPageHeader = () => {
+const DetailPageHeader = ({onPress}) => {
   const navigation = useNavigation();
 
   const handleBack = () => {
@@ -18,7 +18,7 @@ const DetailPageHeader = () => {
           <View style={styles.centerView}>
             <Text style={styles.headerText}>Detail Transaction</Text>
           </View>
-          <TouchableOpacity style={styles.deleteBtn}>
+          <TouchableOpacity onPress={onPress} style={styles.deleteBtn}>
             <Image source={require('../assets/trash.png')} />
           </TouchableOpacity>
         </View>
