@@ -96,19 +96,21 @@
 //   }
 // });
 
-
-
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 
+import {useSelector} from 'react-redux';
+import {selectFinanceSummary} from '../store/financeSelectors';
+
 const HeroSection = () => {
+  const financeSummary = useSelector(selectFinanceSummary);
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
         <Text>Account Balance</Text>
       </View>
       <View style={styles.balanceContainer}>
-        <Text style={styles.balanceText}>$1,000.00</Text>
+        <Text style={styles.balanceText}>{financeSummary.balance}</Text>
       </View>
 
       <View style={styles.cardsContainer}>
@@ -121,7 +123,7 @@ const HeroSection = () => {
           </View>
           <View>
             <Text style={styles.cardHeading}>Income</Text>
-            <Text style={styles.cardBalance}>$5000</Text>
+            <Text style={styles.cardBalance}>{financeSummary.income}</Text>
           </View>
         </View>
         <View style={styles.cardExpense}>
@@ -133,7 +135,7 @@ const HeroSection = () => {
           </View>
           <View>
             <Text style={styles.cardHeading}>Expense</Text>
-            <Text style={styles.cardBalance}>-$2000</Text>
+            <Text style={styles.cardBalance}>-{financeSummary.expenses}</Text>
           </View>
         </View>
       </View>
@@ -145,9 +147,9 @@ export default HeroSection;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:"#FFF6E5",
-    borderBottomRightRadius:16,
-    borderBottomLeftRadius:16,
+    backgroundColor: '#FFF6E5',
+    borderBottomRightRadius: 16,
+    borderBottomLeftRadius: 16,
   },
   heading: {
     alignItems: 'center',
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16
+    padding: 16,
   },
   cardExpense: {
     width: '48%',
@@ -183,7 +185,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16
+    padding: 16,
   },
   cardImgContainer: {
     justifyContent: 'center',
@@ -206,5 +208,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'white',
     fontWeight: '600',
-  }
+  },
 });
