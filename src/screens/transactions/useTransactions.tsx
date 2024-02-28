@@ -13,7 +13,7 @@ interface useTransactionReturn {
 
 const useTransactions: React.FC<useTransactionsProps> = () => {
   const dispatch = useDispatch();
-  const [transactionsState, setTransactionsState] = useState(null);
+  // const [transactionsState, setTransactionsState] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
 
   const handleFilterModelShow = () => {
@@ -29,19 +29,20 @@ const useTransactions: React.FC<useTransactionsProps> = () => {
   );
   // console.log('transactions from hook', transactions);
   // setTransactionsState(transactions)
-  useEffect(() => {
-    if (transactions) {
-      setTransactionsState(transactions);
-      console.log('transactionsState', transactionsState);
-    }
-  }, [transactions]);
+  // useEffect(() => {
+  //   if (transactions) {
+  //     setTransactionsState(transactions);
+  //     // console.log('transactionsState', transactifonsState);
+  //     console.log(transactions);
+  //   }
+  // }, [transactions]);
 
   return {
     isLoading,
     transactions,
     isError,
-    setTransactionsState,
-    transactionsState,
+    // setTransactionsState,
+    // transactionsState,
     handleFilterModelShow,
     showFilter,
     setShowFilter,

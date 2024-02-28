@@ -77,12 +77,15 @@ const useHome = () => {
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
-  // const {isLoading, transactions, isError} = useSelector(
-  //   (state: RootState) => state.transactions,
-  // );
+  const {isLoading, transactions, isError} = useSelector(
+    (state: RootState) => state.transactions,
+  );
 
   return {
     financeSummary,
+    isLoading, 
+    isError,
+    transactions
   };
 };
 

@@ -130,7 +130,8 @@ interface TransactionProps {}
 
 const Transaction: React.FC<TransactionProps> = () => {
   const {
-    transactionsState,
+    // transactionsState,
+    transactions,
     isLoading,
     isError,
     handleFilterModelShow,
@@ -184,7 +185,7 @@ const Transaction: React.FC<TransactionProps> = () => {
         // />
         <FlatList
           style={styles.flatList}
-          data={transactionsState}
+          data={transactions}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
