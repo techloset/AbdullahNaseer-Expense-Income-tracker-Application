@@ -18,12 +18,12 @@ const useTransactions: React.FC<useTransactionsProps> = () => {
 
   const handleFilterModelShow = () => {
     setShowFilter(!showFilter);
-    console.log("sss")
+    console.log('sss');
   };
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  }, []);
+  }, [dispatch]);
   const {isLoading, transactions, isError} = useSelector(
     (state: RootState) => state.transactions,
   );
@@ -44,7 +44,7 @@ const useTransactions: React.FC<useTransactionsProps> = () => {
     transactionsState,
     handleFilterModelShow,
     showFilter,
-    setShowFilter
+    setShowFilter,
   };
 };
 

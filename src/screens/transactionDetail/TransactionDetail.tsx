@@ -4,8 +4,22 @@ import DetailPageHeader from '../../components/DetailsPageHeader';
 import AppButton from '../../components/AppButton';
 import {useRoute} from '@react-navigation/native';
 
-const TransactionDetail = () => {
+
+interface TransactionDetailParams {
+  TransactionDetail: {
+    docId: string;
+    category: string;
+    description: string;
+    money: string;
+    transactionType: string;
+    imageUrl: string;
+    timestamp: string;
+  };
+}
+
+const TransactionDetail: React.FC = () => {
   const route = useRoute();
+  
   const {
     docId,
     category,

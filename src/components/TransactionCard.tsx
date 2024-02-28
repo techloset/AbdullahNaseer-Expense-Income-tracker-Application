@@ -79,6 +79,17 @@ interface TransactionCardProps {
   imageUrl: string;
   timeStamp: string;
 }
+interface TransactionDetailParams {
+  TransactionDetail: {
+    docId: string;
+    category: string;
+    description: string;
+    money: string;
+    transactionType: string;
+    imageUrl: string;
+    timestamp: string;
+  };
+}
 
 const TransactionCard: React.FC<TransactionCardProps> = ({
   id,

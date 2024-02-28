@@ -6,7 +6,7 @@ import food from '../../assets/food.png';
 import transportation from '../../assets/transport.png';
 import salary from '../../assets/salary.png';
 import subscription from '../../assets/subscription.png';
-import shopping from '../../assets/shopping.png'; 
+import shopping from '../../assets/shopping.png';
 
 import ImagePicker, {
   Image as PickedImage,
@@ -14,7 +14,9 @@ import ImagePicker, {
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
-import { Alert } from 'react-native';
+import {Alert, Dimensions} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {fetchTransactions} from '../../store/transactionsSlice';
 
 // Define types
 interface Category {
@@ -49,7 +51,13 @@ const useCreateTransaction = () => {
   const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
   const [image, setImage] = useState<PickedImage | null>(null);
   const now = new Date();
-const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  const timeString = now.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+
+  const dispatch = useDispatch();
 
   const handleImageThrougGallery = () => {
     console.log('press image');
@@ -144,7 +152,8 @@ const timeString = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2
       setMoney('');
       setImage(null);
       setLoading(false);
-      Alert.alert('Transaction added successfully')
+      Alert.alert('Transaction added successfully');
+      dispatch(fetchTransactions());
     } catch (error) {
       console.error(error);
     }
