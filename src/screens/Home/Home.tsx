@@ -47,14 +47,16 @@ import HomeList from '../../components/HomeList';
 import MenuBar from '../../components/MenuBar';
 import {useNavigation} from '@react-navigation/native';
 import Navigation from '../../navigation/Navigation';
+import useHome from './useHome';
 
 const Home = () => {
   const navigation = useNavigation();
+  const {financeSummary} = useHome();
   return (
     <View style={styles.container}>
       <ScrollView style={styles.content}>
         <HeaderMenu />
-        <HeroSection />
+        <HeroSection financeSummary={financeSummary} />
         <Graph />
         <Filter />
         <HomeHeader />
