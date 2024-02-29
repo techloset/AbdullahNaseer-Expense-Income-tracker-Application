@@ -11,3 +11,14 @@ export interface User{
 }
 
 
+export interface TransactionInterface {
+    TransactionDetail: {
+      docId: string;
+      category: string;
+      description: string;
+      money: string;
+      transactionType: string;
+      imageUrl: string;
+      timestamp: string;
+    };
+  }
