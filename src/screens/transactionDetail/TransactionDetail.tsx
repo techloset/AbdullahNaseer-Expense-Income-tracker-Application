@@ -572,7 +572,7 @@ const TransactionDetail: React.FC<TransactionDetailParams> = () => {
     setTypeModalVisible,
     categoryModalVisible,
     setCategoryModalVisible,
-    transactionTypes
+    transactionTypes,
   } = useTransactionDetail(transactionData);
 
   return (
@@ -602,17 +602,17 @@ const TransactionDetail: React.FC<TransactionDetailParams> = () => {
             <Text style={styles.upperContainerDateText}>{timestamp}</Text>
           </View>
           <View style={styles.CategoryContainer}>
-            <TouchableOpacity onPress={() => setTypeModalVisible(true)}>
+            <View>
               <Text>Type</Text>
-              <Text>{editableTransactionType}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setCategoryModalVisible(true)}>
+              <Text>{transactionType}</Text>
+            </View>
+            <View>
               <Text>Category</Text>
-              <Text>{editableCategory}</Text>
-            </TouchableOpacity>
+              <Text>{category}</Text>
+            </View>
             <View>
               <Text>Wallet</Text>
-              <TextInput value="Wallet" editable={false} />
+              <Text>Wallet</Text>
             </View>
           </View>
         </View>

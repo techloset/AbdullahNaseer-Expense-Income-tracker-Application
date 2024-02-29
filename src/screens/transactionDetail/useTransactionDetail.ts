@@ -77,16 +77,14 @@
 
 // export default useTransactionDetail;
 
-
-
-import { Alert } from 'react-native';
-import { db } from '../../config/firebase';
+import {Alert} from 'react-native';
+import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { fetchTransactions } from '../../store/transactionsSlice';
+import {useDispatch} from 'react-redux';
+import {useState} from 'react';
+import {fetchTransactions} from '../../store/transactionsSlice';
 import storage from '@react-native-firebase/storage';
-import { TransactionInterface } from '../../types/types';
+import {TransactionInterface} from '../../types/types';
 
 interface UseTransactionDetailProps {
   docId: string;
@@ -98,14 +96,24 @@ interface UseTransactionDetailProps {
   timestamp: string;
 }
 
-const useTransactionDetail: React.FC<UseTransactionDetailProps> = (transactionData: TransactionInterface) => {
+const useTransactionDetail: React.FC<UseTransactionDetailProps> = (
+  transactionData: TransactionInterface,
+) => {
   const dispatch = useDispatch();
-  const [editableCategory, setEditableCategory] = useState<string>(transactionData.category);
-  const [editableTransactionType, setEditableTransactionType] = useState<string>(transactionData.transactionType);
-  const [editableDescription, setEditableDescription] = useState<string>(transactionData.description);
-  const [editableMoney, setEditableMoney] = useState<string>(transactionData.money);
+  const [editableCategory, setEditableCategory] = useState<string>(
+    transactionData.category,
+  );
+  const [editableTransactionType, setEditableTransactionType] =
+    useState<string>(transactionData.transactionType);
+  const [editableDescription, setEditableDescription] = useState<string>(
+    transactionData.description,
+  );
+  const [editableMoney, setEditableMoney] = useState<string>(
+    transactionData.money,
+  );
   const [typeModalVisible, setTypeModalVisible] = useState<boolean>(false);
-  const [categoryModalVisible, setCategoryModalVisible] = useState<boolean>(false);
+  const [categoryModalVisible, setCategoryModalVisible] =
+    useState<boolean>(false);
   const transactionTypes: string[] = ['Expense', 'Income'];
 
   const handleDelete = async (transactionType: string, docId: string) => {
@@ -149,15 +157,31 @@ const useTransactionDetail: React.FC<UseTransactionDetailProps> = (transactionDa
     }
   };
 
-  const handleEdit = () => {
-    console.log('edit button');
-    console.log('transaction type', transactionData.transactionType);
-    console.log('editableCategory', editableCategory);
-    console.log('editableTransactionType', editableTransactionType);
-    console.log('editableDescription', editableDescription);
-    console.log('editableMoney', editableMoney);
+  const handleEdit = async () => {
+    try {
+      const user = auth().currentUser;
+      const userEmail = user?.email;
 
+      // Update the document in Firestore
+      await db
+        .collection('users')
+        .doc(`${userEmail}`)
+        .collection(`${transactionData.transactionType}`)
+        .doc(`${transactionData.docId}`)
+        .update({
+          description: editableDescription,
+          money: editableMoney,
+          // If needed, update other fields as well
+        });
+
+      Alert.alert('Transaction Updated'); // Notify the user
+      dispatch(fetchTransactions()); // Refresh transactions
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
   };
+
   return {
     handleDelete,
     handleEdit,
@@ -173,8 +197,7 @@ const useTransactionDetail: React.FC<UseTransactionDetailProps> = (transactionDa
     setTypeModalVisible,
     categoryModalVisible,
     setCategoryModalVisible,
-    transactionTypes
-
+    transactionTypes,
   };
 };
 
