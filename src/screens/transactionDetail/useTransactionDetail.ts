@@ -27,7 +27,6 @@ const useTransactionDetail = () => {
     try {
       const user = auth().currentUser;
       const userEmail = user?.email;
-
       // Fetch the transaction document
       const docSnapshot = await db
         .collection('users')
@@ -45,10 +44,14 @@ const useTransactionDetail = () => {
       
       // Check if the document contains an image URL
       const imageUrl = data.imageUrl;
+      const imageId = data.imageId;
       console.log('the image url', imageUrl);
       if (imageUrl) {
         // Delete the image from storage
-        await storage().refFromURL(imageUrl).delete();
+        const imagePath = `images/${userEmail}/${imageId}`;
+        console.log('the image path', imagePath);
+        // await storage().refFromURL(imageUrl).child(imagePath).delete();
+        await storage().ref().child(imagePath).delete();
         console.log('Image deleted successfully');
       }
 
@@ -66,7 +69,7 @@ const useTransactionDetail = () => {
     } catch (error) {
       console.error('Error removing document: ', error);
     }
-  };
+  };  
   return {
     handleDelete,
   };

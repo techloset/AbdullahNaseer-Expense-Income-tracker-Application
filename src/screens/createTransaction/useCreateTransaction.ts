@@ -31,6 +31,7 @@ interface TransactionData {
   imageUrl: string | null;
   transactionType: string;
   timestamp: string;
+  imageId: any;
 }
 
 // Define hook
@@ -134,7 +135,8 @@ const useCreateTransaction = () => {
         money: money,
         imageUrl: imageUrl,
         transactionType: transactionType,
-        timestamp: timeString, // Add current time
+        timestamp: timeString,
+         imageId: imageId,
       };
 
       // Concatenate the user's email and image ID to create a unique collection name
