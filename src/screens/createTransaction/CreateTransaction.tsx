@@ -17,7 +17,7 @@ import useTransactionForm from './useCreateTransaction';
 import NavigationHeader from '../../components/NavigationHeader';
 
 interface CreateTransactionProps {
-  navigation?: any;
+  navigation?: string;
   backgroundColor?: string;
 }
 
