@@ -18,9 +18,9 @@ const FilterTransactionPopup = () => {
     {id: 2, name: 'Transport'},
     {id: 3, name: 'Others'},
   ];
-  const [category, setCategory] = useState('');
-  const [modalVisible, setModalVisible] = useState(false);
-  const [fileModalVisible, setFileModalVisible] = useState(false);
+  const [category, setCategory] = useState<String>('');
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
 
   const selectCategory = categoryName => {
     setCategory(categoryName);

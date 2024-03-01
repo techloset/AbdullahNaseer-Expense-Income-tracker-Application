@@ -12,6 +12,7 @@ export interface User{
 
 
 export interface TransactionInterface {
+    id:string;
       docId: string;
       category: string;
       description: string;
@@ -20,3 +21,9 @@ export interface TransactionInterface {
       imageUrl: string;
       timestamp: string;
   }
+
+ export interface financeSummary{
+    balance: string;
+    income: string;
+    expenses: string;
+  };

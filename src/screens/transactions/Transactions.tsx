@@ -125,6 +125,7 @@ import TransactionCard from '../../components/TransactionCard';
 import MenuBar from '../../components/MenuBar';
 import useTransactions from './useTransactions';
 import FilterTransactionPopup from '../../components/FilterTransactionPopup';
+import {TransactionInterface} from '../../types/types';
 
 interface TransactionProps {}
 
@@ -139,7 +140,8 @@ const Transaction: React.FC<TransactionProps> = () => {
     setShowFilter,
   } = useTransactions();
 
-  const renderItem = ({item}) => (
+
+  const renderItem = ({item}: {item: TransactionInterface}) => (
     <TransactionCard
       key={item.id}
       id={item.id}
