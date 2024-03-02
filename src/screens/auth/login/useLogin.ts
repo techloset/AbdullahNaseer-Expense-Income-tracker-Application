@@ -2,24 +2,12 @@ import {useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
 
-interface LoginState {
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  password: string;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-  error: string | null;
-  loading: boolean;
-  handleLogin: () => Promise<void>;
-  navigation: any; 
-}
-
-
 const useLogin = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = useState<String>('');
-  const [password, setPassword] = useState<String>('');
-  const [error, setError] = useState<string|null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     try {

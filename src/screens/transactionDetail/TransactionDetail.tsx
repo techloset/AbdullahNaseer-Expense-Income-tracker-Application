@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
+  KeyboardAvoidingView
 } from 'react-native';
 import DetailPageHeader from '../../components/DetailsPageHeader';
 import AppButton from '../../components/AppButton';
@@ -110,7 +111,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
           <View style={styles.preview}>
             <Image style={styles.image} source={{uri: `${imageUrl}`}} />
           </View>
-          <AppButton onPress={handleEdit} title="Edit" />
+          <View style={styles.editButton}>
+            <AppButton onPress={handleEdit} title="Edit" />
+          </View>
         </View>
       </ScrollView>
       {/* Type Modal */}
@@ -212,21 +215,23 @@ const styles = StyleSheet.create({
   lowerContainer: {
     flex: 4,
     padding: 16,
+    position: 'relative',
   },
   CategoryContainer: {
+    borderWidth: 1,
+    borderColor: '#91919F',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
     paddingHorizontal: 12,
     paddingVertical: 16,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     marginHorizontal: 16,
     width: '100%',
     alignSelf: 'center',
     borderRadius: 16,
     position: 'absolute',
-    bottom: 0,
-    marginTop: 50,
+    top: 270,
   },
   preview: {
     width: '100%',
@@ -241,6 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginVertical: 8,
+    color: '#91919F',
   },
   modalContainer: {
     flex: 1,
@@ -254,5 +260,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '80%',
     maxHeight: '80%',
+  },
+  editButton: {
+    position: 'absolute',
+    bottom: 16,
+    width: '100%',
+    marginHorizontal: 16,
   },
 });

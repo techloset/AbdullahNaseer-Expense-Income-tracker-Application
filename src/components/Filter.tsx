@@ -2,12 +2,17 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {useState} from 'react';
 
-const Filter = () => {
-  const [selectedFilter, setSelectedFilter] = useState('Today');
-  const handleFilterSelect = (filter:string) => {
-    setSelectedFilter(filter);
-  };
+interface filterProps {
+  selectedFilter: string;
+  setSelectedFilter: (filter: string) => void;
+  handleFilterSelect: (filter: string) => void;
+}
 
+const Filter: React.FC<filterProps> = ({
+  selectedFilter,
+  setSelectedFilter,
+  handleFilterSelect,
+}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -29,17 +34,17 @@ const Filter = () => {
       <TouchableOpacity
         style={[
           styles.button,
-          selectedFilter === 'month' && styles.selectedButton,
+          selectedFilter === 'Month' && styles.selectedButton,
         ]}
-        onPress={() => handleFilterSelect('month')}>
+        onPress={() => handleFilterSelect('Month')}>
         <Text>Month</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.button,
-          selectedFilter === 'year' && styles.selectedButton,
+          selectedFilter === 'Year' && styles.selectedButton,
         ]}
-        onPress={() => handleFilterSelect('year')}>
+        onPress={() => handleFilterSelect('Year')}>
         <Text>Year</Text>
       </TouchableOpacity>
     </View>

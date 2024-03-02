@@ -191,8 +191,6 @@
 
 // export default useCreateTransaction;
 
-
-
 import {useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import storage, {FirebaseStorageTypes} from '@react-native-firebase/storage';
@@ -247,11 +245,16 @@ const useCreateTransaction = () => {
   const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
   const [image, setImage] = useState<PickedImage | null>(null);
   const now = new Date();
+  const dateString = now.toISOString().slice(0, 10); // YYYY-MM-DD
   const timeString = now.toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
   });
+  const timestamp = `${dateString} ${timeString}`;
+  console.log(timestamp);
+  
+  
 
   const dispatch = useDispatch();
 
@@ -318,9 +321,7 @@ const useCreateTransaction = () => {
       // Upload the image to Firebase Storage
       let imageUrl: string | null = null;
       if (image) {
-        const imageRef = storage().ref(
-          `/images/${userEmail}/${imageId}`,
-        );
+        const imageRef = storage().ref(`/images/${userEmail}/${imageId}`);
         await imageRef.putFile(image.path);
         imageUrl = await imageRef.getDownloadURL();
       }
@@ -330,9 +331,10 @@ const useCreateTransaction = () => {
         money: money,
         imageUrl: imageUrl,
         transactionType: transactionType,
-        timestamp: timeString,
-         imageId: imageId,
+        timestamp: timestamp, // Using `timeString` as the timestamp
+        imageId: imageId,
       };
+      
 
       // Concatenate the user's email and image ID to create a unique collection name
       const collectionName: string = `${userEmail}`;
@@ -350,7 +352,7 @@ const useCreateTransaction = () => {
       setImage(null);
       setLoading(false);
       Alert.alert('Transaction added successfully');
-      dispatch(fetchTransactions());
+      dispatch(fetchTransactions() as any);
     } catch (error) {
       console.error(error);
     }

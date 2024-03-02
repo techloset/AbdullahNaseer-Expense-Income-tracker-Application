@@ -51,14 +51,23 @@ import useHome from './useHome';
 
 const Home = () => {
   const navigation = useNavigation();
-  const {financeSummary} = useHome();
+  const {
+    financeSummary,
+    selectedFilter,
+    handleFilterSelect,
+    setSelectedFilter,
+  } = useHome();
   return (
     <View style={styles.container}>
       <ScrollView style={styles.content}>
         <HeaderMenu />
         <HeroSection financeSummary={financeSummary} />
         <Graph />
-        <Filter />
+        <Filter
+          selectedFilter={selectedFilter}
+          handleFilterSelect={handleFilterSelect}
+          setSelectedFilter={setSelectedFilter}
+        />
         <HomeHeader />
         <HomeList />
       </ScrollView>
