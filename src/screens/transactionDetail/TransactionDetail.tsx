@@ -15,14 +15,13 @@ import {useRoute} from '@react-navigation/native';
 import useTransactionDetail from './useTransactionDetail';
 import {TransactionInterface} from '../../types/types';
 
-interface TransactionDetailParams {
-  TransactionDetail: TransactionInterface;
-}
+interface TransactionDetailProps {}
 
-const TransactionDetail: React.FC<TransactionDetailParams> = () => {
+const TransactionDetail: React.FC<TransactionDetailProps> = () => {
   const route = useRoute();
 
   const {
+    id,
     docId,
     category,
     description,
@@ -30,10 +29,10 @@ const TransactionDetail: React.FC<TransactionDetailParams> = () => {
     transactionType,
     imageUrl,
     timestamp,
-  } = route.params as TransactionDetailParams['TransactionDetail'];
-
+  } = route.params as TransactionInterface;
 
   const transactionData: TransactionInterface = {
+    id,
     docId,
     transactionType,
     category,
@@ -42,9 +41,6 @@ const TransactionDetail: React.FC<TransactionDetailParams> = () => {
     imageUrl,
     timestamp,
   };
-  interface TransactionDetailProps {
-    
-  }
 
   const {
     handleDelete,

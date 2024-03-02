@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import React from 'react';
 import NavigationHeader from '../../../components/NavigationHeader';
 import AppButton from '../../../components/AppButton';
@@ -14,6 +14,7 @@ const ResetPassword = () => {
     setConfirmNewPassword,
     handleResetPassword,
   } = useResetPassword();
+
   return (
     <View style={styles.container}>
       <NavigationHeader title={'Reset Password'} />
@@ -21,7 +22,7 @@ const ResetPassword = () => {
         <TextInput
           onChangeText={setCurrentPassword}
           style={styles.textInput}
-          placeholder="current Password"
+          placeholder="Current Password"
         />
         <TextInput
           onChangeText={setNewPassword}
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     borderColor: 'whitesmoke',
     paddingHorizontal: 10,
     marginTop: 24,
-    color:"black"
+    color: "black"
   },
   resetPasswordBtn: {
     position: 'absolute',
