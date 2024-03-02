@@ -8,13 +8,14 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from 'react-native';
 import DetailPageHeader from '../../components/DetailsPageHeader';
 import AppButton from '../../components/AppButton';
 import {useRoute} from '@react-navigation/native';
 import useTransactionDetail from './useTransactionDetail';
 import {TransactionInterface} from '../../types/types';
+import ConfirmAlert from '../../components/ConfirmAlert';
 
 interface TransactionDetailProps {}
 
@@ -59,6 +60,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
     categoryModalVisible,
     setCategoryModalVisible,
     transactionTypes,
+    handleCancelDelete,
+    confirmAlert,
+    setConfirmAlert,
   } = useTransactionDetail(transactionData);
 
   return (
@@ -72,9 +76,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
                 transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
             },
           ]}>
-          <DetailPageHeader
-            onPress={() => handleDelete(transactionType, docId)}
-          />
+          <DetailPageHeader onPress={()=>setConfirmAlert(true)} />
           <View style={styles.UpperContainerText}>
             <TextInput
               onChangeText={setEditableMoney}
@@ -170,6 +172,13 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
           </View>
         </View>
       </Modal>
+      <ConfirmAlert
+        visible={confirmAlert}
+        title={'Remove this Transaction'}
+        message={'Are you sure you want to remove this transaction'}
+        onYesPress={() => handleDelete(transactionType, docId)}
+        onNoPress={handleCancelDelete}
+      />
     </View>
   );
 };
