@@ -24,9 +24,11 @@ interface TransactionDetailHook {
   setCategoryModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   transactionTypes: string[];
   setConfirmAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  confirmAlert: boolean
+  confirmAlert: boolean;
   handleCancelDelete: any;
-
+  alert: boolean;
+  setAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  alertMessage: string;
 }
 
 const useTransactionDetail = (
@@ -50,11 +52,14 @@ const useTransactionDetail = (
     useState<boolean>(false);
   const transactionTypes: string[] = ['Expense', 'Income'];
   const [confirmAlert, setConfirmAlert] = useState<boolean>(false);
+  const [alert, setAlert] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>('');
 
   const handleDelete = async (
     transactionType: string,
     docId: string,
   ): Promise<void> => {
+    setAlertMessage('Transaction Deleted Successfully');
     try {
       const user = auth().currentUser;
       const userEmail = user?.email;
@@ -82,7 +87,8 @@ const useTransactionDetail = (
         .collection(`${transactionType}`)
         .doc(`${docId}`)
         .delete();
-      Alert.alert('Transaction Deleted');
+      setAlert(true);
+      // Alert.alert('Transaction Deleted');
       dispatch(fetchTransactions() as any);
       console.log('Document successfully deleted!');
       setConfirmAlert(false);
@@ -92,6 +98,7 @@ const useTransactionDetail = (
   };
 
   const handleEdit = async (): Promise<void> => {
+    setAlertMessage('Transaction updated Successfully');
     try {
       const user = auth().currentUser;
       const userEmail = user?.email;
@@ -104,7 +111,7 @@ const useTransactionDetail = (
           description: editableDescription,
           money: editableMoney,
         });
-      Alert.alert('Transaction Updated');
+      setAlert(true);
       dispatch(fetchTransactions() as any);
       console.log('Document successfully updated!');
     } catch (error) {
@@ -134,6 +141,9 @@ const useTransactionDetail = (
     handleCancelDelete,
     confirmAlert,
     setConfirmAlert,
+    alert,
+    setAlert,
+    alertMessage,
   };
 };
 

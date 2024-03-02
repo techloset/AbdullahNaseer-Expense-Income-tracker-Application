@@ -86,7 +86,13 @@ import {
 } from 'react-native';
 import React from 'react';
 
-const Alert = ({message, onPress, visible}) => {
+interface alertProps {
+  message: string;
+  onPress: () => void;
+  visible: boolean;
+}
+
+const Alert: React.FC<alertProps> = ({message, onPress, visible}) => {
   return (
     <Modal transparent={true} animationType="fade" visible={visible}>
       <TouchableOpacity style={styles.overlay} onPress={onPress}>

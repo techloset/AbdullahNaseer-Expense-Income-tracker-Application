@@ -16,6 +16,7 @@ import {useRoute} from '@react-navigation/native';
 import useTransactionDetail from './useTransactionDetail';
 import {TransactionInterface} from '../../types/types';
 import ConfirmAlert from '../../components/ConfirmAlert';
+import Alert from '../../components/Alert';
 
 interface TransactionDetailProps {}
 
@@ -63,6 +64,9 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
     handleCancelDelete,
     confirmAlert,
     setConfirmAlert,
+    alert,
+    setAlert,
+    alertMessage
   } = useTransactionDetail(transactionData);
 
   return (
@@ -76,7 +80,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
                 transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
             },
           ]}>
-          <DetailPageHeader onPress={()=>setConfirmAlert(true)} />
+          <DetailPageHeader onPress={() => setConfirmAlert(true)} />
           <View style={styles.UpperContainerText}>
             <TextInput
               onChangeText={setEditableMoney}
@@ -178,6 +182,11 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
         message={'Are you sure you want to remove this transaction'}
         onYesPress={() => handleDelete(transactionType, docId)}
         onNoPress={handleCancelDelete}
+      />
+      <Alert
+        message={alertMessage}
+        visible={alert}
+        onPress={() => setAlert(false)}
       />
     </View>
   );
