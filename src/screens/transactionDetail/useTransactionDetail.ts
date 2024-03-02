@@ -23,7 +23,10 @@ interface TransactionDetailHook {
   categoryModalVisible: boolean;
   setCategoryModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   transactionTypes: string[];
-  // handleCancelDelete: ()=><void>;
+  setConfirmAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  confirmAlert: boolean
+  handleCancelDelete: any;
+
 }
 
 const useTransactionDetail = (
@@ -49,7 +52,6 @@ const useTransactionDetail = (
   const [confirmAlert, setConfirmAlert] = useState<boolean>(false);
 
   const handleDelete = async (
-    
     transactionType: string,
     docId: string,
   ): Promise<void> => {
@@ -83,7 +85,7 @@ const useTransactionDetail = (
       Alert.alert('Transaction Deleted');
       dispatch(fetchTransactions() as any);
       console.log('Document successfully deleted!');
-      setConfirmAlert(false)
+      setConfirmAlert(false);
     } catch (error) {
       console.error('Error removing document: ', error);
     }
@@ -131,8 +133,7 @@ const useTransactionDetail = (
     transactionTypes,
     handleCancelDelete,
     confirmAlert,
-    setConfirmAlert
-
+    setConfirmAlert,
   };
 };
 

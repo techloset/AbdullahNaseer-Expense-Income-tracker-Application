@@ -15,6 +15,7 @@ import AppButton from '../../components/AppButton';
 import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
 import useTransactionForm from './useCreateTransaction';
 import NavigationHeader from '../../components/NavigationHeader';
+import Alert from '../../components/Alert';
 
 interface CreateTransactionProps {
   navigation?: string;
@@ -50,6 +51,8 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
     toggleCategoryModal,
     loading,
     setLoading,
+    alert,
+    setAlert,
   } = useTransactionForm();
 
   return (
@@ -172,7 +175,7 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
             </View>
             <View style={styles.continueButton}>
               <AppButton
-                disabled={loading? true : false}
+                disabled={loading ? true : false}
                 title={loading ? `Sending...` : `Continue`}
                 onPress={handleSubmit}
               />
@@ -180,6 +183,11 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
           </View>
         </View>
       </TouchableWithoutFeedback>
+      <Alert
+        message={'Transaction Added successfully'}
+        visible={alert}
+        onPress={() => setAlert(false)}
+      />
     </ScrollView>
   );
 };

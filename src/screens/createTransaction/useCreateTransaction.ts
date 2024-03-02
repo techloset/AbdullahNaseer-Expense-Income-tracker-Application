@@ -244,6 +244,7 @@ const useCreateTransaction = () => {
   const [transactionType, setTransactionType] = useState('Expense');
   const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
   const [image, setImage] = useState<PickedImage | null>(null);
+  const [alert, setAlert] = useState<boolean>(false);
   const now = new Date();
   const dateString = now.toISOString().slice(0, 10); // YYYY-MM-DD
   const timeString = now.toLocaleTimeString('en-US', {
@@ -253,8 +254,6 @@ const useCreateTransaction = () => {
   });
   const timestamp = `${dateString} ${timeString}`;
   console.log(timestamp);
-  
-  
 
   const dispatch = useDispatch();
 
@@ -334,7 +333,6 @@ const useCreateTransaction = () => {
         timestamp: timestamp, // Using `timeString` as the timestamp
         imageId: imageId,
       };
-      
 
       // Concatenate the user's email and image ID to create a unique collection name
       const collectionName: string = `${userEmail}`;
@@ -351,7 +349,8 @@ const useCreateTransaction = () => {
       setMoney('');
       setImage(null);
       setLoading(false);
-      Alert.alert('Transaction added successfully');
+      setAlert(true);
+      // Alert.alert('Transaction added successfully');
       dispatch(fetchTransactions() as any);
     } catch (error) {
       console.error(error);
@@ -383,6 +382,8 @@ const useCreateTransaction = () => {
     toggleCategoryModal,
     loading,
     setLoading,
+    alert,
+    setAlert,
   };
 };
 
