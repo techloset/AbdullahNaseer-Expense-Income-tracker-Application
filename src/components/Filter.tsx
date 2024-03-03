@@ -26,9 +26,9 @@ const Filter: React.FC<filterProps> = ({
       <TouchableOpacity
         style={[
           styles.button,
-          selectedFilter === 'week' && styles.selectedButton,
+          selectedFilter === 'Week' && styles.selectedButton,
         ]}
-        onPress={() => handleFilterSelect('week')}>
+        onPress={() => handleFilterSelect('Week')}>
         <Text>Week</Text>
       </TouchableOpacity>
       <TouchableOpacity

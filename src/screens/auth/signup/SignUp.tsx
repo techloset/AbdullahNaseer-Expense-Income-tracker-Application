@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
@@ -10,13 +17,23 @@ interface SignUpScreenProps {
 }
 
 const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
-  const { name, setName, email, setEmail, password, setPassword, error, loading, handleSignup } = useSignup();
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    loading,
+    handleSignup,
+  } = useSignup();
   return (
     <View style={styles.container}>
       <NavigationHeader
         title="Sign Up"
         headerStyle={{textColor: 'black'}}
-        // navigation={navigation} 
+        // navigation={navigation}
       />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
@@ -42,7 +59,10 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <AppButton onPress={handleSignup} title={loading ? 'Signing Up...' : 'Sign Up'} />
+          <AppButton
+            onPress={handleSignup}
+            title={loading ? 'Signing Up...' : 'Sign Up'}
+          />
           {error && <Text style={styles.errorText}>{error}</Text>}
           <GoogleLoginButton title={'Continue with Google'} />
           <Text>

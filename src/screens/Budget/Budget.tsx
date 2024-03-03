@@ -6,11 +6,9 @@ const Budget = () => {
   const [alertVisible, setAlertVisible] = useState<boolean>(false);
   return (
     <View>
-      {/* <Alert
-        message={'transaction remove successfully'}
-        imageUrl={'../assest/successs.png'}
-        onPress={()=>{setAlertVisible(false)}}
-      /> */}
+      <Text>
+        sss
+      </Text>
     </View>
   );
 };

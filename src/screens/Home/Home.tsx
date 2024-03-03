@@ -56,6 +56,9 @@ const Home = () => {
     selectedFilter,
     handleFilterSelect,
     setSelectedFilter,
+    isLoading,
+    isError,
+    transactions,
   } = useHome();
   return (
     <View style={styles.container}>
@@ -69,7 +72,7 @@ const Home = () => {
           setSelectedFilter={setSelectedFilter}
         />
         <HomeHeader />
-        <HomeList />
+        <HomeList  isLoading={isLoading} isError={isError} transactions={transactions} />
       </ScrollView>
     </View>
   );

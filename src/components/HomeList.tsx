@@ -64,10 +64,17 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import TransactionCard from './TransactionCard';
 import useHome from '../screens/home/useHome';
+interface HomeListProps {
+  transactions: Array<any>;
+  isError: boolean;
+  isLoading: boolean;
+}
 
-const HomeList = () => {
-  const {isLoading, isError, transactions} = useHome();
-
+const HomeList: React.FC<HomeListProps> = ({
+  transactions,
+  isError,
+  isLoading,
+}) => {
   return (
     <View style={styles.container}>
       {isLoading ? (

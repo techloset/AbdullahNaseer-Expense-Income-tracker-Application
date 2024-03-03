@@ -1,12 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useLogin from './useLogin'; // Import the custom hook
 
 const LoginScreen = () => {
-  const { email, setEmail, password, setPassword, error, loading, handleLogin, navigation } = useLogin();
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    error,
+    loading,
+    handleLogin,
+    navigation,
+  } = useLogin();
 
   return (
     <View style={styles.container}>
@@ -28,10 +44,14 @@ const LoginScreen = () => {
             <Image source={require('../../../assets/eye.png')} />
           </View>
         </View>
-        <AppButton onPress={handleLogin} title={loading ? 'Logging In...' : 'Login'} />
+        <AppButton
+          onPress={handleLogin}
+          title={loading ? 'Logging In...' : 'Login'}
+        />
         {error && <Text style={styles.errorText}>{error}</Text>}
         <View style={styles.forgetContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ForgetPassScreen')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ForgetPassScreen')}>
             <Text style={styles.forget}>Forget Password?</Text>
           </TouchableOpacity>
         </View>

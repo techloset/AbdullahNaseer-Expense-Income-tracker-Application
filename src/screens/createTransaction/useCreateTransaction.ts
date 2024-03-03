@@ -246,14 +246,16 @@ const useCreateTransaction = () => {
   const [image, setImage] = useState<PickedImage | null>(null);
   const [alert, setAlert] = useState<boolean>(false);
   const now = new Date();
-  const dateString = now.toISOString().slice(0, 10); // YYYY-MM-DD
-  const timeString = now.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-  });
-  const timestamp = `${dateString} ${timeString}`;
-  console.log(timestamp);
+  // const dateString = now.toISOString().slice(0, 10); // YYYY-MM-DD
+  // const timeString = now.toLocaleTimeString('en-US', {
+  //   hour: 'numeric',
+  //   minute: '2-digit',
+  //   hour12: true,
+  // });
+  // const timestamp = `${dateString} ${timeString}`;
+  // console.log(timestamp);
+
+  const dateString = new Date().toString()
 
   const dispatch = useDispatch();
 
@@ -330,7 +332,7 @@ const useCreateTransaction = () => {
         money: money,
         imageUrl: imageUrl,
         transactionType: transactionType,
-        timestamp: timestamp, // Using `timeString` as the timestamp
+        timestamp: dateString,
         imageId: imageId,
       };
 
