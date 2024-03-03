@@ -66,7 +66,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
     setConfirmAlert,
     alert,
     setAlert,
-    alertMessage
+    alertMessage,
   } = useTransactionDetail(transactionData);
 
   return (
@@ -115,13 +115,15 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
           </TextInput>
           <Text style={styles.lowerContainerHeading}>Attachment</Text>
           <View style={styles.preview}>
-            <Image style={styles.image} source={{uri: `${imageUrl}`}} />
+            {imageUrl && (
+              <Image style={styles.image} source={{uri: `${imageUrl}`}} />
+            )}
           </View>
           <View style={styles.editButton}>
             <AppButton onPress={handleEdit} title="Edit" />
           </View>
         </View>
-      </ScrollView>
+      </ScrollView>.  	1
       {/* Type Modal */}
       <Modal
         visible={typeModalVisible}

@@ -72,7 +72,11 @@ const Home = () => {
           setSelectedFilter={setSelectedFilter}
         />
         <HomeHeader />
-        <HomeList  isLoading={isLoading} isError={isError} transactions={transactions} />
+        <HomeList
+          isLoading={isLoading}
+          isError={isError}
+          transactions={transactions}
+        />
       </ScrollView>
     </View>
   );

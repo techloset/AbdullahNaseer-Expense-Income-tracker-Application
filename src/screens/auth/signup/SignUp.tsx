@@ -27,6 +27,7 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
     error,
     loading,
     handleSignup,
+    signInWithGoogle
   } = useSignup();
   return (
     <View style={styles.container}>
@@ -64,7 +65,7 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
             title={loading ? 'Signing Up...' : 'Sign Up'}
           />
           {error && <Text style={styles.errorText}>{error}</Text>}
-          <GoogleLoginButton title={'Continue with Google'} />
+          <GoogleLoginButton onPress={signInWithGoogle} title={'Continue with Google'} />
           <Text>
             Already have an account?
             <TouchableOpacity onPress={() => navigation.navigate('login')}>

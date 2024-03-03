@@ -3,11 +3,12 @@ import React from 'react';
 
 interface GoogleLoginButtonProps {
   title: string;
+  onPress: () => void;
 }
 
-const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({title}) => {
+const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({title,onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <Image source={require('../assets/googleIcon.png')} />
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
