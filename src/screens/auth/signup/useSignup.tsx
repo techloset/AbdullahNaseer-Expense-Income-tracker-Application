@@ -10,29 +10,19 @@ const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
+    const ClientId =
+      '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com';
     GoogleSignin.configure({
-      webClientId:
-        '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com',
+      webClientId: ClientId,
     });
   }, []);
-
   const signInWithGoogle = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const usrInfo = await GoogleSignin.signIn();
-      setUserInfo({usrInfo});
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-      } else {
-        // some other error happened
-      }
-    }
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    const {idToken} = await GoogleSignin.signIn();
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    return auth().signInWithCredential(googleCredential);
   };
+
 
   const handleSignup = async () => {
     try {
