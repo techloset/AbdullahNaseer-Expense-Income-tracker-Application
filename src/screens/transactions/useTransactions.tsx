@@ -72,6 +72,7 @@ const useTransactions = () => {
     console.log('Filtered Transactions:', filteredTransactions);
     // Handle filtered transactions here (e.g., update UI)
     setFilteredTransactions(filteredTransactions);
+    setShowFilter(false);
 
   };
   
