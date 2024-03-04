@@ -50,7 +50,9 @@ const FilterTransactionPopup = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Reset Transaction</Text>
-        <TouchableOpacity onPress={handleResetFilters} style={styles.headerButton}>
+        <TouchableOpacity
+          onPress={handleResetFilters}
+          style={styles.headerButton}>
           <Text style={styles.headerButtonText}>Reset</Text>
         </TouchableOpacity>
       </View>
@@ -122,7 +124,6 @@ const FilterTransactionPopup = ({
           </Modal>
         </View>
       </View>
-
       <AppButton onPress={handleFilterTransaction} title={'Apply'} />
     </View>
   );

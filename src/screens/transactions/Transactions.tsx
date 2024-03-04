@@ -34,6 +34,7 @@ const Transaction: React.FC<TransactionProps> = () => {
     categoryModelVisible,
     handleResetFilters,
     handleFilterTransaction,
+    filteredTransactions,
   } = useTransactions();
 
   const renderItem = ({item}: {item: TransactionInterface}) => (

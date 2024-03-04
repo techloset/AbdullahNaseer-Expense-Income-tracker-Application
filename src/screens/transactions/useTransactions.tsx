@@ -9,6 +9,7 @@ const useTransactions = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categoryModelVisible, setCategoryModalVisible] =
     useState<boolean>(false);
+    const [filteredTransactions, setFilteredTransactions] = useState([] as any[])
 
   const handleIncomeSelect = () => {
     setSelectedIncome(!selectedIncome);
@@ -40,16 +41,46 @@ const useTransactions = () => {
     setSelectedExpense(false);
     setSelectedCategory('');
   };
+
   const handleFilterTransaction = () => {
-    console.log('filter');
+    // Filter transactions based on selected states
+    const filteredTransactions = transactions.filter(transaction => {
+      if (!selectedIncome && !selectedExpense && !selectedCategory) {
+        return true; // No filters selected, show all transactions
+      }
+      if (selectedIncome && transaction.transactionType === 'Income') {
+        return true;
+      }
+      if (selectedExpense && transaction.transactionType === 'Expense') {
+        if (!selectedCategory) {
+          return true; // If no category selected, show all expenses
+        }
+        return transaction.category === selectedCategory; // Filter expenses by category
+      }
+      if (selectedCategory && transaction.category === selectedCategory) {
+        if (!selectedIncome && !selectedExpense) {
+          return true; // Only category selected, show transactions with selected category
+        }
+        if (selectedIncome && transaction.transactionType === 'Income') {
+          return true; // Show income transactions with selected category
+        }
+      }
+      return true;
+    });
+  
+    console.log('Filtered Transactions:', filteredTransactions);
+    setFilteredTransactions(filteredTransactions);
+    // Handle filtered transactions here (e.g., update UI)
 
   };
+  
 
   return {
     isLoading,
     transactions,
     isError,
     handleFilterModelShow,
+    filteredTransactions,
     showFilter,
     setShowFilter,
     selectedIncome,
@@ -66,3 +97,8 @@ const useTransactions = () => {
 };
 
 export default useTransactions;
+
+
+
+
+
