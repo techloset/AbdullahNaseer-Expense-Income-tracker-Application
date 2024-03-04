@@ -78,7 +78,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
             {
               backgroundColor:
                 transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
-            },
+            }
           ]}>
           <DetailPageHeader onPress={() => setConfirmAlert(true)} />
           <View style={styles.UpperContainerText}>
@@ -86,7 +86,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
               onChangeText={setEditableMoney}
               editable={true}
               style={styles.uppercontainerCashText}>
-              ${money}
+              {money}
             </TextInput>
             <TextInput style={styles.uppercontainerHeadingText}>
               Buy Some Grocery
@@ -123,7 +123,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
             <AppButton onPress={handleEdit} title="Edit" />
           </View>
         </View>
-      </ScrollView>.  	1
+      </ScrollView>
       {/* Type Modal */}
       <Modal
         visible={typeModalVisible}
