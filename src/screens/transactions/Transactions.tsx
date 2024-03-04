@@ -77,7 +77,7 @@ const Transaction: React.FC<TransactionProps> = () => {
       ) : (
         <FlatList
           style={styles.flatList}
-          data={transactions}
+          data={filteredTransactions}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />

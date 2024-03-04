@@ -9,7 +9,7 @@ const useTransactions = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categoryModelVisible, setCategoryModalVisible] =
     useState<boolean>(false);
-    const [filteredTransactions, setFilteredTransactions] = useState([] as any[])
+
 
   const handleIncomeSelect = () => {
     setSelectedIncome(!selectedIncome);
@@ -35,6 +35,7 @@ const useTransactions = () => {
   const {isLoading, transactions, isError} = useSelector(
     (state: RootState) => state.transactions,
   );
+  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
 
   const handleResetFilters = () => {
     setSelectedIncome(false);
@@ -65,12 +66,12 @@ const useTransactions = () => {
           return true; // Show income transactions with selected category
         }
       }
-      return true;
+      return false;
     });
   
     console.log('Filtered Transactions:', filteredTransactions);
-    setFilteredTransactions(filteredTransactions);
     // Handle filtered transactions here (e.g., update UI)
+    setFilteredTransactions(filteredTransactions);
 
   };
   
