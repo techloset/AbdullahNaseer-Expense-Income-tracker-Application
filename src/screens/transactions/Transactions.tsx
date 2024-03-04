@@ -24,8 +24,17 @@ const Transaction: React.FC<TransactionProps> = () => {
     handleFilterModelShow,
     showFilter,
     setShowFilter,
+    selectedIncome,
+    selectedExpense,
+    selectedCategory,
+    handleExpenseSelect,
+    handleIncomeSelect,
+    handleCategorySelect,
+    setCategoryModalVisible,
+    categoryModelVisible,
+    handleResetFilters,
+    handleFilterTransaction,
   } = useTransactions();
-
 
   const renderItem = ({item}: {item: TransactionInterface}) => (
     <TransactionCard
@@ -80,7 +89,18 @@ const Transaction: React.FC<TransactionProps> = () => {
           visible={true}
           onRequestClose={() => setShowFilter(false)}>
           <View style={styles.modelBackground}>
-            <FilterTransactionPopup />
+            <FilterTransactionPopup
+              selectedIncome={selectedIncome}
+              selectedExpense={selectedExpense}
+              selectedCategory={selectedCategory}
+              handleExpenseSelect={handleExpenseSelect}
+              handleIncomeSelect={handleIncomeSelect}
+              handleCategorySelect={handleCategorySelect}
+              setCategoryModalVisible={setCategoryModalVisible}
+              categoryModelVisible={categoryModelVisible}
+              handleResetFilters={handleResetFilters}
+              handleFilterTransaction={handleFilterTransaction}
+            />
           </View>
         </Modal>
       )}

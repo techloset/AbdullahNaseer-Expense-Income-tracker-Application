@@ -22,6 +22,7 @@ const LoginScreen = () => {
     loading,
     handleLogin,
     navigation,
+    handleGoogleSignup,
   } = useLogin();
 
   return (
@@ -56,7 +57,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
         </View>
         <Text>or</Text>
-        <GoogleLoginButton title={'Continue with Google'} />
+        <GoogleLoginButton onPress={handleGoogleSignup} title={'Continue with Google'} />
         <Text>
           Don't have an account?
           <TouchableOpacity onPress={() => navigation.navigate('signup')}>
