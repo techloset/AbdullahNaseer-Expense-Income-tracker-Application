@@ -36,3 +36,34 @@ export interface PasswordResetData {
   setNewPassword: (value: string) => void;
   setConfirmNewPassword: (value: string) => void;
 }
+
+export interface SignUp {
+  displayName: string;
+  email: string;
+  password: string;
+}
+
+export interface SignIn {
+  email: string;
+  password: string;
+}
+export interface User {
+  displayName: string;
+  email: string;
+}
+export interface AuthState {
+  user: User | null;
+  isLoading: boolean;
+  error: string | null;
+}
+export type UserData = {
+  email: string;
+  uid: string;
+  displayName: string;
+  photoUrl: string | null;
+};
+
+export interface User {
+  displayName: string;
+  email: string;
+}

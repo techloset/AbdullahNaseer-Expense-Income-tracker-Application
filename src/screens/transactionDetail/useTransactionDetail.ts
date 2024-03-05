@@ -6,6 +6,8 @@ import {useState} from 'react';
 import {fetchTransactions} from '../../store/transactionsSlice';
 import storage from '@react-native-firebase/storage';
 import {TransactionInterface} from '../../types/types';
+import Navigation from '../../navigation/Navigation';
+import {useNavigation} from '@react-navigation/native';
 
 interface TransactionDetailHook {
   handleDelete: (transactionType: string, docId: string) => Promise<void>;
@@ -35,6 +37,7 @@ const useTransactionDetail = (
   transactionData: TransactionInterface,
 ): TransactionDetailHook => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const [editableCategory, setEditableCategory] = useState<string>(
     transactionData.category,
@@ -92,6 +95,7 @@ const useTransactionDetail = (
       dispatch(fetchTransactions() as any);
       console.log('Document successfully deleted!');
       setConfirmAlert(false);
+      // navigation.navigate('Home')
     } catch (error) {
       console.error('Error removing document: ', error);
     }

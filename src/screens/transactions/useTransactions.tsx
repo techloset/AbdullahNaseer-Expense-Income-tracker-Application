@@ -6,10 +6,11 @@ import {RootState} from '../../store/store';
 const useTransactions = () => {
   const [selectedIncome, setSelectedIncome] = useState(false);
   const [selectedExpense, setSelectedExpense] = useState(false);
+  const [selectSort, setSelectSort] = useState('');
+  const [selectedSort, setSelectedSort] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categoryModelVisible, setCategoryModalVisible] =
     useState<boolean>(false);
-
 
   const handleIncomeSelect = () => {
     setSelectedIncome(!selectedIncome);
@@ -20,6 +21,9 @@ const useTransactions = () => {
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
     setCategoryModalVisible(false);
+  };
+  const handleSortSelect = (sort: string) => {
+    setSelectSort(sort);
   };
 
   const dispatch = useDispatch();
@@ -35,7 +39,8 @@ const useTransactions = () => {
   const {isLoading, transactions, isError} = useSelector(
     (state: RootState) => state.transactions,
   );
-  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
+  const [filteredTransactions, setFilteredTransactions] =
+    useState(transactions);
 
   const handleResetFilters = () => {
     setSelectedIncome(false);
@@ -68,15 +73,12 @@ const useTransactions = () => {
       }
       return false;
     });
-  
+
     console.log('Filtered Transactions:', filteredTransactions);
     // Handle filtered transactions here (e.g., update UI)
     setFilteredTransactions(filteredTransactions);
     setShowFilter(false);
-
   };
-  
-
   return {
     isLoading,
     transactions,
@@ -95,12 +97,8 @@ const useTransactions = () => {
     categoryModelVisible,
     handleResetFilters,
     handleFilterTransaction,
+    handleSortSelect,
   };
 };
 
 export default useTransactions;
-
-
-
-
-

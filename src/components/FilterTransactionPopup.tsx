@@ -23,6 +23,7 @@ interface FilterTransactionPopupProps {
   categoryModelVisible: boolean;
   handleResetFilters: () => void;
   handleFilterTransaction: () => void;
+  handleSortSelect: (sort: string) => void;
 }
 
 const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
@@ -36,6 +37,7 @@ const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
   categoryModelVisible,
   handleResetFilters,
   handleFilterTransaction,
+  handleSortSelect,
 }) => {
   const categories = [
     {id: 1, name: 'Food'},
@@ -76,16 +78,24 @@ const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
       <View style={styles.filterContainer}>
         <Text style={styles.headerText}>Sort by</Text>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.filterButton}>
+          <TouchableOpacity
+            onPress={() => handleSortSelect('Highest')}
+            style={styles.filterButton}>
             <Text style={styles.headerButtonText}>Highest</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.filterButton}>
+          <TouchableOpacity
+            onPress={() => handleSortSelect('Lowest')}
+            style={styles.filterButton}>
             <Text style={styles.headerButtonText}>Lowest</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.filterButton}>
+          <TouchableOpacity
+            onPress={() => handleSortSelect('Newest')}
+            style={styles.filterButton}>
             <Text style={styles.headerButtonText}>Newest</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.filterButton}>
+          <TouchableOpacity
+            onPress={() => handleSortSelect('Oldest')}
+            style={styles.filterButton}>
             <Text style={styles.headerButtonText}>Oldest</Text>
           </TouchableOpacity>
         </View>

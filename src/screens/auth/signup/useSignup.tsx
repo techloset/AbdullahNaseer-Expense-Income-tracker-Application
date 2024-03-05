@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const useSignup = () => {
   const [name, setName] = useState('');
@@ -9,19 +8,7 @@ const useSignup = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
-  useEffect(() => {
-    const ClientId =
-      '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com';
-    GoogleSignin.configure({
-      webClientId: ClientId,
-    });
-  }, []);
-  const signInWithGoogle = async () => {
-    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-    const {idToken} = await GoogleSignin.signIn();
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    return auth().signInWithCredential(googleCredential);
-  };
+
 
 
   const handleSignup = async () => {
@@ -63,7 +50,6 @@ const useSignup = () => {
     error,
     loading,
     handleSignup,
-    signInWithGoogle,
   };
 };
 
