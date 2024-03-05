@@ -27,8 +27,8 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user); // Accessing user state
 
-   // Fetch user data upon component mount
-   useEffect(() => {
+  // Fetch user data upon component mount
+  useEffect(() => {
     dispatch(fetchUserData() as any);
   }, [dispatch]);
 
@@ -50,12 +50,13 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>
-            {user && <Text style={styles.nameText}>{user.displayName}</Text>}
+            {/* {user && <Text style={styles.nameText}>{user.displayName}</Text>} */}
             {user ? (
               <Text style={styles.nameText}>{user.displayName}</Text>
             ) : (
               <Text style={styles.nameText}>Loading...</Text>
             )}
+            
           </View>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile')}>

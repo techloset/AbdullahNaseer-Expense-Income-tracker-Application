@@ -18,8 +18,8 @@ interface SignUpScreenProps {
 
 const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
   const {
-    name,
-    setName,
+    // name,
+    // setName,
     email,
     setEmail,
     password,
@@ -27,6 +27,8 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
     error,
     loading,
     handleSignup,
+    displayName,
+    setDisplayName,
   } = useSignup();
   return (
     <View style={styles.container}>
@@ -40,8 +42,8 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
           <TextInput
             style={styles.textInput}
             placeholder="Name"
-            value={name}
-            onChangeText={setName}
+            value={displayName}
+            onChangeText={setDisplayName}
           />
           <TextInput
             style={styles.textInput}

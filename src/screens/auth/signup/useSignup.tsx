@@ -5,12 +5,12 @@ import {registerUser} from '../../../store/slices/authSlice';
 
 const useSignup = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [displayName, setDisplayName] = useState('qwerty');
+  const [displayName, setDisplayName] = useState('');
   const [userInfo, setUserInfo] = useState(null);
 
   // const handleSignup = async () => {
@@ -34,12 +34,11 @@ const useSignup = () => {
     try {
       await dispatch(registerUser({email, password, displayName}) as any);
       setLoading(false);
+      console.log('User created successfully===>', userInfo);
     } catch (error: any) {
       console.log('Error', error.message);
     }
   };
-
-
 
   // const goodleSignIn = async () => {
   //   // try {
@@ -55,8 +54,8 @@ const useSignup = () => {
   // };
 
   return {
-    name,
-    setName,
+    // name,
+    // setName,
     email,
     setEmail,
     password,
@@ -64,6 +63,8 @@ const useSignup = () => {
     error,
     loading,
     handleSignup,
+    displayName,
+    setDisplayName,
   };
 };
 

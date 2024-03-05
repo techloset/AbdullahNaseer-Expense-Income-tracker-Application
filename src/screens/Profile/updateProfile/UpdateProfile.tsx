@@ -1,54 +1,200 @@
-// import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
-// import React from 'react';
-// import NavigationHeader from '../../components/NavigationHeader';
-// import AppButton from '../../components/AppButton';
+// // import {
+// //   StyleSheet,
+// //   Text,
+// //   View,
+// //   Image,
+// //   TextInput,
+// //   ScrollView,
+// // } from 'react-native';
+// // import React, {useEffect} from 'react';
+// // import NavigationHeader from '../../../components/NavigationHeader';
+// // import AppButton from '../../../components/AppButton';
+// // import {useNavigation} from '@react-navigation/native'; // Import useNavigation hook
+// // import {useDispatch, useSelector} from 'react-redux';
+// // import {fetchUserData} from '../../../store/slices/userSlice';
 
-// interface UpdateProfileScreenProps {
-//   navigation: any;
-// }
+// // const UpdateProfile = () => {
+// //   // const navigation = useNavigation(); // Use useNavigation hook to get navigation object
+// //   const dispatch = useDispatch();
+// //   const user = useSelector(state => state.user.user);
+// //   useEffect(() => {
+// //     dispatch(fetchUserData() as any);
+// //   }, [dispatch]);
 
-// const UpdateProfileScreen: React.FC<UpdateProfileScreenProps> = ({
-//   navigation,
-// }) => {
+// //   // Re-render when user data changes (including initially getting populated)
+// //   useEffect(() => {
+// //     console.log('User data updated, re-rendering');
+// //     console.log('User data', user);
+// //   }, [user]);
+// //   return (
+// //     <View style={styles.container}>
+// //       <NavigationHeader title={'Update Profile'} />
+// //       {/* Pass navigation prop */}
+// //       <View style={styles.profileView}>
+// //         <View style={styles.imageContainer}>
+// //           <Image
+// //             style={styles.userImage}
+// //             source={require('../../../assets/user.jpg')}
+// //           />
+// //         </View>
+// //         <View style={styles.editButtonContainer}>
+// //           <View style={styles.editButton}>
+// //             <Image
+// //               source={require('../../../assets/edit.png')}
+// //               style={styles.editIcon}
+// //             />
+// //           </View>
+// //         </View>
+// //       </View>
+// //       <View>
+// //         <Text style={styles.inputLable}>Email</Text>
+// //         <TextInput style={styles.textInput} placeholder="Email" />
+// //         <Text style={styles.inputLable}>Name</Text>
+// //         <TextInput style={styles.textInput} placeholder="Name" />
+// //       </View>
+// //       <View style={styles.UpdateProfileBtn}>
+// //         <AppButton title={'Update Profile'} />
+// //       </View>
+// //     </View>
+// //   );
+// // };
+
+// // export default UpdateProfile;
+
+// // const styles = StyleSheet.create({
+// //   container: {
+// //     margin: 16,
+// //     position: 'relative',
+// //     height: '100%',
+// //   },
+// //   profileView: {
+// //     margin: 16,
+// //     alignItems: 'center',
+// //   },
+// //   imageContainer: {
+// //     position: 'relative',
+// //     width: 120,
+// //     height: 120,
+// //     borderRadius: 60,
+// //     overflow: 'hidden',
+// //     backgroundColor: 'red',
+// //     borderColor: '#AD00FF',
+// //     borderWidth: 2,
+// //   },
+// //   userImage: {
+// //     width: '100%',
+// //     height: '100%',
+// //     borderRadius: 60,
+// //   },
+// //   editButtonContainer: {
+// //     position: 'absolute',
+// //     bottom: 0,
+// //     paddingLeft: 100,
+// //   },
+// //   editButton: {
+// //     width: 40, // Set a fixed width
+// //     height: 40, // Set a fixed height
+// //     borderRadius: 20, // Make it circular
+// //     backgroundColor: 'white', // White background
+// //     justifyContent: 'center',
+// //     alignItems: 'center',
+// //   },
+// //   editIcon: {
+// //     width: 24,
+// //     height: 24,
+// //   },
+// //   inputLable: {
+// //     fontSize: 18,
+// //     fontWeight: '600',
+// //     marginLeft: 9,
+// //     marginTop: 10,
+// //     color: 'black',
+// //   },
+// //   textInput: {
+// //     width: '100%',
+// //     height: 56,
+// //     backgroundColor: 'white',
+// //     borderRadius: 16,
+// //     borderWidth: 1,
+// //     borderColor: 'whitesmoke',
+// //     paddingHorizontal: 10,
+// //     color: 'black',
+// //   },
+// //   UpdateProfileBtn: {
+// //     position: 'absolute',
+// //     // marginEnd:0
+// //     bottom: 55,
+// //     width: '100%',
+// //   },
+// // });
+
+// import React, {useEffect} from 'react';
+// import {View, Text, Image, TextInput, StyleSheet} from 'react-native';
+// import NavigationHeader from '../../../components/NavigationHeader';
+// import AppButton from '../../../components/AppButton';
+// import {useNavigation} from '@react-navigation/native';
+// import {useDispatch, useSelector} from 'react-redux';
+// import useUpdateProfile from './useUpdateProfile'; // Import the custom hook
+// import {fetchUserData} from '../../../store/slices/userSlice';
+
+// const UpdateProfile = () => {
+//   const dispatch = useDispatch();
+//   const {displayName, setDisplayName, email, setEmail, handleUpdateProfile} =
+//     useUpdateProfile(); // Use the custom hook
+
+//   useEffect(() => {
+//     dispatch(fetchUserData() as any);
+//   }, [dispatch]);
+
 //   return (
 //     <View style={styles.container}>
-//       <NavigationHeader title={'Update Profile'} navigation={navigation} />
+//       <NavigationHeader title={'Update Profile'} />
 //       <View style={styles.profileView}>
 //         <View style={styles.imageContainer}>
 //           <Image
 //             style={styles.userImage}
-//             source={require('../../assets/user.jpg')}
+//             source={require('../../../assets/user.jpg')}
 //           />
 //         </View>
 //         <View style={styles.editButtonContainer}>
 //           <View style={styles.editButton}>
 //             <Image
-//               source={require('../../assets/edit.png')}
+//               source={require('../../../assets/edit.png')}
 //               style={styles.editIcon}
 //             />
 //           </View>
 //         </View>
 //       </View>
 //       <View>
-//         <Text style={styles.inputLable}>Email</Text>
-//         <TextInput style={styles.textInput} placeholder="Email" />
-//         <Text style={styles.inputLable}>Name</Text>
-//         <TextInput style={styles.textInput} placeholder="Name" />
+//         <Text style={styles.inputLabel}>Email</Text>
+//         <TextInput
+//           style={styles.textInput}
+//           placeholder="Email"
+//           value={email}
+//           onChangeText={setEmail}
+//         />
+//         <Text style={styles.inputLabel}>Name</Text>
+//         <TextInput
+//           style={styles.textInput}
+//           placeholder="Name"
+//           value={displayName}
+//           onChangeText={setDisplayName}
+//         />
 //       </View>
-//       <View style={styles.UpdateProfileBtn}>
-//         <AppButton title={'Update Profile'} />
+//       <View style={styles.updateProfileBtn}>
+//         <AppButton title={'Update Profile'} onPress={handleUpdateProfile} />
 //       </View>
 //     </View>
 //   );
 // };
 
-// export default UpdateProfileScreen;
+// export default UpdateProfile;
 
 // const styles = StyleSheet.create({
 //   container: {
 //     margin: 16,
 //     position: 'relative',
-//     height: '100%',
+//     // height: '100%',
 //   },
 //   profileView: {
 //     margin: 16,
@@ -91,6 +237,7 @@
 //     fontWeight: '600',
 //     marginLeft: 9,
 //     marginTop: 10,
+//     color: 'black',
 //   },
 //   textInput: {
 //     width: '100%',
@@ -98,60 +245,82 @@
 //     backgroundColor: 'white',
 //     borderRadius: 16,
 //     borderWidth: 1,
-//     borderColor: 'gray',
+//     borderColor: 'whitesmoke',
 //     paddingHorizontal: 10,
+//     color: 'black',
 //   },
 //   UpdateProfileBtn: {
 //     position: 'absolute',
-//     // marginEnd:0
+//     // marginEnd:0,
 //     bottom: 55,
 //     width: '100%',
 //   },
 // });
 
-import {StyleSheet, Text, View, Image, TextInput, ScrollView} from 'react-native';
-import React from 'react';
+
+
+import React, { useEffect } from 'react';
+import { View, Text, Image, TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native'; // Import KeyboardAvoidingView
 import NavigationHeader from '../../../components/NavigationHeader';
 import AppButton from '../../../components/AppButton';
-import {useNavigation} from '@react-navigation/native'; // Import useNavigation hook
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import useUpdateProfile from './useUpdateProfile'; // Import the custom hook
+import { fetchUserData } from '../../../store/slices/userSlice';
 
 const UpdateProfile = () => {
-  // const navigation = useNavigation(); // Use useNavigation hook to get navigation object
+  const dispatch = useDispatch();
+  const { displayName, setDisplayName, email, setEmail, handleUpdateProfile } =
+    useUpdateProfile(); // Use the custom hook
+
+  useEffect(() => {
+    dispatch(fetchUserData() as any);
+  }, [dispatch]);
 
   return (
-
-<View style={styles.container}>
-      <NavigationHeader title={'Update Profile'}  />
-      {/* Pass navigation prop */}
-      <View style={styles.profileView}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.userImage}
-            source={require('../../../assets/user.jpg')}
-          />
-        </View>
-        <View style={styles.editButtonContainer}>
-          <View style={styles.editButton}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+      <View style={styles.container}>
+        <NavigationHeader title={'Update Profile'} />
+        <View style={styles.profileView}>
+          <View style={styles.imageContainer}>
             <Image
-              source={require('../../../assets/edit.png')}
-              style={styles.editIcon}
+              style={styles.userImage}
+              source={require('../../../assets/user.jpg')}
             />
           </View>
+          <View style={styles.editButtonContainer}>
+            <View style={styles.editButton}>
+              <Image
+                source={require('../../../assets/edit.png')}
+                style={styles.editIcon}
+              />
+            </View>
+          </View>
+        </View>
+        <View>
+          <Text style={styles.inputLabel}>Email</Text>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Email"
+              value={email}
+              onChangeText={setEmail}
+              editable={false}
+            />
+          </View>
+          <Text style={styles.inputLabel}>Name</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Name"
+            value={displayName}
+            onChangeText={setDisplayName}
+          />
+        </View>
+        <View style={styles.updateProfileBtn}>
+          <AppButton title={'Update Profile'} onPress={handleUpdateProfile} />
         </View>
       </View>
-      <View>
-        <Text style={styles.inputLable}>Email</Text>
-        <TextInput style={styles.textInput} placeholder="Email" />
-        <Text style={styles.inputLable}>Name</Text>
-        <TextInput style={styles.textInput} placeholder="Name" />
-      </View>
-      <View style={styles.UpdateProfileBtn}>
-        <AppButton title={'Update Profile'} />
-      </View>
-    </View>
-      
-
-   
+    </KeyboardAvoidingView>
   );
 };
 
@@ -159,9 +328,9 @@ export default UpdateProfile;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1, // Change to flex: 1
     margin: 16,
     position: 'relative',
-    height: '100%',
   },
   profileView: {
     margin: 16,
@@ -188,10 +357,10 @@ const styles = StyleSheet.create({
     paddingLeft: 100,
   },
   editButton: {
-    width: 40, // Set a fixed width
-    height: 40, // Set a fixed height
-    borderRadius: 20, // Make it circular
-    backgroundColor: 'white', // White background
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -199,28 +368,29 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  inputLable: {
+  inputLabel: {
     fontSize: 18,
     fontWeight: '600',
     marginLeft: 9,
     marginTop: 10,
-    color:"black"
+    color: 'black',
+  },
+  textInputContainer: {
+    width: '100%', // Ensure TextInput container takes full width
   },
   textInput: {
     width: '100%',
     height: 56,
-    backgroundColor: 'white',
+    backgroundColor: 'whitesmoke', // Change background color to differentiate from editable inputs
     borderRadius: 16,
     borderWidth: 1,
     borderColor: 'whitesmoke',
     paddingHorizontal: 10,
-    color:"black"
+    color: 'black',
   },
-  UpdateProfileBtn: {
+  updateProfileBtn: {
     position: 'absolute',
-    // marginEnd:0
-    bottom: 55,
+    bottom: 16, // Adjust button position to the bottom of the screen
     width: '100%',
   },
 });
-

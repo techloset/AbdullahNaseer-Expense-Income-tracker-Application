@@ -48,7 +48,6 @@ export const registerUser =
 
       return;
     }
-
     return await auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
@@ -124,7 +123,7 @@ export const googleSignin = async () => {
             displayName: auth().currentUser?.displayName,
             email: auth().currentUser?.email,
             photoUrl: auth().currentUser?.photoURL || null,
-            status: 'Hi there I am using Techat',
+            status: 'using expense tracker app',
             uid: auth().currentUser?.uid,
           });
         console.log('New user signed up successfully!');
