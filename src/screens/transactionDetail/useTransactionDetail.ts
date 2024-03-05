@@ -67,7 +67,7 @@ const useTransactionDetail = (
       const user = auth().currentUser;
       const userEmail = user?.email;
       const docSnapshot = await db
-        .collection('users')
+        .collection('transactions')
         .doc(`${userEmail}`)
         .collection(`${transactionType}`)
         .doc(`${docId}`)
@@ -85,7 +85,7 @@ const useTransactionDetail = (
         console.log('Image deleted successfully');
       }
       await db
-        .collection('users')
+        .collection('transactions')
         .doc(`${userEmail}`)
         .collection(`${transactionType}`)
         .doc(`${docId}`)
@@ -107,7 +107,7 @@ const useTransactionDetail = (
       const user = auth().currentUser;
       const userEmail = user?.email;
       await db
-        .collection('users')
+        .collection('transactions')
         .doc(`${userEmail}`)
         .collection(`${transactionData.transactionType}`)
         .doc(`${transactionData.docId}`)

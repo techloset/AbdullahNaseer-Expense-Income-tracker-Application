@@ -139,7 +139,7 @@ const useCreateTransaction = () => {
       const collectionName: string = `${userEmail}`;
 
       const docRef = await db
-        .collection('users')
+        .collection('transactions')
         .doc(collectionName)
         .collection(`${transactionType}`)
         .add(transactionData);

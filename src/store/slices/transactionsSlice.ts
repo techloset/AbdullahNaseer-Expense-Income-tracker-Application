@@ -122,13 +122,13 @@ export const fetchTransactions = createAsyncThunk<Transaction[]>(
 
     try {
       const incomeSnapshot = await db
-        .collection('users')
+        .collection('transactions')
         .doc(userEmail)
         .collection('Income')
         .get();
 
       const expenseSnapshot = await db
-        .collection('users')
+        .collection('transactions')
         .doc(userEmail)
         .collection('Expense')
         .get();
