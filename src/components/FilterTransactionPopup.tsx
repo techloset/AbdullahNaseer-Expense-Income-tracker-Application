@@ -12,7 +12,20 @@ import {
 import AppButton from './AppButton';
 import AttachmentInputPopUp from './AttachmentInputPopUp';
 
-const FilterTransactionPopup = ({
+interface FilterTransactionPopupProps {
+  handleCategorySelect: (category: string) => void;
+  handleExpenseSelect: () => void;
+  handleIncomeSelect: () => void;
+  selectedCategory: string;
+  selectedExpense: boolean;
+  selectedIncome: boolean;
+  setCategoryModalVisible: (visible: boolean) => void;
+  categoryModelVisible: boolean;
+  handleResetFilters: () => void;
+  handleFilterTransaction: () => void;
+}
+
+const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
   handleCategorySelect,
   handleExpenseSelect,
   handleIncomeSelect,
@@ -29,23 +42,6 @@ const FilterTransactionPopup = ({
     {id: 2, name: 'Transport'},
     {id: 3, name: 'Others'},
   ];
-  const [category, setCategory] = useState<String>('');
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
-
-  const selectCategory = categoryName => {
-    setCategory(categoryName);
-    setModalVisible(false);
-  };
-
-  const toggleFileModal = () => {
-    setFileModalVisible(!fileModalVisible);
-  };
-
-  const handleOutsidePress = () => {
-    setFileModalVisible(false);
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
