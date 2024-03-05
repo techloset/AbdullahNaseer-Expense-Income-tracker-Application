@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ProfileHomeProps {
   navigation: any;
@@ -7,10 +7,30 @@ interface ProfileHomeProps {
 import auth from '@react-native-firebase/auth';
 import ConfirmAlert from '../../../components/ConfirmAlert';
 import useProfile from './useProfile';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
     useProfile();
+  // const user = useSelector((state: RootState) => state.auth.user);
+  const user = useSelector((state: RootState) => state.auth.user);
+
+
+
+  const userData = auth().currentUser
+  console.log('userData =>', userData)
+
+  const initialName = userData?.displayName
+  const [name , setName] = useState('initialName')
+  console.log('initialName', initialName)
+
+
+  useEffect(() => {
+    console.log('user', user);
+  }, [])
+  
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.profileHeader}>
@@ -23,10 +43,9 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>
-            <Text style={styles.nameText}>Iriana Saliha</Text>
+            {/* <Text style={styles.nameText}>{displayName}</Text> */}
           </View>
         </View>
-
         <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile')}>
           <Image source={require('../../../assets/edit.png')} />
         </TouchableOpacity>

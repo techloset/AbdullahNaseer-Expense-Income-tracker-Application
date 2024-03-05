@@ -2,7 +2,7 @@ import {createSlice, Dispatch, PayloadAction} from '@reduxjs/toolkit';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
-import {AuthState, SignIn, SignUp, User} from '../types/types';
+import {AuthState, SignIn, SignUp, User} from '../../types/types';
 
 const initialState: AuthState = {
   user: null,
@@ -63,7 +63,6 @@ export const registerUser =
         if (error.code === 'auth/email-already-in-use') {
           console.log('danger', 'This email is already in use');
         }
-
         if (error.code === 'auth/invalid-email') {
           console.log('danger', 'This email is invalid');
         }

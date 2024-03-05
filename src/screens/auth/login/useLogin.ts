@@ -1,6 +1,6 @@
 import {useState, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {setUser, setLoading, setError, loginUser} from '../../../store/authSlice';
+import {setUser, setLoading, setError, loginUser} from '../../../store/slices/authSlice';
 import auth from '@react-native-firebase/auth';
 import { Alert } from 'react-native';
 

@@ -99,7 +99,7 @@
 
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { db } from '../config/firebase'; // Assuming firebase config is imported here
+import { db } from '../../config/firebase'; // Assuming firebase config is imported here
 import auth from '@react-native-firebase/auth';
 
 // Interface for a transaction object

@@ -3,7 +3,7 @@ import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
-import {fetchTransactions} from '../../store/transactionsSlice';
+import {fetchTransactions} from '../../store/slices/transactionsSlice';
 import storage from '@react-native-firebase/storage';
 import {TransactionInterface} from '../../types/types';
 import Navigation from '../../navigation/Navigation';

@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useEffect, useMemo, useState} from 'react';
 import {createSelector} from '@reduxjs/toolkit';
 import {RootState} from '../../store/store';
-import {fetchTransactions} from '../../store/transactionsSlice';
+import {fetchTransactions} from '../../store/slices/transactionsSlice';
 const selectTransactions = (state: RootState) =>
   state.transactions.transactions;
 

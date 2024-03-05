@@ -16,7 +16,7 @@ import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
 import {Alert, Dimensions} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {fetchTransactions} from '../../store/transactionsSlice';
+import {fetchTransactions} from '../../store/slices/transactionsSlice';
 
 // Define types
 interface Category {

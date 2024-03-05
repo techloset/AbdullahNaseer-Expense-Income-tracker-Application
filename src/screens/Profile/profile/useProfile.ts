@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import auth from '@react-native-firebase/auth';
+// import 
 const useProfile = () => {
   const [confirmAlert, setConfirmAlert] = useState(false);
 
