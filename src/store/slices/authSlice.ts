@@ -23,6 +23,7 @@ export const authSlice = createSlice({
       state.user = action.payload;
       state.isLoading = false;
       state.error = null;
+      console.log('User from slice', state.user);
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;

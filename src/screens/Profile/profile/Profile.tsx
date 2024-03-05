@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 interface ProfileHomeProps {
   navigation: any;
@@ -7,29 +7,36 @@ interface ProfileHomeProps {
 import auth from '@react-native-firebase/auth';
 import ConfirmAlert from '../../../components/ConfirmAlert';
 import useProfile from './useProfile';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../../store/store';
+import {fetchUserData} from '../../../store/slices/userSlice';
 
 const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
     useProfile();
   // const user = useSelector((state: RootState) => state.auth.user);
-  const user = useSelector((state: RootState) => state.auth.user);
+  // const user = useSelector((state: RootState) => state.auth.user);
 
+  // const userData = auth().currentUser
+  // console.log('userData =>', userData)
 
+  // const initialName = userData?.displayName
+  // const [name , setName] = useState('initialName')
+  // console.log('initialName', initialName)
 
-  const userData = auth().currentUser
-  console.log('userData =>', userData)
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.user); // Accessing user state
 
-  const initialName = userData?.displayName
-  const [name , setName] = useState('initialName')
-  console.log('initialName', initialName)
+   // Fetch user data upon component mount
+   useEffect(() => {
+    dispatch(fetchUserData() as any);
+  }, [dispatch]);
 
-
+  // Re-render when user data changes (including initially getting populated)
   useEffect(() => {
-    console.log('user', user);
-  }, [])
-  
+    console.log('User data updated, re-rendering');
+    console.log('User data', user);
+  }, [user]);
 
   return (
     <View style={styles.mainContainer}>
@@ -43,7 +50,12 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>
-            {/* <Text style={styles.nameText}>{displayName}</Text> */}
+            {user && <Text style={styles.nameText}>{user.displayName}</Text>}
+            {user ? (
+              <Text style={styles.nameText}>{user.displayName}</Text>
+            ) : (
+              <Text style={styles.nameText}>Loading...</Text>
+            )}
           </View>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile')}>
