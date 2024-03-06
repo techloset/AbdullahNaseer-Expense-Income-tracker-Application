@@ -41,71 +41,7 @@ const useHome = () => {
   const handleFilterSelect = (filter: string) => {
     setSelectedFilter(filter);
   };
-  // const filteredTransactions = useMemo(() => {
-  //   if (!isLoading && !isError) {
-  //     return transactions.filter(transaction => {
-  //       const transactionTimestamp = new Date(transaction.timestamp);
-  //       const today = new Date();
-  //       console.log('today', today);
-  //       if (selectedFilter === 'Today') {
-  //         return transactionTimestamp.toDateString() === today.toDateString();
-  //       } else if (selectedFilter === 'Week') {
-  //         const oneWeekAgo = new Date();
-  //         console.log('oneWeekAgo', oneWeekAgo);
-  //         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7); // Adjust for week start if needed
-  //         return transactionTimestamp >= oneWeekAgo;
-  //       } else if (selectedFilter === 'Month') {
-  //         const oneMonthAgo = new Date();
-  //         console.log('oneMonthAgo', oneMonthAgo);
-  //         oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-  //         return transactionTimestamp >= oneMonthAgo;
-  //       } else if (selectedFilter === 'Year') {
-  //         const oneYearAgo = new Date();
-  //         oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  //         console.log('oneYearAgo', oneYearAgo);
-  //         return transactionTimestamp >= oneYearAgo;
-  //       }
-  //       return true;
-  //     });
-  //   }
-  //   return transactions;
-  // }, [transactions, isLoading, isError, selectedFilter]);
 
-
-  // const filteredTransactions = useMemo(() => {
-  //   if (!isLoading && !isError) {
-  //     const filtered = transactions.filter(transaction => {
-  //       const transactionTimestamp = new Date(transaction.timestamp);
-  //       const today = new Date();
-  
-  //       if (selectedFilter === 'Today') {
-  //         return transactionTimestamp.toDateString() === today.toDateString();
-  //       } else if (selectedFilter === 'Week') {
-  //         const oneWeekAgo = new Date();
-  //         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-  //         return transactionTimestamp >= oneWeekAgo;
-  //       } else if (selectedFilter === 'Month') {
-  //         const oneMonthAgo = new Date();
-  //         oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-  //         return transactionTimestamp >= oneMonthAgo;
-  //       } else if (selectedFilter === 'Year') {
-  //         const oneYearAgo = new Date();
-  //         oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  //         return transactionTimestamp >= oneYearAgo;
-  //       }
-  
-  //       return true;
-  //     });
-  
-  //     // Console log selected filter and filtered transactions
-  //     console.log('Selected Filter:', selectedFilter);
-  //     console.log('Filtered Transactions:', filtered);
-  
-  //     return filtered;
-  //   }
-  //   return transactions;
-  // }, [transactions, isLoading, isError, selectedFilter]);
-  
   const filteredTransactions = useMemo(() => {
     if (!isLoading && !isError) {
       const filtered = transactions.filter(transaction => {
@@ -141,7 +77,6 @@ const useHome = () => {
       // Console log selected filter and filtered transactions
       console.log('Selected Filter:', selectedFilter);
       console.log('Filtered Transactions:', filtered);
-  
       return filtered;
     }
     return transactions;

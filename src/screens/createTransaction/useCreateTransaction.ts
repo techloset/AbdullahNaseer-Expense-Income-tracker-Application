@@ -178,7 +178,6 @@ const useCreateTransaction = () => {
         await imageRef.putFile(image.path);
         imageUrl = await imageRef.getDownloadURL();
       }
-
       const transactionData: TransactionData = {
         description,
         category,
@@ -188,7 +187,6 @@ const useCreateTransaction = () => {
         timestamp: new Date().toString(),
         imageId: image ? Date.now() : null, // Set image ID if an image is uploaded
       };
-
       await dispatch(addTransaction(transactionData) as any);
       setDescription('');
       setCategory('');

@@ -48,6 +48,7 @@ const Transaction: React.FC<TransactionProps> = () => {
       transactionType={item.transactionType}
       imageUrl={item.imageUrl}
       timeStamp={item.timestamp}
+      imageId={item.imageId}
     />
   );
 

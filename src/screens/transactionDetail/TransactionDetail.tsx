@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -32,6 +32,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
     transactionType,
     imageUrl,
     timestamp,
+    imageId
   } = route.params as TransactionInterface;
 
   const transactionData: TransactionInterface = {
@@ -43,8 +44,13 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
     money,
     imageUrl,
     timestamp,
+    imageId
   };
 
+  useEffect(() => {
+    console.log('Transaction Data from useeffect', transactionData);
+  }, [])
+  
   const {
     handleDelete,
     handleEdit,

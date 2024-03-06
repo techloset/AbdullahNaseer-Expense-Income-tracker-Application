@@ -63,47 +63,61 @@ const useTransactionDetail = (
   const [alert, setAlert] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
 
-  const handleDelete = async (
-    transactionType: string,
-    docId: string,
-  ): Promise<void> => {
-    setAlertMessage('Transaction Deleted Successfully');
+  // const handleDelete = async (
+  //   transactionType: string,
+  //   docId: string,
+  // ): Promise<void> => {
+  //   setAlertMessage('Transaction Deleted Successfully');
+  //   try {
+  //     const user = auth().currentUser;
+  //     const userEmail = user?.email;
+  //     const docSnapshot = await db
+  //       .collection('transactions')
+  //       .doc(`${userEmail}`)
+  //       .collection(`${transactionType}`)
+  //       .doc(`${docId}`)
+  //       .get();
+  //     if (!docSnapshot.exists) {
+  //       console.error('Document does not exist');
+  //       return;
+  //     }
+  //     const data = docSnapshot.data();
+  //     const imageUrl = data?.imageUrl;
+  //     const imageId = data?.imageId;
+  //     if (imageUrl) {
+  //       try {
+  //         const imagePath = `images/${userEmail}/${imageId}`;
+  //         await storage().ref().child(imagePath).delete();
+  //         console.log('Image deleted successfully');
+  //       } catch (error) {
+  //         console.error('Error deleting image: ', error);
+  //       }
+  //     }
+  //     await db
+  //       .collection('transactions')
+  //       .doc(`${userEmail}`)
+  //       .collection(`${transactionType}`)
+  //       .doc(`${docId}`)
+  //       .delete();
+  //     setAlert(true);
+  //     // Alert.alert('Transaction Deleted');
+  //     dispatch(fetchTransactions() as any);
+  //     console.log('Document successfully deleted!');
+  //     setConfirmAlert(false);
+  //     // navigation.navigate('Home')
+  //   } catch (error) {
+  //     console.error('Error removing document: ', error);
+  //   }
+  // };
+  const handleDelete = async (): Promise<void> => {
     try {
-      const user = auth().currentUser;
-      const userEmail = user?.email;
-      const docSnapshot = await db
-        .collection('transactions')
-        .doc(`${userEmail}`)
-        .collection(`${transactionType}`)
-        .doc(`${docId}`)
-        .get();
-      if (!docSnapshot.exists) {
-        console.error('Document does not exist');
-        return;
-      }
-      const data = docSnapshot.data();
-      const imageUrl = data?.imageUrl;
-      const imageId = data?.imageId;
-      if (imageUrl) {
-        const imagePath = `images/${userEmail}/${imageId}`;
-        await storage().ref().child(imagePath).delete();
-        console.log('Image deleted successfully');
-      }
-      await db
-        .collection('transactions')
-        .doc(`${userEmail}`)
-        .collection(`${transactionType}`)
-        .doc(`${docId}`)
-        .delete();
+      dispatch(deleteTransaction(transactionData) as any);
       setAlert(true);
-      // Alert.alert('Transaction Deleted');
-      dispatch(fetchTransactions() as any);
-      console.log('Document successfully deleted!');
       setConfirmAlert(false);
-      // navigation.navigate('Home')
     } catch (error) {
       console.error('Error removing document: ', error);
     }
+    console.log('transactionData', transactionData);
   };
   const handleEdit = async (): Promise<void> => {
     try {
