@@ -7,6 +7,8 @@ const useProfile = () => {
   //   const handleConfirmAlert = () => {
   //     setConfirmAlert(!confirmAlert);
   //   };
+
+  
   const handleSignOut = () => {
     auth()
       .signOut()

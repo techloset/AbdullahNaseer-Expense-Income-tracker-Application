@@ -59,6 +59,15 @@ export const registerUser =
           email: email,
         });
       })
+      .then(() => {
+        dispatch(
+          setUser({
+            displayName: displayName,
+            email: email,
+          }),
+        );
+        console.log('success', 'User registered successfully!');
+      })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
           console.log('danger', 'This email is already in use');

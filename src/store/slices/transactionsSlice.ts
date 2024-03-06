@@ -181,7 +181,6 @@ export const fetchTransactions = createAsyncThunk<Transaction[]>(
   },
 );
 
-// Action to add a new transaction
 export const addTransaction = createAsyncThunk<Transaction, Transaction>(
   'transactions/addTransaction',
   async (transactionData, {dispatch}) => {
@@ -204,36 +203,6 @@ export const addTransaction = createAsyncThunk<Transaction, Transaction>(
     }
   },
 );
-
-// Action to edit transaction
-// export const editTransaction = createAsyncThunk<Transaction, Transaction>(
-//   'transactions/editTransaction',
-//   async (transactionData, {dispatch}) => {
-//     try {
-//       const userEmail: string = auth().currentUser?.email || '';
-//       const collectionName: string = `${userEmail}`;
-//       await db
-//         .collection('transactions')
-//         .doc(collectionName)
-//         .collection(transactionData.transactionType)
-//         .doc(transactionData.docId)
-//         .update(transactionData);
-
-//       console.log(
-//         'Successfully edited transaction: msg from slice',
-//         transactionData.docId,
-//       );
-//       // After editing the transaction, dispatch fetchTransactions to update the state
-//       dispatch(fetchTransactions() as any);
-//       return transactionData;
-//     } catch (error) {
-//       console.error('Error editing transaction:', error);
-//       throw error;
-//     }
-//   },
-// );
-// Replace with your Firestore initialization
-// Assuming 'auth' function provides user authentication information
 const getUserEmail = () => auth().currentUser?.email || '';
 
 export const editTransaction = createAsyncThunk<Transaction, Transaction>(

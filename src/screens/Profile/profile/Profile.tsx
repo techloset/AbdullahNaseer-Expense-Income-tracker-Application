@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 interface ProfileHomeProps {
   navigation: any;
 }
-import auth from '@react-native-firebase/auth';
 import ConfirmAlert from '../../../components/ConfirmAlert';
 import useProfile from './useProfile';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,15 +13,6 @@ import {fetchUserData} from '../../../store/slices/userSlice';
 const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
   const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
     useProfile();
-  // const user = useSelector((state: RootState) => state.auth.user);
-  // const user = useSelector((state: RootState) => state.auth.user);
-
-  // const userData = auth().currentUser
-  // console.log('userData =>', userData)
-
-  // const initialName = userData?.displayName
-  // const [name , setName] = useState('initialName')
-  // console.log('initialName', initialName)
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user); // Accessing user state
