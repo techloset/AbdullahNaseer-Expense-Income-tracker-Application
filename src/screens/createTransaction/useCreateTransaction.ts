@@ -16,7 +16,10 @@ import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
 import {Alert, Dimensions} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {fetchTransactions} from '../../store/slices/transactionsSlice';
+import {
+  addTransaction,
+  fetchTransactions,
+} from '../../store/slices/transactionsSlice';
 
 // Define types
 interface Category {
@@ -54,7 +57,7 @@ const useCreateTransaction = () => {
   const [alert, setAlert] = useState<boolean>(false);
   const now = new Date();
 
-  const dateString = new Date().toString()
+  const dateString = new Date().toString();
 
   const dispatch = useDispatch();
 
@@ -106,55 +109,97 @@ const useCreateTransaction = () => {
     setFileModalVisible(false);
   };
 
-  const handleSubmit = async () => {
-    console.log('submit button');
-    console.log(description, category, money);
-    if (!description || !category || !money) {
-      console.error('Required fields are empty');
-      return;
-    }
+  // const handleSubmit = async () => {
+  //   console.log('submit button');
+  //   console.log(description, category, money);
+  //   if (!description || !category || !money) {
+  //     console.error('Required fields are empty');
+  //     return;
+  //   }
+  //   try {
+  //     console.log('in the try');
+  //     setLoading(true);
+  //     const userEmail: string = auth().currentUser?.email || '';
+  //     const imageId: number = Date.now(); // You can use any method to generate a unique ID for the image
+  //     // Upload the image to Firebase Storage
+  //     let imageUrl: string | null = null;
+  //     if (image) {
+  //       const imageRef = storage().ref(`/images/${userEmail}/${imageId}`);
+  //       await imageRef.putFile(image.path);
+  //       imageUrl = await imageRef.getDownloadURL();
+  //     }
+  //     const transactionData: TransactionData = {
+  //       description: description,
+  //       category: category,
+  //       money: money,
+  //       imageUrl: imageUrl,
+  //       transactionType: transactionType,
+  //       timestamp: dateString,
+  //       imageId: imageId,
+  //     };
+
+  //     // Concatenate the user's email and image ID to create a unique collection name
+  //     const collectionName: string = `${userEmail}`;
+
+  //     const docRef = await db
+  //       .collection('transactions')
+  //       .doc(collectionName)
+  //       .collection(`${transactionType}`)
+  //       .add(transactionData);
+
+  //     console.log('Successfully added transaction:', docRef.id);
+  //     setDescription('');
+  //     setCategory('');
+  //     setMoney('');
+  //     setImage(null);
+  //     setLoading(false);
+  //     setAlert(true);
+  //     // Alert.alert('Transaction added successfully');
+  //     dispatch(fetchTransactions() as any);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const handleSubmit = async (): Promise<void> => {
     try {
-      console.log('in the try');
+      if (!description || !category || !money) {
+        console.error('Required fields are empty');
+        return;
+      }
+
       setLoading(true);
       const userEmail: string = auth().currentUser?.email || '';
-      const imageId: number = Date.now(); // You can use any method to generate a unique ID for the image
-      // Upload the image to Firebase Storage
       let imageUrl: string | null = null;
+
       if (image) {
+        const imageId: number = Date.now(); // Generate a unique ID for the image
         const imageRef = storage().ref(`/images/${userEmail}/${imageId}`);
         await imageRef.putFile(image.path);
         imageUrl = await imageRef.getDownloadURL();
       }
+
       const transactionData: TransactionData = {
-        description: description,
-        category: category,
-        money: money,
-        imageUrl: imageUrl,
-        transactionType: transactionType,
-        timestamp: dateString,
-        imageId: imageId,
+        description,
+        category,
+        money,
+        imageUrl,
+        transactionType,
+        timestamp: new Date().toString(),
+        imageId: image ? Date.now() : null, // Set image ID if an image is uploaded
       };
 
-      // Concatenate the user's email and image ID to create a unique collection name
-      const collectionName: string = `${userEmail}`;
-
-      const docRef = await db
-        .collection('transactions')
-        .doc(collectionName)
-        .collection(`${transactionType}`)
-        .add(transactionData);
-
-      console.log('Successfully added transaction:', docRef.id);
+      await dispatch(addTransaction(transactionData) as any);
       setDescription('');
       setCategory('');
       setMoney('');
       setImage(null);
+      setTransactionType('Expense');
       setLoading(false);
       setAlert(true);
-      // Alert.alert('Transaction added successfully');
-      dispatch(fetchTransactions() as any);
     } catch (error) {
-      console.error(error);
+      console.error('Error adding transaction:', error);
+      setLoading(false);
     }
   };
 

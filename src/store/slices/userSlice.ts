@@ -1,7 +1,7 @@
 // import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import firestore from '@react-native-firebase/firestore';
 // import auth from '@react-native-firebase/auth';
-// // import {CounterState, UserData} from '../../types/Types';
+// import {CounterState, UserData} from '../../types/Types';
 
 // const initialState: CounterState = {
 //   user: null,

@@ -3,7 +3,12 @@ import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
-import {fetchTransactions} from '../../store/slices/transactionsSlice';
+import {
+  addTransaction,
+  deleteTransaction,
+  editTransaction,
+  fetchTransactions,
+} from '../../store/slices/transactionsSlice';
 import storage from '@react-native-firebase/storage';
 import {TransactionInterface} from '../../types/types';
 import Navigation from '../../navigation/Navigation';
@@ -100,28 +105,23 @@ const useTransactionDetail = (
       console.error('Error removing document: ', error);
     }
   };
-
   const handleEdit = async (): Promise<void> => {
-    setAlertMessage('Transaction updated Successfully');
     try {
-      const user = auth().currentUser;
-      const userEmail = user?.email;
-      await db
-        .collection('transactions')
-        .doc(`${userEmail}`)
-        .collection(`${transactionData.transactionType}`)
-        .doc(`${transactionData.docId}`)
-        .update({
-          description: editableDescription,
-          money: editableMoney,
-        });
+      const updatedTransactionData = {
+        id: transactionData.docId,
+        description: editableDescription,
+        category: editableCategory,
+        money: editableMoney,
+        transactionType: editableTransactionType,
+        imageUrl: transactionData.imageUrl,
+      };
+      dispatch(editTransaction(updatedTransactionData) as any);
       setAlert(true);
-      dispatch(fetchTransactions() as any);
-      console.log('Document successfully updated!');
     } catch (error) {
       console.error('Error updating document: ', error);
     }
   };
+
   const handleCancelDelete = () => {
     setConfirmAlert(false);
   };
@@ -152,3 +152,25 @@ const useTransactionDetail = (
 };
 
 export default useTransactionDetail;
+
+// const handleEdit = async (): Promise<void> => {
+//   setAlertMessage('Transaction updated Successfully');
+//   try {
+//     const user = auth().currentUser;
+//     const userEmail = user?.email;
+//     await db
+//       .collection('transactions')
+//       .doc(`${userEmail}`)
+//       .collection(`${transactionData.transactionType}`)
+//       .doc(`${transactionData.docId}`)
+//       .update({
+//         description: editableDescription,
+//         money: editableMoney,
+//       });
+//     setAlert(true);
+//     dispatch(fetchTransactions() as any);
+//     console.log('Document successfully updated!');
+//   } catch (error) {
+//     console.error('Error updating document: ', error);
+//   }
+// };
