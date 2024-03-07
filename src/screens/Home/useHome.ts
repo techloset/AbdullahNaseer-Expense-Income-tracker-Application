@@ -26,7 +26,6 @@ export const selectFinanceSummary = createSelector(
     };
   },
 );
-
 const useHome = () => {
   const financeSummary = useSelector(selectFinanceSummary);
   const dispatch = useDispatch();

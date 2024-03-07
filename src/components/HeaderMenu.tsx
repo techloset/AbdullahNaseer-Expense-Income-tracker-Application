@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { fetchUserData } from '../store/slices/userSlice';
+import {fetchUserData} from '../store/slices/userSlice';
 
 const HeaderMenu = () => {
   const dispatch = useDispatch();
@@ -14,19 +14,14 @@ const HeaderMenu = () => {
   return (
     <View style={styles.container}>
       <View style={styles.userImgContainer}>
-        {
-          user && user.profileImage ? (
-            <Image
-              style={styles.userImage}
-              source={{uri: user.profileImage}}
-            />
-          ) : (
-            <Image
-              style={styles.userImage}
-              source={require('../assets/user.jpg')}
-            />
-          ) 
-        }
+        {user && user.profileImage ? (
+          <Image style={styles.userImage} source={{uri: user.profileImage}} />
+        ) : (
+          <Image
+            style={styles.userImage}
+            source={require('../assets/user.jpg')}
+          />
+        )}
       </View>
       <View style={styles.selectMonth}>
         <Image
