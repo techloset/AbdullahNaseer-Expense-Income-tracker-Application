@@ -2,15 +2,17 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 interface ProfileHomeProps {
-  navigation: any;
+  // navigation: any;
 }
 import ConfirmAlert from '../../../components/ConfirmAlert';
 import useProfile from './useProfile';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {fetchUserData} from '../../../store/slices/userSlice';
+import { useNavigation } from '@react-navigation/native';
 
-const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
+const ProfileHome: React.FC<ProfileHomeProps> = () => {
+  const navigation = useNavigation();
   const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
     useProfile();
 
@@ -57,7 +59,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             )}
           </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile')}>
+        <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile' as never)}>
           <Image source={require('../../../assets/edit.png')} />
         </TouchableOpacity>
       </View>
@@ -75,7 +77,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate('ResetPassword')}
+            onPress={() => navigation.navigate('ResetPassword' as never)}
             style={styles.actionContainer}>
             <View style={styles.actionImgContainer}>
               <Image

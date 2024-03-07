@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {useDispatch} from 'react-redux';
 import {registerUser} from '../../../store/slices/authSlice';
+import { Alert } from 'react-native';
 
 const useSignup = () => {
   const dispatch = useDispatch();
@@ -12,23 +13,6 @@ const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [userInfo, setUserInfo] = useState(null);
-
-  // const handleSignup = async () => {
-  //   try {
-  //     setLoading(true); // Set loading state to true during signup process
-  //     const userCredential = await auth().createUserWithEmailAndPassword(
-  //       email,
-  //       password,
-  //     );
-  //     console.log(userCredential.user);
-  //     console.log('User created successfully');
-  //   } catch (error) {
-  //     console.error(error);
-  //     setError(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const handleSignup = async () => {
     setLoading(true);
     try {
@@ -36,6 +20,8 @@ const useSignup = () => {
       setLoading(false);
       console.log('User created successfully===>', userInfo);
     } catch (error: any) {
+      Alert.alert('Error', error.message);
+      setError(error.message);
       console.log('Error', error.message);
     }
   };
@@ -54,8 +40,6 @@ const useSignup = () => {
   // };
 
   return {
-    // name,
-    // setName,
     email,
     setEmail,
     password,

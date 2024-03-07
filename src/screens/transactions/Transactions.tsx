@@ -37,8 +37,6 @@ const Transaction: React.FC<TransactionProps> = () => {
     filteredTransactions,
     handleSortSelect,
     selectedSort,
-    selectSort, 
-    setSelectSort
   } = useTransactions();
 
   const renderItem = ({item}: {item: TransactionInterface}) => (

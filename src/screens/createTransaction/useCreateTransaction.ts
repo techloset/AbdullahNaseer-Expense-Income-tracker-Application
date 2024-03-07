@@ -20,22 +20,7 @@ import {
   addTransaction,
   fetchTransactions,
 } from '../../store/slices/transactionsSlice';
-
-// Define types
-interface Category {
-  id: number;
-  name: string;
-  image: any;
-}
-interface TransactionData {
-  description: string;
-  category: string;
-  money: string;
-  imageUrl: string | null;
-  transactionType: string;
-  timestamp: string;
-  imageId: any;
-}
+import {Category, TransactionData} from '../../types/types';
 
 // Define hook
 const useCreateTransaction = () => {
@@ -108,58 +93,6 @@ const useCreateTransaction = () => {
   const handleOutsidePress = () => {
     setFileModalVisible(false);
   };
-
-  // const handleSubmit = async () => {
-  //   console.log('submit button');
-  //   console.log(description, category, money);
-  //   if (!description || !category || !money) {
-  //     console.error('Required fields are empty');
-  //     return;
-  //   }
-  //   try {
-  //     console.log('in the try');
-  //     setLoading(true);
-  //     const userEmail: string = auth().currentUser?.email || '';
-  //     const imageId: number = Date.now(); // You can use any method to generate a unique ID for the image
-  //     // Upload the image to Firebase Storage
-  //     let imageUrl: string | null = null;
-  //     if (image) {
-  //       const imageRef = storage().ref(`/images/${userEmail}/${imageId}`);
-  //       await imageRef.putFile(image.path);
-  //       imageUrl = await imageRef.getDownloadURL();
-  //     }
-  //     const transactionData: TransactionData = {
-  //       description: description,
-  //       category: category,
-  //       money: money,
-  //       imageUrl: imageUrl,
-  //       transactionType: transactionType,
-  //       timestamp: dateString,
-  //       imageId: imageId,
-  //     };
-
-  //     // Concatenate the user's email and image ID to create a unique collection name
-  //     const collectionName: string = `${userEmail}`;
-
-  //     const docRef = await db
-  //       .collection('transactions')
-  //       .doc(collectionName)
-  //       .collection(`${transactionType}`)
-  //       .add(transactionData);
-
-  //     console.log('Successfully added transaction:', docRef.id);
-  //     setDescription('');
-  //     setCategory('');
-  //     setMoney('');
-  //     setImage(null);
-  //     setLoading(false);
-  //     setAlert(true);
-  //     // Alert.alert('Transaction added successfully');
-  //     dispatch(fetchTransactions() as any);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const handleSubmit = async (): Promise<void> => {
     try {

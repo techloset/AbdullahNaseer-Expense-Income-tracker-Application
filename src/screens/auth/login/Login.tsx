@@ -11,7 +11,8 @@ import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useLogin from './useLogin'; // Import the custom hook
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationRoute} from '../../../types/navigationType';
 
 const LoginScreen = () => {
   const {
@@ -22,9 +23,8 @@ const LoginScreen = () => {
     error,
     loading,
     handleLogin,
-    // navigation,
   } = useLogin();
-const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <NavigationHeader title="Login" />
@@ -52,15 +52,15 @@ const navigation = useNavigation();
         {error && <Text style={styles.errorText}>{error}</Text>}
         <View style={styles.forgetContainer}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('ForgetPassScreen')}>
+            onPress={() => navigation.navigate('ForgetPassScreen' as never)}>
             <Text style={styles.forget}>Forget Password?</Text>
           </TouchableOpacity>
         </View>
         <Text>or</Text>
-        <GoogleLoginButton  title={'Continue with Google'} />
+        <GoogleLoginButton onPress={()=>{}} title={'Continue with Google'} />
         <Text>
           Don't have an account?
-          <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+          <TouchableOpacity onPress={() => navigation.navigate('signup' as never)}>
             <Text style={styles.spanText}> SignUp</Text>
           </TouchableOpacity>
         </Text>

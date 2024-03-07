@@ -19,6 +19,7 @@ export interface TransactionInterface {
   transactionType: string;
   imageUrl: string;
   timestamp: string;
+  imageId: string;
 }
 
 export interface financeSummary {
@@ -66,4 +67,25 @@ export type UserData = {
 export interface User {
   displayName: string;
   email: string;
+}
+
+
+
+
+// Define types
+export interface Category {
+  id: number;
+  name: string;
+  image: any;
+}
+export interface TransactionData {
+  description: string;
+  category: string;
+  money: string;
+  imageUrl: string | null;
+  transactionType: string;
+  timestamp: string;
+  imageId: any;
+  // id: string;
+  // docId: string;
 }

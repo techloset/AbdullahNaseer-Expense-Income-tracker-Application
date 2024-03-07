@@ -20,6 +20,7 @@ import Alert from '../../components/Alert';
 
 interface TransactionDetailProps {}
 
+
 const TransactionDetail: React.FC<TransactionDetailProps> = () => {
   const route = useRoute();
 
@@ -46,6 +47,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = () => {
     timestamp,
     imageId
   };
+
 
   useEffect(() => {
     console.log('Transaction Data from useeffect', transactionData);

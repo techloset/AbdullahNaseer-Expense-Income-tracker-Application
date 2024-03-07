@@ -11,15 +11,14 @@ import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useSignup from './useSignup'; // Import the useSignup hook
+import {useNavigation} from '@react-navigation/native';
 
 interface SignUpScreenProps {
   navigation: any;
 }
 
-const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
+const SignUp: React.FC<SignUpScreenProps> = () => {
   const {
-    // name,
-    // setName,
     email,
     setEmail,
     password,
@@ -30,13 +29,10 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
     displayName,
     setDisplayName,
   } = useSignup();
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <NavigationHeader
-        title="Sign Up"
-        headerStyle={{textColor: 'black'}}
-        // navigation={navigation}
-      />
+      <NavigationHeader title="Sign Up" headerStyle={{textColor: 'black'}} />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -66,14 +62,19 @@ const SignUp: React.FC<SignUpScreenProps> = ({navigation}) => {
             title={loading ? 'Signing Up...' : 'Sign Up'}
           />
           {error && <Text style={styles.errorText}>{error}</Text>}
-          <GoogleLoginButton title={'Continue with Google'} />
+          <GoogleLoginButton
+            onPress={() => {}}
+            title={'Continue with Google'}
+          />
           <Text>
             Already have an account?
-            <TouchableOpacity onPress={() => navigation.navigate('login')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('login' as never)}>
               <Text style={styles.spanText}>Login</Text>
             </TouchableOpacity>
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home' as never)}>
             <Text>HomeScreens</Text>
           </TouchableOpacity>
         </View>

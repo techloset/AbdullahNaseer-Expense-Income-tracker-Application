@@ -1,14 +1,9 @@
 import {useState} from 'react';
 import auth from '@react-native-firebase/auth';
-// import 
+// import
 const useProfile = () => {
   const [confirmAlert, setConfirmAlert] = useState(false);
 
-  //   const handleConfirmAlert = () => {
-  //     setConfirmAlert(!confirmAlert);
-  //   };
-
-  
   const handleSignOut = () => {
     auth()
       .signOut()
