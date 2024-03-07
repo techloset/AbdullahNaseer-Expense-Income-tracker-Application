@@ -24,6 +24,7 @@ interface FilterTransactionPopupProps {
   handleResetFilters: () => void;
   handleFilterTransaction: () => void;
   handleSortSelect: (sort: string) => void;
+  selectedSort: any;
 }
 
 const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
@@ -38,6 +39,7 @@ const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
   handleResetFilters,
   handleFilterTransaction,
   handleSortSelect,
+  selectedSort,
 }) => {
   const categories = [
     {id: 1, name: 'Food'},
@@ -80,22 +82,37 @@ const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             onPress={() => handleSortSelect('Highest')}
-            style={styles.filterButton}>
+            style={[
+              styles.filterButton,
+              selectedSort == 'Highest' ? {backgroundColor: '#EEE5FF'} : null,
+            ]}>
             <Text style={styles.headerButtonText}>Highest</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleSortSelect('Lowest')}
             style={styles.filterButton}>
-            <Text style={styles.headerButtonText}>Lowest</Text>
+            <Text
+              style={[
+                styles.headerButtonText,
+                selectedSort == 'Lowest' ? {backgroundColor: '#EEE5FF'} : null,
+              ]}>
+              Lowest
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleSortSelect('Newest')}
-            style={styles.filterButton}>
+            style={[
+              styles.filterButton,
+              selectedSort == 'Newest' ? {backgroundColor: '#EEE5FF'} : null,
+            ]}>
             <Text style={styles.headerButtonText}>Newest</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleSortSelect('Oldest')}
-            style={styles.filterButton}>
+            style={[
+              styles.filterButton,
+              selectedSort == 'Oldest' ? {backgroundColor: '#EEE5FF'} : null,
+            ]}>
             <Text style={styles.headerButtonText}>Oldest</Text>
           </TouchableOpacity>
         </View>

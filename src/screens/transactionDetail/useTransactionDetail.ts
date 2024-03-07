@@ -112,6 +112,7 @@ const useTransactionDetail = (
   const handleDelete = async (): Promise<void> => {
     try {
       dispatch(deleteTransaction(transactionData) as any);
+      setAlertMessage('Transaction Deleted Successfully');
       setAlert(true);
       setConfirmAlert(false);
     } catch (error) {
@@ -130,6 +131,7 @@ const useTransactionDetail = (
         imageUrl: transactionData.imageUrl,
       };
       dispatch(editTransaction(updatedTransactionData) as any);
+      setAlertMessage('Transaction updated Successfully');
       setAlert(true);
     } catch (error) {
       console.error('Error updating document: ', error);
@@ -166,6 +168,16 @@ const useTransactionDetail = (
 };
 
 export default useTransactionDetail;
+
+
+
+
+
+
+
+
+
+
 
 // const handleEdit = async (): Promise<void> => {
 //   setAlertMessage('Transaction updated Successfully');

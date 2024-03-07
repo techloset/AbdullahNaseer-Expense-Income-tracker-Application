@@ -36,6 +36,9 @@ const Transaction: React.FC<TransactionProps> = () => {
     handleFilterTransaction,
     filteredTransactions,
     handleSortSelect,
+    selectedSort,
+    selectSort, 
+    setSelectSort
   } = useTransactions();
 
   const renderItem = ({item}: {item: TransactionInterface}) => (
@@ -104,6 +107,7 @@ const Transaction: React.FC<TransactionProps> = () => {
               handleResetFilters={handleResetFilters}
               handleFilterTransaction={handleFilterTransaction}
               handleSortSelect={handleSortSelect}
+              selectedSort={selectedSort}
             />
           </View>
         </Modal>
