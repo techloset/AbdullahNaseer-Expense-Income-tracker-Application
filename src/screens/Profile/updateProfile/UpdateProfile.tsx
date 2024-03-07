@@ -1,40 +1,86 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native'; // Import KeyboardAvoidingView
+import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Modal,
+  TouchableOpacity,
+} from 'react-native'; // Import KeyboardAvoidingView
 import NavigationHeader from '../../../components/NavigationHeader';
 import AppButton from '../../../components/AppButton';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import useUpdateProfile from './useUpdateProfile'; // Import the custom hook
-import { fetchUserData } from '../../../store/slices/userSlice';
+import {fetchUserData} from '../../../store/slices/userSlice';
+import AttachmentInputPopUp from '../../../components/AttachmentInputPopUp';
+import {RootState} from '@reduxjs/toolkit/query';
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
-  const { displayName, setDisplayName, email, setEmail, handleUpdateProfile } =
-    useUpdateProfile(); // Use the custom hook
+  const {user, isLoading, error} = useSelector(
+    (state: RootState) => state.user,
+  );
+  const {
+    displayName,
+    setDisplayName,
+    email,
+    setEmail,
+    handleUpdateProfile,
+    fileModalVisible,
+    toggleFileModal,
+    handleUpdateUserImg,
+    handleImageThrougGallery,
+  } = useUpdateProfile(); // Use the custom hook
 
   useEffect(() => {
     dispatch(fetchUserData() as any);
   }, [dispatch]);
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+    <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
       <View style={styles.container}>
         <NavigationHeader title={'Update Profile'} />
         <View style={styles.profileView}>
+          {/* <View style={styles.imageContainer}>
+            {user && user.profileImage ? (
+              <Image
+                style={styles.userImage}
+                source={{uri: user.profileImage}}
+              />
+            ) : (
+              <Image
+                style={styles.userImage}
+                source={require('../../../assets/user.jpg')}
+              />
+            )}
+          </View> */}
           <View style={styles.imageContainer}>
-            <Image
-              style={styles.userImage}
-              source={require('../../../assets/user.jpg')}
-            />
+            {isLoading ? (
+              <Text>Loading Image</Text>
+            ) : (
+              // Conditionally render user profile image or default image
+              <Image
+                style={styles.userImage}
+                source={
+                  user && user.profileImage
+                    ? {uri: user.profileImage}
+                    : require('../../../assets/user.jpg')
+                }
+              />
+            )}
           </View>
-          <View style={styles.editButtonContainer}>
+          <TouchableOpacity
+            onPress={toggleFileModal}
+            style={styles.editButtonContainer}>
             <View style={styles.editButton}>
               <Image
                 source={require('../../../assets/edit.png')}
                 style={styles.editIcon}
               />
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
         <View>
           <Text style={styles.inputLabel}>Email</Text>
@@ -59,6 +105,20 @@ const UpdateProfile = () => {
           <AppButton title={'Update Profile'} onPress={handleUpdateProfile} />
         </View>
       </View>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={fileModalVisible}
+        onRequestClose={toggleFileModal}>
+        <View style={styles.fileModalContainer}>
+          <View style={styles.modalBackground} />
+          <View style={styles.attachmentPopup}>
+            <AttachmentInputPopUp
+              handleImageThrougGallery={handleImageThrougGallery}
+            />
+          </View>
+        </View>
+      </Modal>
     </KeyboardAvoidingView>
   );
 };
@@ -131,5 +191,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16, // Adjust button position to the bottom of the screen
     width: '100%',
+  },
+  fileModalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  attachmentPopup: {
+    backgroundColor: 'white',
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+    padding: 20,
   },
 });

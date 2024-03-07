@@ -24,8 +24,10 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
 
   // Re-render when user data changes (including initially getting populated)
   useEffect(() => {
-    console.log('User data updated, re-rendering');
-    console.log('User data', user);
+    console.log(
+      'User data updated, re-rendering profile page ============================================',
+    );
+    console.log('User data from profile', user);
   }, [user]);
 
   return (
@@ -33,10 +35,17 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
       <View style={styles.profileHeader}>
         <View style={styles.UserProfile}>
           <View style={styles.ImageContainer}>
-            <Image
-              style={styles.ProfileImage}
-              source={require('../../../assets/user.jpg')}
-            />
+            {user && user.profileImage ? (
+              <Image
+                style={styles.ProfileImage}
+                source={{uri: user.profileImage}}
+              />
+            ) : (
+              <Image
+                style={styles.ProfileImage}
+                source={require('../../../assets/user.jpg')}
+              />
+            )}
           </View>
           <View style={styles.ProfileText}>
             <Text style={styles.usernameText}>Username</Text>

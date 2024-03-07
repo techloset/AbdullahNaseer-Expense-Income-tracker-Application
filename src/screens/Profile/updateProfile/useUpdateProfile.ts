@@ -1,61 +1,93 @@
-// import {useEffect, useState} from 'react';
-// import {useDispatch, useSelector} from 'react-redux';
-// import {
-//   fetchUserData,
-//   updateUserInFirestore,
-// } from '../../../store/slices/userSlice';
-
-// const useUpdateProfile = () => {
-//   const dispatch = useDispatch();
-//   const [displayName, setDisplayName] = useState('');
-//   const [email, setEmail] = useState('');
-
-//   const user = useSelector(state => state.user.user);
-
-//   useEffect(() => {
-//     if (user) {
-//       setDisplayName(user.displayName);
-//       setEmail(user.email);
-//     }
-//   }, [user]);
-
-//   const handleUpdateProfile = async () => {
-//     try {
-//      await dispatch(updateUserInFirestore({displayName, email}) as any);
-//       console.log('displayName', displayName);
-//       console.log('email', email);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return {displayName, setDisplayName, email, setEmail, handleUpdateProfile};
-// };
-
-// export default useUpdateProfile;
-
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateUserInFirestore} from '../../../store/slices/userSlice'; // Import the action
+import {
+  updateUserProfile,
+  uploadProfileImage,
+} from '../../../store/slices/userSlice';
+import {RootState} from '../../../store/store';
+import ImagePicker from 'react-native-image-crop-picker';
 
-const useUpdateUser = () => {
+interface UpdateUserProps {
+  displayName: string;
+  email: string;
+  setDisplayName: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  updateError: string | null;
+  handleUpdateProfile: () => void;
+  isLoading: boolean;
+  fileModalVisible: boolean;
+  setFileModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleFileModal: () => void;
+  handleUpdateUserImg: (image: any) => void;
+  handleImageThrougGallery: () => void;
+}
+
+const useUpdateProfile = (): UpdateUserProps => {
   const dispatch = useDispatch();
-  const {user, isLoading, error} = useSelector(state => state.user); // Access user data and state from Redux
+  const {user, isLoading, error} = useSelector(
+    (state: RootState) => state.user,
+  );
 
-  const [displayName, setDisplayName] = useState(user?.displayName || ''); // Initialize with user's displayName or an empty string
-  const [email, setEmail] = useState(user?.email || ''); // Initialize with user's email or an empty string
-  const [updateError, setUpdateError] = useState(null); // State to store update errors
+  const [displayName, setDisplayName] = useState<string>(
+    user?.displayName || '',
+  );
+  const [email, setEmail] = useState<string>(user?.email || '');
+  const [updateError, setUpdateError] = useState<string | null>(null);
+  const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
+  const [image, setImage] = useState<any>(null);
+
+  const toggleFileModal = () => {
+    setFileModalVisible(!fileModalVisible);
+  };
 
   const handleUpdateProfile = async () => {
     try {
-      setUpdateError(null); // Clear previous errors
-      await dispatch(updateUserInFirestore({displayName, email}));
+      setUpdateError(null);
+      await dispatch(
+        updateUserProfile({
+          displayName,
+          email,
+          profileImage: user.profileImage,
+        }) as any,
+      );
       console.log('User data updated successfully!');
     } catch (error) {
       console.error('Error updating user data:', error);
-      setUpdateError(error.message); // Set the error message
+      setUpdateError(error.message);
     }
   };
+  const handleImageThrougGallery = () => {
+    console.log('press image');
+    ImagePicker.openPicker({
+      width: 200,
+      height: 200,
+      cropping: true,
+    }).then(pickedImage => {
+      setImage(pickedImage);
+      console.log(pickedImage);
+      setFileModalVisible(false);
+      handleUpdateUserImg(pickedImage); // Call the dispatch function directly here
+    });
+  };
+
+  const handleUpdateUserImg = async (image: any) => {
+    console.log('dspatche called');
+    try {
+      console.log('dispatch called');
+      await dispatch(uploadProfileImage(image) as any);
+    } catch (error) {
+      console.error('Error updating user image:', error);
+      setUpdateError(error.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log("useefct called")
+  //   if (image) {
+  //     handleUpdateUserImg(image);
+  //     console.log('image:', image);
+  //   }
+  // }, [image]);
 
   return {
     displayName,
@@ -65,7 +97,12 @@ const useUpdateUser = () => {
     updateError,
     handleUpdateProfile,
     isLoading,
+    fileModalVisible,
+    setFileModalVisible,
+    toggleFileModal,
+    handleUpdateUserImg,
+    handleImageThrougGallery,
   };
 };
 
-export default useUpdateUser;
+export default useUpdateProfile;

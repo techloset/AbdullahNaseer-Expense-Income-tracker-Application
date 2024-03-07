@@ -1,9 +1,9 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-interface AttachmentInputPopUp {
-  handleImageThrougGallery: any
-  handleImageThroughCamera:any
+interface AttachmentInputPopUp{
+  handleImageThrougGallery?: () => void
+  handleImageThroughCamera?: () => void
 }
 
 const AttachmentInputPopUp: React.FC<AttachmentInputPopUp> = ({
