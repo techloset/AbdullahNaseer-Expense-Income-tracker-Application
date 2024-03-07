@@ -46,7 +46,6 @@ const ProfileHome: React.FC<ProfileHomeProps> = ({navigation}) => {
             ) : (
               <Text style={styles.nameText}>Loading...</Text>
             )}
-            
           </View>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile')}>

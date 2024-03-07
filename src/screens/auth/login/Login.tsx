@@ -11,6 +11,7 @@ import AppButton from '../../../components/AppButton';
 import GoogleLoginButton from '../../../components/GoogleLoginButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useLogin from './useLogin'; // Import the custom hook
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
   const {
@@ -21,9 +22,9 @@ const LoginScreen = () => {
     error,
     loading,
     handleLogin,
-    navigation,
+    // navigation,
   } = useLogin();
-
+const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <NavigationHeader title="Login" />
