@@ -6,6 +6,7 @@ import {
 } from '../../../store/slices/userSlice';
 import {RootState} from '../../../store/store';
 import ImagePicker from 'react-native-image-crop-picker';
+import {Alert} from 'react-native';
 
 interface UpdateUserProps {
   displayName: string;
@@ -66,7 +67,7 @@ const useUpdateProfile = (): UpdateUserProps => {
       setImage(pickedImage);
       console.log(pickedImage);
       setFileModalVisible(false);
-      handleUpdateUserImg(pickedImage); // Call the dispatch function directly here
+      handleUpdateUserImg(pickedImage);
     });
   };
 
@@ -75,20 +76,12 @@ const useUpdateProfile = (): UpdateUserProps => {
     try {
       console.log('dispatch called');
       await dispatch(uploadProfileImage(image) as any);
+      Alert.alert('Image uploaded successfully');
     } catch (error) {
       console.error('Error updating user image:', error);
       setUpdateError(error.message);
     }
   };
-
-  // useEffect(() => {
-  //   console.log("useefct called")
-  //   if (image) {
-  //     handleUpdateUserImg(image);
-  //     console.log('image:', image);
-  //   }
-  // }, [image]);
-
   return {
     displayName,
     email,

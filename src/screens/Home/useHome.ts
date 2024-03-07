@@ -46,7 +46,7 @@ const useHome = () => {
     if (!isLoading && !isError) {
       const filtered = transactions.filter(transaction => {
         const transactionTimestamp = new Date(transaction.timestamp);
-  
+
         if (selectedFilter === 'Today') {
           const today = new Date();
           // Compare only date (day, month, and year)
@@ -73,7 +73,7 @@ const useHome = () => {
         }
         return true;
       });
-  
+
       // Console log selected filter and filtered transactions
       console.log('Selected Filter:', selectedFilter);
       console.log('Filtered Transactions:', filtered);
@@ -81,7 +81,7 @@ const useHome = () => {
     }
     return transactions;
   }, [transactions, isLoading, isError, selectedFilter]);
-  
+
   return {
     financeSummary,
     isLoading,

@@ -1,14 +1,32 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { fetchUserData } from '../store/slices/userSlice';
 
 const HeaderMenu = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.user);
+
+  // Fetch user data upon component mount
+  useEffect(() => {
+    dispatch(fetchUserData() as any);
+  }, [dispatch]);
   return (
     <View style={styles.container}>
       <View style={styles.userImgContainer}>
-        <Image
-          style={styles.userImage}
-          source={require('../assets/user.jpg')}
-        />
+        {
+          user && user.profileImage ? (
+            <Image
+              style={styles.userImage}
+              source={{uri: user.profileImage}}
+            />
+          ) : (
+            <Image
+              style={styles.userImage}
+              source={require('../assets/user.jpg')}
+            />
+          ) 
+        }
       </View>
       <View style={styles.selectMonth}>
         <Image
@@ -43,13 +61,13 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 16,
   },
-  userImgContainer:{
+  userImgContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    height:32,
-    width:32,
-    borderRadius:50,
-    backgroundColor:"#7F3DFF"
+    height: 32,
+    width: 32,
+    borderRadius: 50,
+    backgroundColor: '#7F3DFF',
   },
   selectMonth: {
     flexDirection: 'row',
@@ -59,7 +77,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'black',
   },
   notification: {
     height: 30,

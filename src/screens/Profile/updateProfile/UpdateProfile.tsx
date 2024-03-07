@@ -43,24 +43,10 @@ const UpdateProfile = () => {
       <View style={styles.container}>
         <NavigationHeader title={'Update Profile'} />
         <View style={styles.profileView}>
-          {/* <View style={styles.imageContainer}>
-            {user && user.profileImage ? (
-              <Image
-                style={styles.userImage}
-                source={{uri: user.profileImage}}
-              />
-            ) : (
-              <Image
-                style={styles.userImage}
-                source={require('../../../assets/user.jpg')}
-              />
-            )}
-          </View> */}
           <View style={styles.imageContainer}>
             {isLoading ? (
               <Text>Loading Image</Text>
             ) : (
-              // Conditionally render user profile image or default image
               <Image
                 style={styles.userImage}
                 source={
