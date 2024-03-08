@@ -11,6 +11,13 @@ import {
 } from 'react-native';
 import AppButton from './AppButton';
 import AttachmentInputPopUp from './AttachmentInputPopUp';
+import CategorySelectModal from './CategorySelectModal';
+import {Category} from '../types/types';
+import shopping from '../assets/shopping.png';
+import subscription from '../assets/subscription.png';
+import food from '../assets/food.png';
+import salary from '../assets/salary.png';
+import transportation from '../assets/transport.png';
 
 interface FilterTransactionPopupProps {
   handleCategorySelect: (category: string) => void;
@@ -41,11 +48,13 @@ const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
   handleSortSelect,
   selectedSort,
 }) => {
-  const categories = [
-    {id: 1, name: 'Food'},
-    {id: 2, name: 'Transport'},
-    {id: 3, name: 'Others'},
-  ];
+  const [categories, setCategories] = useState<Category[]>([
+    {id: 1, name: 'Shopping', image: shopping},
+    {id: 2, name: 'Subscription', image: subscription},
+    {id: 3, name: 'Food', image: food},
+    {id: 4, name: 'Salary', image: salary},
+    {id: 5, name: 'Transportation', image: transportation},
+  ]);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -127,24 +136,13 @@ const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
             }}>
             <Text>{selectedCategory || 'Select Category'}</Text>
           </TouchableOpacity>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={categoryModelVisible}>
-            <View style={styles.modalContainer}>
-              <FlatList
-                data={categories}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => (
-                  <TouchableOpacity
-                    style={styles.categoryItem}
-                    onPress={() => handleCategorySelect(item.name)}>
-                    <Text>{item.name}</Text>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
-          </Modal>
+          <CategorySelectModal
+            modalVisible={categoryModelVisible}
+            onRequestClose={() => setCategoryModalVisible(false)}
+            image={categories}
+            onPress={handleCategorySelect}
+          />
+          {/* <CA/> */}
         </View>
       </View>
       <AppButton onPress={handleFilterTransaction} title={'Apply'} />

@@ -16,6 +16,7 @@ import AttachmentInputPopUp from '../../components/AttachmentInputPopUp';
 import useTransactionForm from './useCreateTransaction';
 import NavigationHeader from '../../components/NavigationHeader';
 import Alert from '../../components/Alert';
+import CategorySelectModal from '../../components/CategorySelectModal';
 
 interface CreateTransactionProps {
   navigation?: string;
@@ -108,26 +109,13 @@ const CreateTransaction: React.FC<CreateTransactionProps> = ({
                 onPress={() => setModalVisible(true)}>
                 <Text>{category || 'Select Category'}</Text>
               </TouchableOpacity>
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={toggleCategoryModal}>
-                <View style={styles.modalContainer}>
-                  <FlatList
-                    data={categories}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({item}) => (
-                      <TouchableOpacity
-                        style={styles.categoryItemContainer}
-                        onPress={() => selectCategory(item.name)}>
-                        <Image source={item.image} />
-                        <Text style={styles.categoryItemText}>{item.name}</Text>
-                      </TouchableOpacity>
-                    )}
-                  />
-                </View>
-              </Modal>
+              <CategorySelectModal
+                modalVisible={modalVisible}
+                onRequestClose={toggleCategoryModal}
+                image={categories} // Assuming categories is an array of category objects
+                onPress={selectCategory}
+              />
+
               <TextInput
                 style={styles.textInput}
                 placeholder="Description"

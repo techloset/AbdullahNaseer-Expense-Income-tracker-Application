@@ -34,7 +34,7 @@ const TabNavigation = () => (
     screenOptions={({route}) => ({
       tabBarIcon: ({focused, color, size}) => {
         let iconSource;
-        let iconStyle = {}; // Separate styling for the middle icon
+        let iconStyle = {};
 
         switch (route.name) {
           case 'HomeScreen':
@@ -45,7 +45,7 @@ const TabNavigation = () => (
             break;
           case 'CreateTransaction':
             iconSource = addIcon;
-            iconStyle = {width: 50, height: 50};
+            iconStyle = {width: 56, height: 56, marginTop: -20};
             break;
           case 'ProfileHome':
             iconSource = focused ? profileIcon : profileIcon;
@@ -58,10 +58,19 @@ const TabNavigation = () => (
             break;
         }
 
+        if (route.name === 'CreateTransaction') {
+          return (
+            <Image
+              source={iconSource}
+              style={{width: size, height: size, ...iconStyle}}
+            />
+          );
+        }
+
         return (
           <Image
             source={iconSource}
-            style={{width: size, height: size, tintColor: color, ...iconStyle}}
+            style={{width: size, height: size, tintColor: color}}
           />
         );
       },
