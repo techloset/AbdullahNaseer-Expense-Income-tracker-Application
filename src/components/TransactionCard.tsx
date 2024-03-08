@@ -41,14 +41,31 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       imageId: imageId,
     });
   };
+  const getImageSource = (category: string) => {
+    switch (category) {
+      case 'Salary':
+        return require(`../assets/salary.png`);
+      case 'Transportation':
+        return require(`../assets/transport.png`);
+      case 'Food':
+        return require(`../assets/food.png`);
+      case 'Subscription':
+        return require(`../assets/subscription.png`);
+      case 'Shopping':
+        return require(`../assets/shopping.png`);
+      default:
+        return require(`../assets/other.png`);
+    }
+  };
+  const extractTime = (timestamp: string) => {
+    const dateObj = new Date(timestamp);
+    return dateObj.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+  };
 
   return (
     <TouchableOpacity onPress={onPressHandler} style={styles.container}>
       <View style={styles.detailsContainer}>
-        <Image
-          style={styles.inputImg}
-          source={require(`../assets/other.png`)}
-        />
+        <Image style={styles.inputImg} source={getImageSource(category)} />
         <View style={styles.detailsTextContainer}>
           <Text style={styles.detailsContainerHeading}>{category}</Text>
           <Text style={styles.detailsContaineDescription}>{description}</Text>
@@ -63,7 +80,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
           ${money}
         </Text>
 
-        <Text style={styles.timeContainerTime}>10:00 PM</Text>
+        <Text style={styles.timeContainerTime}>{extractTime(timeStamp)}</Text>
       </View>
     </TouchableOpacity>
   );
