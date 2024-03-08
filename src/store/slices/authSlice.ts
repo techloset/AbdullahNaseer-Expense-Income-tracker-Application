@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
 import {AuthState, SignIn, SignUp, User} from '../../types/types';
+import { ToastAndroid } from 'react-native';
 
 const initialState: AuthState = {
   user: null,
@@ -12,7 +13,7 @@ const initialState: AuthState = {
 
 GoogleSignin.configure({
   webClientId:
-    '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com',
+    '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com', 
 });
 
 export const authSlice = createSlice({
@@ -64,7 +65,7 @@ export const registerUser =
           setUser({
             displayName: displayName,
             email: email,
-          }),
+          } as User),
         );
         console.log('success', 'User registered successfully!');
       })
@@ -97,7 +98,7 @@ export const loginUser =
           setUser({
             displayName: currentUser.displayName || '',
             email: currentUser.email || '',
-          }),
+          } as User),
         );
       }
       console.log('success', 'User logged in!');
@@ -111,38 +112,68 @@ export const loginUser =
 
 // GoogleSignIn
 
+// export const googleSignin = async () => {
+//   await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+//   await GoogleSignin.signOut();
+//   const {idToken} = await GoogleSignin.signIn();
+//   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+//   const user_sign = auth().signInWithCredential(googleCredential);
+//   user_sign
+//     .then(async () => {
+//       const userDoc = await firestore()
+//         .collection('users')
+//         .doc(auth().currentUser?.uid)
+//         .get();
+//       if (!userDoc.exists) {
+//         await firestore()
+//           .collection('users')
+//           .doc(auth().currentUser?.uid)
+//           .set({
+//             displayName: auth().currentUser?.displayName,
+//             email: auth().currentUser?.email,
+//             photoUrl: auth().currentUser?.photoURL || null,
+//             status: 'using expense tracker app',
+//             uid: auth().currentUser?.uid,
+//           });
+//         console.log('New user signed up successfully!');
+//       } else {
+//         console.log('User signed in successfully!');
+//       }
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// };
 export const googleSignin = async () => {
-  await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-  await GoogleSignin.signOut();
-  const {idToken} = await GoogleSignin.signIn();
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  const user_sign = auth().signInWithCredential(googleCredential);
-  user_sign
-    .then(async () => {
-      const userDoc = await firestore()
-        .collection('users')
-        .doc(auth().currentUser?.uid)
-        .get();
+  try {
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    await GoogleSignin.signOut();
+    const {idToken} = await GoogleSignin.signIn();
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    await auth().signInWithCredential(googleCredential);
+    const userDoc = await firestore()
+      .collection('Users')
+      .doc(auth()?.currentUser?.uid)
+      .get();
 
-      if (!userDoc.exists) {
-        await firestore()
-          .collection('users')
-          .doc(auth().currentUser?.uid)
-          .set({
-            displayName: auth().currentUser?.displayName,
-            email: auth().currentUser?.email,
-            photoUrl: auth().currentUser?.photoURL || null,
-            status: 'using expense tracker app',
-            uid: auth().currentUser?.uid,
-          });
-        console.log('New user signed up successfully!');
-      } else {
-        console.log('User signed in successfully!');
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    if (!userDoc.exists) {
+      await firestore()
+        .collection('Users')
+        .doc(auth()?.currentUser?.uid)
+        .set({
+          displayName: auth()?.currentUser?.displayName,
+          email: auth()?.currentUser?.email,
+          photoUrl: auth()?.currentUser?.photoURL || null,
+          status: 'Hi there I am using Techat',
+          uid: auth()?.currentUser?.uid,
+        });
+      ToastAndroid.show('New user signed up successfully!', ToastAndroid.SHORT);
+    } else {
+      ToastAndroid.show('User signed in successfully!', ToastAndroid.SHORT);
+    }
+  } catch (error) {
+    console.log('error', error);
+  }
 };
 // export const googleSignin = async () => {
 //   await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});

@@ -1,8 +1,9 @@
 import {useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {useDispatch} from 'react-redux';
-import {registerUser} from '../../../store/slices/authSlice';
-import { Alert } from 'react-native';
+import {googleSignin, registerUser} from '../../../store/slices/authSlice';
+import {Alert} from 'react-native';
+// import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const useSignup = () => {
   const dispatch = useDispatch();
@@ -26,18 +27,34 @@ const useSignup = () => {
     }
   };
 
-  // const goodleSignIn = async () => {
-  //   // try {
-  //   //   await GoogleSignin.hasPlayServices();
-  //   //   const {idToken} = await GoogleSignin.signIn();
-  //   //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  //   //   await auth().signInWithCredential(googleCredential);
-  //   //   console.log('User signed in successfully');
-  //   // } catch (error) {
-  //   //   console.error(error);
-  //   //   setError(error.message);
-  //   // }
+  // useEffect(() => {
+  //   GoogleSignin.configure({
+  //     webClientId:
+  //       '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com',
+  //   });
+  // }, []);
+
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     await GoogleSignin.hasPlayServices();
+  //     const {idToken} = await GoogleSignin.signIn();
+  //     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  //     await auth().signInWithCredential(googleCredential);
+  //     console.log('User signed in successfully');
+  //   } catch (error) {
+  //     console.error(error);
+  //     setError(error.message);
+  //   }
   // };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await dispatch(googleSignin as any);
+    } catch (error: any) {
+      console.error(error);
+      setError(error.message);
+    }
+  };
 
   return {
     email,
@@ -49,6 +66,7 @@ const useSignup = () => {
     handleSignup,
     displayName,
     setDisplayName,
+    handleGoogleSignIn,
   };
 };
 

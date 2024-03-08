@@ -28,6 +28,7 @@ const SignUp: React.FC<SignUpScreenProps> = () => {
     handleSignup,
     displayName,
     setDisplayName,
+    handleGoogleSignIn,
   } = useSignup();
   const navigation = useNavigation();
   return (
@@ -63,7 +64,7 @@ const SignUp: React.FC<SignUpScreenProps> = () => {
           />
           {error && <Text style={styles.errorText}>{error}</Text>}
           <GoogleLoginButton
-            onPress={() => {}}
+            onPress={handleGoogleSignIn}
             title={'Continue with Google'}
           />
           <Text>
