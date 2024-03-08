@@ -44,7 +44,7 @@ const TabNavigation = () => (
             break;
           case 'CreateTransaction':
             iconSource = addIcon;
-            iconStyle = {width: 50, height: 50}; // Example different size for middle icon
+            iconStyle = {width: 50, height: 50};
             break;
           case 'ProfileHome':
             iconSource = focused ? profileIcon : profileIcon;
