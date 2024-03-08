@@ -20,7 +20,7 @@ import {User} from '../types/types';
 
 import homeIcon from '../assets/home.png';
 import transactionIcon from '../assets/transaction.png';
-import profileIcon from '../assets/user.png';
+import profileIcon from '../assets/profile.png';
 import budgetIcon from '../assets/piechart.png';
 import addIcon from '../assets/add.png';
 import TransactionDetail from '../screens/transactionDetail/TransactionDetail';

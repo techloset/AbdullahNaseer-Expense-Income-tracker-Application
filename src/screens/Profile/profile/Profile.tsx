@@ -45,7 +45,7 @@ const ProfileHome: React.FC<ProfileHomeProps> = () => {
             ) : (
               <Image
                 style={styles.ProfileImage}
-                source={require('../../../assets/user.jpg')}
+                source={require('../../../assets/user.png')}
               />
             )}
           </View>

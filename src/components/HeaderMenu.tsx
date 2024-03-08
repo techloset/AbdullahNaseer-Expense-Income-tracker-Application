@@ -19,7 +19,7 @@ const HeaderMenu = () => {
         ) : (
           <Image
             style={styles.userImage}
-            source={require('../assets/user.jpg')}
+            source={require('../assets/user.png')}
           />
         )}
       </View>

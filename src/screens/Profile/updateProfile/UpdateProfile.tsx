@@ -52,7 +52,7 @@ const UpdateProfile = () => {
                 source={
                   user && user.profileImage
                     ? {uri: user.profileImage}
-                    : require('../../../assets/user.jpg')
+                    : require('../../../assets/user.png')
                 }
               />
             )}

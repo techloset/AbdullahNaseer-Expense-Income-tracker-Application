@@ -152,21 +152,20 @@ export const googleSignin = async () => {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     await auth().signInWithCredential(googleCredential);
     const userDoc = await firestore()
-      .collection('Users')
+      .collection('users')
       .doc(auth()?.currentUser?.uid)
       .get();
 
     if (!userDoc.exists) {
       await firestore()
-        .collection('Users')
+        .collection('users')
         .doc(auth()?.currentUser?.uid)
         .set({
           displayName: auth()?.currentUser?.displayName,
           email: auth()?.currentUser?.email,
-          photoUrl: auth()?.currentUser?.photoURL || null,
-          status: 'Hi there I am using Techat',
+          profileImage: auth()?.currentUser?.photoURL || null,
           uid: auth()?.currentUser?.uid,
-        });
+        })
       ToastAndroid.show('New user signed up successfully!', ToastAndroid.SHORT);
     } else {
       ToastAndroid.show('User signed in successfully!', ToastAndroid.SHORT);
@@ -175,29 +174,6 @@ export const googleSignin = async () => {
     console.log('error', error);
   }
 };
-// export const googleSignin = async () => {
-//   await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-//   await GoogleSignin.signOut();
-//   const {idToken} = await GoogleSignin.signIn();
-//   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-//   const user_sign = auth().signInWithCredential(googleCredential);
-//   user_sign
 
-//     .then(() => {
-//       firestore()
-//         .collection('users')
-//         .doc(auth().currentUser?.uid)
-//         .set({
-//           name: '',
-//           displayName: auth().currentUser?.displayName,
-//           email: auth().currentUser?.email,
-//           createdAt: firestore.FieldValue.serverTimestamp(),
-//           userImage: auth().currentUser?.photoURL || null,
-//         });
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// };
 
 export default authSlice.reducer;
