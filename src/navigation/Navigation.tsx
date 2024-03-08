@@ -28,14 +28,6 @@ import { NavigationRoute } from '../types/navigationType';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
-// type NavigationRoute =
-//   | 'HomeScreen'
-//   | 'Transaction'
-//   | 'CreateTransaction'
-//   | 'Budget'
-//   | 'ProfileHome';
-
 const TabNavigation = () => (
   <Tab.Navigator
     screenOptions={({route}) => ({
@@ -181,3 +173,6 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+
+

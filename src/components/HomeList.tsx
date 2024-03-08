@@ -21,7 +21,7 @@ const HomeList: React.FC<HomeListProps> = ({
         <Text>Error occurred. Please try again later.</Text>
       ) : (
         transactions.map((item, index) => (
-          <TransactionCard key={index} {...item} />
+          <TransactionCard key={item.id} {...item} />
         ))
       )}
     </View>

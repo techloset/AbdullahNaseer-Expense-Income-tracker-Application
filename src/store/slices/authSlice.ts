@@ -111,39 +111,6 @@ export const loginUser =
   };
 
 // GoogleSignIn
-
-// export const googleSignin = async () => {
-//   await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-//   await GoogleSignin.signOut();
-//   const {idToken} = await GoogleSignin.signIn();
-//   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-//   const user_sign = auth().signInWithCredential(googleCredential);
-//   user_sign
-//     .then(async () => {
-//       const userDoc = await firestore()
-//         .collection('users')
-//         .doc(auth().currentUser?.uid)
-//         .get();
-//       if (!userDoc.exists) {
-//         await firestore()
-//           .collection('users')
-//           .doc(auth().currentUser?.uid)
-//           .set({
-//             displayName: auth().currentUser?.displayName,
-//             email: auth().currentUser?.email,
-//             photoUrl: auth().currentUser?.photoURL || null,
-//             status: 'using expense tracker app',
-//             uid: auth().currentUser?.uid,
-//           });
-//         console.log('New user signed up successfully!');
-//       } else {
-//         console.log('User signed in successfully!');
-//       }
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// };
 export const googleSignin = async () => {
   try {
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
