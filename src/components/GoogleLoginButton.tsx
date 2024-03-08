@@ -1,10 +1,11 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import React from 'react';
+import {GoogleLoginButtonProps} from '../types/types';
 
-interface GoogleLoginButtonProps {
-  title: string;
-  onPress: () => void;
-}
+// interface GoogleLoginButtonProps {
+//   title: string;
+//   onPress: () => void;
+// }
 
 const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({title,onPress}) => {
   return (

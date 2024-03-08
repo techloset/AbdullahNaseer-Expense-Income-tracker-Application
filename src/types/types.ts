@@ -67,11 +67,7 @@ export type UserData = {
 export interface User {
   displayName: string;
   email: string;
-  
 }
-
-
-
 
 // Define types
 export interface Category {
@@ -87,4 +83,114 @@ export interface TransactionData {
   transactionType: string;
   timestamp: string;
   imageId: any;
+}
+
+export interface alertProps {
+  message: string;
+  onPress: () => void;
+  visible: boolean;
+}
+
+export interface AppButtonProps {
+  title: string;
+  onPress?: () => void;
+  disabled?: boolean;
+}
+
+export interface CategoryProps {
+  category: string;
+  color: string;
+  style: object;
+  styleamount: object;
+  amount: number;
+  image: any;
+  transactionType: 'Expense' | 'Income';
+}
+
+export interface CategorySelectModalProps {
+  modalVisible: boolean;
+  onRequestClose: () => void;
+  image: any;
+  onPress: (name: string) => void;
+}
+
+export interface ConfirmAlertProps {
+  visible: boolean;
+  title: string;
+  message: string;
+  onYesPress: () => void;
+  onNoPress: () => void;
+}
+
+export interface detailPageHeaderProps {
+  onPress: () => void;
+}
+
+export interface filterProps {
+  selectedFilter: string;
+  setSelectedFilter: (filter: string) => void;
+  handleFilterSelect: (filter: string) => void;
+}
+
+export interface FilterTransactionPopupProps {
+  handleCategorySelect: (category: string) => void;
+  handleExpenseSelect: () => void;
+  handleIncomeSelect: () => void;
+  selectedCategory: string;
+  selectedExpense: boolean;
+  selectedIncome: boolean;
+  setCategoryModalVisible: (visible: boolean) => void;
+  categoryModelVisible: boolean;
+  handleResetFilters: () => void;
+  handleFilterTransaction: () => void;
+  handleSortSelect: (sort: string) => void;
+  selectedSort: any;
+}
+
+export interface GoogleLoginButtonProps {
+  title: string;
+  onPress: () => void;
+}
+
+export interface HeroSectionProps {
+  financeSummary: financeSummary;
+}
+
+export interface HomeListProps {
+  transactions: Array<any>;
+  isError: boolean;
+  isLoading: boolean;
+}
+
+export interface AttachmentInputPopUp {
+  handleImageThrougGallery: void
+  handleImageThroughCamera:void
+}
+
+
+export interface TransactionCardProps {
+  id: string;
+  category: string;
+  description: string;
+  money: string;
+  transactionType: string;
+  key: string;
+  imageUrl: string;
+  timeStamp: string;
+  imageId: string;
+}
+
+export interface UpdateUserProps {
+  displayName: string;
+  email: string;
+  setDisplayName: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  updateError: string | null;
+  handleUpdateProfile: () => void;
+  isLoading: boolean;
+  fileModalVisible: boolean;
+  setFileModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleFileModal: () => void;
+  handleUpdateUserImg: (image: any) => void;
+  handleImageThrougGallery: () => void;
 }

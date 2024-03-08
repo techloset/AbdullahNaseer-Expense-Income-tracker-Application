@@ -2,11 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import TransactionCard from './TransactionCard';
 import useHome from '../screens/home/useHome';
-interface HomeListProps {
-  transactions: Array<any>;
-  isError: boolean;
-  isLoading: boolean;
-}
+import {HomeListProps} from '../types/types';
 
 const HomeList: React.FC<HomeListProps> = ({
   transactions,

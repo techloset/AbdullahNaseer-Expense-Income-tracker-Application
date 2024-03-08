@@ -18,10 +18,10 @@ import {TransactionInterface} from '../../types/types';
 import ConfirmAlert from '../../components/ConfirmAlert';
 import Alert from '../../components/Alert';
 
-interface TransactionDetailProps {}
 
 
-const TransactionDetail: React.FC<TransactionDetailProps> = () => {
+
+const TransactionDetail: React.FC = () => {
   const route = useRoute();
 
   const {

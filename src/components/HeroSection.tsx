@@ -2,11 +2,11 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 
 import {useSelector} from 'react-redux';
-import {financeSummary} from '../types/types';
+import {financeSummary, HeroSectionProps} from '../types/types';
 
-interface HeroSectionProps {
-  financeSummary: financeSummary;
-}
+// interface HeroSectionProps {
+//   financeSummary: financeSummary;
+// }
 
 const HeroSection: React.FC<HeroSectionProps> = ({financeSummary}) => {
   // const financeSummary = useSelector(selectFinanceSummary);

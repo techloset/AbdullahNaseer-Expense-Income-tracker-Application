@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {detailPageHeaderProps} from '../types/types';
 
-interface detailPageHeaderProps {
-  onPress: () => void;
-}
+// interface detailPageHeaderProps {
+//   onPress: () => void;
+// }
 
 const DetailPageHeader:React.FC<detailPageHeaderProps> = ({onPress}) => {
   const navigation = useNavigation();

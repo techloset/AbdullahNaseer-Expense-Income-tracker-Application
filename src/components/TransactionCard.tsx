@@ -2,30 +2,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
-import {TransactionInterface} from '../types/types';
-
-interface TransactionCardProps {
-  id: string;
-  category: string;
-  description: string;
-  money: string;
-  transactionType: string;
-  key: string;
-  imageUrl: string;
-  timeStamp: string;
-  imageId: string;
-}
-
-type TransactionDetailParams = {
-  docId: string;
-  category: string;
-  description: string;
-  money: string;
-  transactionType: string;
-  imageUrl: string;
-  timestamp: string;
-  imageId: string;
-};
+import {TransactionInterface,TransactionCardProps} from '../types/types';
 
 const TransactionCard: React.FC<TransactionCardProps> = ({
   id,
@@ -49,7 +26,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       imageUrl: imageUrl,
       timestamp: timeStamp,
       imageId: imageId,
-    } as TransactionDetailParams);
+    } as TransactionInterface);
   };
   const getImageSource = (category: string) => {
     switch (category) {
@@ -89,8 +66,9 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
           ]}>
           ${money}
         </Text>
-
-        <Text style={styles.timeContainerTime}>{extractTime(timeStamp)}</Text>
+        <Text style={styles.timeContainerTime}>
+          {timeStamp && extractTime(timeStamp)}
+        </Text>
       </View>
     </TouchableOpacity>
   );

@@ -8,11 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-interface alertProps {
-  message: string;
-  onPress: () => void;
-  visible: boolean;
-}
+import {alertProps} from '../types/types';
 
 const Alert: React.FC<alertProps> = ({message, onPress, visible}) => {
   return (

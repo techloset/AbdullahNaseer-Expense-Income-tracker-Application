@@ -18,21 +18,7 @@ import subscription from '../assets/subscription.png';
 import food from '../assets/food.png';
 import salary from '../assets/salary.png';
 import transportation from '../assets/transport.png';
-
-interface FilterTransactionPopupProps {
-  handleCategorySelect: (category: string) => void;
-  handleExpenseSelect: () => void;
-  handleIncomeSelect: () => void;
-  selectedCategory: string;
-  selectedExpense: boolean;
-  selectedIncome: boolean;
-  setCategoryModalVisible: (visible: boolean) => void;
-  categoryModelVisible: boolean;
-  handleResetFilters: () => void;
-  handleFilterTransaction: () => void;
-  handleSortSelect: (sort: string) => void;
-  selectedSort: any;
-}
+import { FilterTransactionPopupProps } from '../types/types';
 
 const FilterTransactionPopup: React.FC<FilterTransactionPopupProps> = ({
   handleCategorySelect,

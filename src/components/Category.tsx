@@ -1,16 +1,17 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Image} from 'react-native';
+import {CategoryProps} from '../types/types';
 
-interface CategoryProps {
-  category: string;
-  color: string;
-  style: object;
-  styleamount: object;
-  amount: number;
-  image: any;
-  transactionType: 'Expense' | 'Income';
-}
+// interface CategoryProps {
+//   category: string;
+//   color: string;
+//   style: object;
+//   styleamount: object;
+//   amount: number;
+//   image: any;
+//   transactionType: 'Expense' | 'Income';
+// }
 
 const Category: React.FC<CategoryProps> = ({
   category,

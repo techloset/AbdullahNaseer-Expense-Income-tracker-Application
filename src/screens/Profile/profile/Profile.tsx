@@ -1,23 +1,22 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-interface ProfileHomeProps {
-  // navigation: any;
-}
 import ConfirmAlert from '../../../components/ConfirmAlert';
 import useProfile from './useProfile';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {fetchUserData} from '../../../store/slices/userSlice';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
-const ProfileHome: React.FC<ProfileHomeProps> = () => {
+const ProfileHome: React.FC = () => {
   const navigation = useNavigation();
   const {confirmAlert, setConfirmAlert, handleSignOut, handleCancelSignOut} =
     useProfile();
 
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user); // Accessing user state
+  const {user, isLoading, error} = useSelector(
+    (state: RootState) => state.user,
+  );
 
   // Fetch user data upon component mount
   useEffect(() => {
@@ -59,7 +58,8 @@ const ProfileHome: React.FC<ProfileHomeProps> = () => {
             )}
           </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('UpdateProfile' as never)}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('UpdateProfile' as never)}>
           <Image source={require('../../../assets/edit.png')} />
         </TouchableOpacity>
       </View>

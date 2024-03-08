@@ -13,11 +13,9 @@ import NavigationHeader from '../../../components/NavigationHeader';
 import useSignup from './useSignup'; // Import the useSignup hook
 import {useNavigation} from '@react-navigation/native';
 
-interface SignUpScreenProps {
-  navigation: any;
-}
 
-const SignUp: React.FC<SignUpScreenProps> = () => {
+
+const SignUp: React.FC = () => {
   const {
     email,
     setEmail,

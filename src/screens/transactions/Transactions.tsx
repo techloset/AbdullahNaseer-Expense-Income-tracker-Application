@@ -14,9 +14,8 @@ import useTransactions from './useTransactions';
 import FilterTransactionPopup from '../../components/FilterTransactionPopup';
 import {TransactionInterface} from '../../types/types';
 
-interface TransactionProps {}
 
-const Transaction: React.FC<TransactionProps> = () => {
+const Transaction: React.FC = () => {
   const {
     transactions,
     isLoading,

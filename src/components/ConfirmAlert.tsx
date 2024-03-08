@@ -1,13 +1,6 @@
 import * as React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Modal} from 'react-native';
-
-interface ConfirmAlertProps {
-  visible: boolean;
-  title: string;
-  message: string;
-  onYesPress: () => void;
-  onNoPress: () => void;
-}
+import {ConfirmAlertProps} from '../types/types';
 function ConfirmAlert({
   visible,
   title,

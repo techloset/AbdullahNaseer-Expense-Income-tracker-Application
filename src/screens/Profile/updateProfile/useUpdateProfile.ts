@@ -8,20 +8,7 @@ import {RootState} from '../../../store/store';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Alert} from 'react-native';
 
-interface UpdateUserProps {
-  displayName: string;
-  email: string;
-  setDisplayName: React.Dispatch<React.SetStateAction<string>>;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  updateError: string | null;
-  handleUpdateProfile: () => void;
-  isLoading: boolean;
-  fileModalVisible: boolean;
-  setFileModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  toggleFileModal: () => void;
-  handleUpdateUserImg: (image: any) => void;
-  handleImageThrougGallery: () => void;
-}
+import { UpdateUserProps } from '../../../types/types';
 
 const useUpdateProfile = (): UpdateUserProps => {
   const dispatch = useDispatch();

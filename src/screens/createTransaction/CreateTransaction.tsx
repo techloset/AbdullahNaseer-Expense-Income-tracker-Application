@@ -18,15 +18,9 @@ import NavigationHeader from '../../components/NavigationHeader';
 import Alert from '../../components/Alert';
 import CategorySelectModal from '../../components/CategorySelectModal';
 
-interface CreateTransactionProps {
-  navigation?: string;
-  backgroundColor?: string;
-}
 
-const CreateTransaction: React.FC<CreateTransactionProps> = ({
-  navigation,
-  backgroundColor,
-}) => {
+
+const CreateTransaction: React.FC = () => {
   const {
     categories,
     category,

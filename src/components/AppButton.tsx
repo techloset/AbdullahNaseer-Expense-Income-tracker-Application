@@ -1,11 +1,6 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
-
-interface AppButtonProps {
-  title: string;
-  onPress?: () => void
-  disabled?: boolean
-}
+import {AppButtonProps} from '../types/types';
 
 const AppButton: React.FC<AppButtonProps> = ({title,onPress,disabled}) => {
   return (

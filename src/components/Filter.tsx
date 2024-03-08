@@ -1,12 +1,13 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {useState} from 'react';
+import {filterProps} from '../types/types';
 
-interface filterProps {
-  selectedFilter: string;
-  setSelectedFilter: (filter: string) => void;
-  handleFilterSelect: (filter: string) => void;
-}
+// interface filterProps {
+//   selectedFilter: string;
+//   setSelectedFilter: (filter: string) => void;
+//   handleFilterSelect: (filter: string) => void;
+// }
 
 const Filter: React.FC<filterProps> = ({
   selectedFilter,

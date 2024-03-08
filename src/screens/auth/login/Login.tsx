@@ -30,7 +30,7 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <NavigationHeader title="Login" />
+      <NavigationHeader title="Login" headerStyle={{textColor: 'black'}} />
       <View style={styles.content}>
         <View style={styles.inputContainer}>
           <TextInput

@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-
+// import { AttachmentInputPopUp } from '../types/types';
 interface AttachmentInputPopUp{
   handleImageThrougGallery?: () => void
   handleImageThroughCamera?: () => void

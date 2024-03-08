@@ -3,12 +3,10 @@ import {View, Text, StyleSheet, TextInput} from 'react-native';
 import AppButton from '../../../components/AppButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useForgetPassword from './useForgetPassword';
+import {useNavigation} from '@react-navigation/native';
 
-interface ForgetPassScreenProps {
-  navigation: any;
-}
-
-const ForgetPassScreen: React.FC<ForgetPassScreenProps> = ({navigation}) => {
+const ForgetPassScreen: React.FC = () => {
+  const navigation = useNavigation();
   const {email, setEmail, forgotPassword} = useForgetPassword();
   return (
     <View style={styles.container}>
