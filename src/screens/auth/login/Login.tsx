@@ -23,6 +23,9 @@ const LoginScreen = () => {
     error,
     loading,
     handleLogin,
+    togglePasswordVisibility,
+    isPasswordVisible,
+    handleGoogleSignIn,
   } = useLogin();
   const navigation = useNavigation();
   return (
@@ -41,8 +44,18 @@ const LoginScreen = () => {
               placeholder="Password"
               value={password}
               onChangeText={setPassword}
+              secureTextEntry={!isPasswordVisible}
             />
-            <Image source={require('../../../assets/eye.png')} />
+            {/* <Image source={require('../../../assets/eye.png')} /> */}
+            <TouchableOpacity onPress={togglePasswordVisibility}>
+              <Image
+                source={
+                  isPasswordVisible
+                    ? require('../../../assets/eye.png')
+                    : require('../../../assets/eyeClose.png')
+                } // Use different icons based on password visibility state
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <AppButton
@@ -57,10 +70,14 @@ const LoginScreen = () => {
           </TouchableOpacity>
         </View>
         <Text>or</Text>
-        <GoogleLoginButton onPress={()=>{}} title={'Continue with Google'} />
+        <GoogleLoginButton
+          onPress={handleGoogleSignIn}
+          title={'Continue with Google'}
+        />
         <Text>
           Don't have an account?
-          <TouchableOpacity onPress={() => navigation.navigate('signup' as never)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('signup' as never)}>
             <Text style={styles.spanText}> SignUp</Text>
           </TouchableOpacity>
         </Text>

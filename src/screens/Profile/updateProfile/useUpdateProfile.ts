@@ -52,7 +52,7 @@ const useUpdateProfile = (): UpdateUserProps => {
         }) as any,
       );
       console.log('User data updated successfully!');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating user data:', error);
       setUpdateError(error.message);
     }
@@ -77,7 +77,7 @@ const useUpdateProfile = (): UpdateUserProps => {
       console.log('dispatch called');
       await dispatch(uploadProfileImage(image) as any);
       Alert.alert('Image uploaded successfully');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating user image:', error);
       setUpdateError(error.message);
     }

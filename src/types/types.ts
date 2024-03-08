@@ -19,7 +19,7 @@ export interface TransactionInterface {
   transactionType: string;
   imageUrl: string;
   timestamp: string;
-  imageId: string;
+  imageId: any | null;
 }
 
 export interface financeSummary {
@@ -87,6 +87,4 @@ export interface TransactionData {
   transactionType: string;
   timestamp: string;
   imageId: any;
-  // id: string;
-  // docId: string;
 }

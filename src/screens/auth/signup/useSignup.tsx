@@ -14,6 +14,11 @@ const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [userInfo, setUserInfo] = useState(null);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
   const handleSignup = async () => {
     setLoading(true);
     try {
@@ -67,6 +72,8 @@ const useSignup = () => {
     displayName,
     setDisplayName,
     handleGoogleSignIn,
+    togglePasswordVisibility,
+    isPasswordVisible,
   };
 };
 

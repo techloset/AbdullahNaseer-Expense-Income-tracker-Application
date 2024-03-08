@@ -29,6 +29,8 @@ const SignUp: React.FC<SignUpScreenProps> = () => {
     displayName,
     setDisplayName,
     handleGoogleSignIn,
+    togglePasswordVisibility,
+    isPasswordVisible,
   } = useSignup();
   const navigation = useNavigation();
   return (
@@ -53,8 +55,17 @@ const SignUp: React.FC<SignUpScreenProps> = () => {
               placeholder="Password"
               value={password}
               onChangeText={setPassword}
+              secureTextEntry={!isPasswordVisible}
             />
-            <Image source={require('../../../assets/eye.png')} />
+            <TouchableOpacity onPress={togglePasswordVisibility}>
+              <Image
+                source={
+                  isPasswordVisible
+                    ? require('../../../assets/eye.png')
+                    : require('../../../assets/eyeClose.png')
+                }
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.buttonContainer}>
@@ -74,10 +85,6 @@ const SignUp: React.FC<SignUpScreenProps> = () => {
               <Text style={styles.spanText}>Login</Text>
             </TouchableOpacity>
           </Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Home' as never)}>
-            <Text>HomeScreens</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </View>

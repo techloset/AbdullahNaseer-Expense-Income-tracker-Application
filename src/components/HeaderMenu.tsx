@@ -1,11 +1,13 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../store/store';
 import {fetchUserData} from '../store/slices/userSlice';
 
 const HeaderMenu = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user);
+  // const user = useSelector(state => state.user.user);
+  const user = useSelector((state: RootState) => state.user.user);
 
   // Fetch user data upon component mount
   useEffect(() => {

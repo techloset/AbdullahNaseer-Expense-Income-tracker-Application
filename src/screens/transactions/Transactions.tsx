@@ -80,7 +80,7 @@ const Transaction: React.FC<TransactionProps> = () => {
       ) : (
         <FlatList
           style={styles.flatList}
-          data={filteredTransactions}
+          data={filteredTransactions as any}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />

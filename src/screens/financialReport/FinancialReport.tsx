@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-// import Category from '../../components/Category';
+import Category from '../../components/Category';
 import NavigationHeader from '../../components/NavigationHeader';
 
 const FinancialReports = () => {
@@ -26,11 +26,11 @@ const FinancialReports = () => {
   const bottomContentText = isExpenseSelected ? (
     <>
       <View style={styles.BarGraphContainer}>
-        {/* <Category
+        <Category
           color=""
           category="Shopping"
           amount={35445}
-          image={require('../../assets/images/Report_images/ShoppiingLineGraph.png')}
+          image={require('../../assets/ShoppiingLineGraph.png')}
           style={styles.category1}
           styleamount={styles.amountColor1}
           transactionType="Expense"
@@ -39,7 +39,7 @@ const FinancialReports = () => {
           color=""
           category="Subscription"
           amount={2000}
-          image={require('../../assets/images/Report_images/SubscriptionLineGraph.png')}
+          image={require('../../assets/SubscriptionLineGraph.png')}
           style={styles.category2}
           styleamount={styles.amountColor1}
           transactionType="Expense"
@@ -48,21 +48,21 @@ const FinancialReports = () => {
           color=""
           category="Food"
           amount={500}
-          image={require('../../assets/images/Report_images/FoodLineGraph.png')}
+          image={require('../../assets/FoodLineGraph.png')}
           style={styles.category3}
           styleamount={styles.amountColor1}
           transactionType="Expense"
-        /> */}
+        />
       </View>
     </>
   ) : (
     <>
       <View style={styles.BarGraphContainer}>
-        {/* <Category
+        <Category
           color=""
           category="Salary"
           amount={45}
-          image={require('../../assets/images/Report_images/SalaryLineGraph.png')}
+          image={require('../../assets/SalaryLineGraph.png')}
           style={styles.Incomecategory}
           styleamount={styles.IncomeAmountColor}
           transactionType="Income"
@@ -71,11 +71,11 @@ const FinancialReports = () => {
           color=""
           category="Passive Income"
           amount={700}
-          image={require('../../assets/images/Report_images/PassiveIncome.png')}
+          image={require('../../assets/PassiveIncome.png')}
           style={styles.IncomeCategory2}
           styleamount={styles.IncomeAmountColor}
           transactionType="Income"
-        /> */}
+        />
       </View>
     </>
   );
@@ -88,14 +88,14 @@ const FinancialReports = () => {
         <View style={styles.headerContainer}>
           <TouchableOpacity style={styles.filterButton}>
             <Image
-              source={require('../../assets/images/Report_images/arrow-down.png')}
+              source={require('../../assets/arrow-down.png')}
               style={styles.filterImage}
             />
             <Text style={styles.filterButtonText}>Month</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.burgerIcon}>
             <Image
-              source={require('../../assets/images/Report_images/graphicon.png')}
+              source={require('../../assets/graphicon.png')}
               style={styles.filterImage2}
             />
           </TouchableOpacity>
@@ -103,18 +103,17 @@ const FinancialReports = () => {
         <View style={styles.financialContainer}>
           {isExpenseSelected ? (
             <Image
-              source={require('../../assets/images/Report_images/Graph-Expense.png')}
+              source={require('../../assets/Graph-Expense.png')}
               style={styles.financialImage}
             />
           ) : (
             <Image
-              source={require('../../assets/images/Report_images/Graph-Income.png')}
+              source={require('../../assets/Graph-Income.png')}
               style={styles.financialImage}
             />
           )}
           <Text style={styles.financialText}>{financialText}</Text>
         </View>
-
         <View style={styles.container}>
           <TouchableOpacity onPress={handleToggle}>
             <View
@@ -158,14 +157,14 @@ const FinancialReports = () => {
           <View style={styles.bottomContainer}>
             <TouchableOpacity style={styles.bottomContentButton}>
               <Image
-                source={require('../../assets/images/Report_images/arrow-down.png')}
+                source={require('../../assets/arrow-down.png')}
                 style={styles.bottomImage}
               />
               <Text style={styles.bottomButtonText}>Category</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttomIcon}>
               <Image
-                source={require('../../assets/images/Report_images/Button-Icon.png')}
+                source={require('../../assets/Button-Icon.png')}
                 style={styles.categorybtn}
               />
             </TouchableOpacity>

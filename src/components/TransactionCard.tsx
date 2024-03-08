@@ -16,6 +16,16 @@ interface TransactionCardProps {
   imageId: string;
 }
 
+type TransactionDetailParams = {
+  docId: string;
+  category: string;
+  description: string;
+  money: string;
+  transactionType: string;
+  imageUrl: string;
+  timestamp: string;
+  imageId: string;
+};
 
 const TransactionCard: React.FC<TransactionCardProps> = ({
   id,
@@ -39,7 +49,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       imageUrl: imageUrl,
       timestamp: timeStamp,
       imageId: imageId,
-    });
+    } as TransactionDetailParams);
   };
   const getImageSource = (category: string) => {
     switch (category) {

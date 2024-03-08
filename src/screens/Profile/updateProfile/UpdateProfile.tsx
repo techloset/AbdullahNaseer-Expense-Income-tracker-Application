@@ -15,7 +15,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import useUpdateProfile from './useUpdateProfile'; // Import the custom hook
 import {fetchUserData} from '../../../store/slices/userSlice';
 import AttachmentInputPopUp from '../../../components/AttachmentInputPopUp';
-import {RootState} from '@reduxjs/toolkit/query';
+import {RootState} from '../../../store/store';
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();

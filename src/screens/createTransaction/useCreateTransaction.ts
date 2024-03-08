@@ -118,7 +118,7 @@ const useCreateTransaction = () => {
         imageUrl,
         transactionType,
         timestamp: new Date().toString(),
-        imageId: image ? Date.now() : null, // Set image ID if an image is uploaded
+        imageId: image ? Date.now() : null, 
       };
       await dispatch(addTransaction(transactionData) as any);
       setDescription('');

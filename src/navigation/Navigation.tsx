@@ -24,7 +24,8 @@ import profileIcon from '../assets/profile.png';
 import budgetIcon from '../assets/piechart.png';
 import addIcon from '../assets/add.png';
 import TransactionDetail from '../screens/transactionDetail/TransactionDetail';
-import { NavigationRoute } from '../types/navigationType';
+import {NavigationRoute} from '../types/navigationType';
+import FinancialReports from '../screens/financialReport/FinancialReport';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -49,7 +50,7 @@ const TabNavigation = () => (
           case 'ProfileHome':
             iconSource = focused ? profileIcon : profileIcon;
             break;
-          case 'Budget':
+          case 'FinancialReport':
             iconSource = focused ? budgetIcon : budgetIcon;
             break;
           default:
@@ -89,8 +90,8 @@ const TabNavigation = () => (
       options={{headerShown: false}}
     />
     <Tab.Screen
-      name="Budget"
-      component={Budget}
+      name="FinancialReport"
+      component={FinancialReports}
       options={{headerShown: false}}
     />
     <Tab.Screen
@@ -106,12 +107,10 @@ const Navigation = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(
-      (user: FirebaseUser | null) => {
-        setUser(user as User);
-        if (initializing) setInitializing(false);
-      },
-    );
+    const subscriber = auth().onAuthStateChanged((user: any) => {
+      setUser(user as User);
+      if (initializing) setInitializing(false);
+    });
     return subscriber; // unsubscribe on unmount
   }, []);
 
@@ -173,6 +172,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-
-

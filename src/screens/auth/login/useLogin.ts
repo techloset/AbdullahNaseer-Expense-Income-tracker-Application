@@ -5,18 +5,24 @@ import {
   setLoading,
   setError,
   loginUser,
+  googleSignin,
 } from '../../../store/slices/authSlice';
 import auth from '@react-native-firebase/auth';
 import {Alert} from 'react-native';
 
 const useLogin = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const dispatch = useDispatch();
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+
   const handleLogin = async () => {
     setLoading(true);
     try {
@@ -27,6 +33,14 @@ const useLogin = () => {
       Alert.alert('Error', error.message);
     }
   };
+  const handleGoogleSignIn = async () => {
+    try {
+      await dispatch(googleSignin as any);
+    } catch (error: any) {
+      console.error(error);
+      setError(error.message);
+    }
+  };
   return {
     email,
     setEmail,
@@ -35,6 +49,10 @@ const useLogin = () => {
     loading,
     handleLogin,
     error,
+    togglePasswordVisibility,
+    isPasswordVisible,
+    handleGoogleSignIn,
+
   };
 };
 
