@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+  fetchUserData,
   updateUserProfile,
   uploadProfileImage,
 } from '../../../store/slices/userSlice';
@@ -91,6 +92,10 @@ const useUpdateProfile = (): UpdateUserProps => {
   const handleAlertVisible = () => {
     setAlertVisible(!alertVisible);
   };
+
+  useEffect(() => {
+    dispatch(fetchUserData() as any);
+  }, [dispatch, user.profileImage]);
 
   const handleUpdateUserImg = async (image: any) => {
     console.log('dspatche called');
