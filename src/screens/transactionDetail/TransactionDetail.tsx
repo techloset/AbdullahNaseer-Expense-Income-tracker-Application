@@ -18,9 +18,6 @@ import {TransactionInterface} from '../../types/types';
 import ConfirmAlert from '../../components/ConfirmAlert';
 import Alert from '../../components/Alert';
 
-
-
-
 const TransactionDetail: React.FC = () => {
   const route = useRoute();
 
@@ -33,7 +30,7 @@ const TransactionDetail: React.FC = () => {
     transactionType,
     imageUrl,
     timestamp,
-    imageId
+    imageId,
   } = route.params as TransactionInterface;
 
   const transactionData: TransactionInterface = {
@@ -45,14 +42,13 @@ const TransactionDetail: React.FC = () => {
     money,
     imageUrl,
     timestamp,
-    imageId
+    imageId,
   };
-
 
   useEffect(() => {
     console.log('Transaction Data from useeffect', transactionData);
-  }, [])
-  
+  }, []);
+
   const {
     handleDelete,
     handleEdit,
@@ -86,7 +82,7 @@ const TransactionDetail: React.FC = () => {
             {
               backgroundColor:
                 transactionType === 'Expense' ? '#FD3C4A' : '#00A86B',
-            }
+            },
           ]}>
           <DetailPageHeader onPress={() => setConfirmAlert(true)} />
           <View style={styles.UpperContainerText}>
@@ -97,7 +93,7 @@ const TransactionDetail: React.FC = () => {
               {money}
             </TextInput>
             <TextInput style={styles.uppercontainerHeadingText}>
-              Buy Some Grocery
+              {description.split(' ').slice(0, 5).join(' ')}
             </TextInput>
             <Text style={styles.upperContainerDateText}>{timestamp}</Text>
           </View>
