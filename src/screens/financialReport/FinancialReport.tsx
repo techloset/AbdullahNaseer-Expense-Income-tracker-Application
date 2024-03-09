@@ -10,14 +10,10 @@ import {
 } from 'react-native';
 import Category from '../../components/Category';
 import NavigationHeader from '../../components/NavigationHeader';
+import useFinancialReports from './useFinacialReport';
 
 const FinancialReports = () => {
-  const [isExpenseSelected, setIsExpenseSelected] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const handleToggle = () => {
-    setIsExpenseSelected(!isExpenseSelected);
-  };
+  const {isExpenseSelected, handleToggle, isLoading} = useFinancialReports();
 
   const expenseBackgroundColor = isExpenseSelected ? '#F1F1FA' : '#F1F1FA';
   const incomeBackgroundColor = isExpenseSelected ? '#F1F1FA' : '#F1F1FA';
@@ -83,7 +79,10 @@ const FinancialReports = () => {
 
   return (
     <View style={styles.MainContainer}>
-      <NavigationHeader title="Financial Report" />
+      <NavigationHeader
+        title="Financial Report"
+        headerStyle={{textColor: 'black'}}
+      />
       <ScrollView>
         <View style={styles.headerContainer}>
           <TouchableOpacity style={styles.filterButton}>
