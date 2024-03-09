@@ -122,13 +122,16 @@
 
 // export default userSlice.reducer;
 
-
-
-import { createAsyncThunk, createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  Dispatch,
+} from '@reduxjs/toolkit';
 import auth from '@react-native-firebase/auth';
-import { db } from '../../config/firebase';
+import {db} from '../../config/firebase';
 import storage from '@react-native-firebase/storage';
-import { ToastAndroid } from 'react-native';
+import {ToastAndroid} from 'react-native';
 
 interface UserState {
   user: auth.User | null;
@@ -167,57 +170,70 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, setLoading, setError, setProfileImage } = userSlice.actions;
+export const {setUser, setLoading, setError, setProfileImage} =
+  userSlice.actions;
 
-export const updateUserProfile = (userData: { displayName?: string; email?: string; profileImage?: string }) => async (dispatch: Dispatch<any>) => {
-  dispatch(setLoading(true));
-  try {
-    const currentUser = auth().currentUser;
-    if (!currentUser) {
-      throw new Error('No current user found');
+export const updateUserProfile =
+  (userData: {displayName?: string; email?: string; profileImage?: string}) =>
+  async (dispatch: Dispatch<any>) => {
+    dispatch(setLoading(true));
+    try {
+      const currentUser = auth().currentUser;
+      if (!currentUser) {
+        throw new Error('No current user found');
+      }
+      const {displayName, email, profileImage} = userData;
+      const updates: any = {};
+      if (displayName) updates.displayName = displayName;
+      if (email) updates.email = email;
+      if (profileImage) updates.profileImage = profileImage;
+
+      await db.collection('users').doc(currentUser.uid).update(updates);
+      dispatch(setUser(updates));
+      ToastAndroid.show('Profile updated successfully!', ToastAndroid.SHORT);
+      return updates;
+    } catch (error: any) {
+      console.error('Error updating user data:', error);
+      dispatch(setError(error.message));
+      ToastAndroid.show(
+        `Error updating profile: ${error.message}`,
+        ToastAndroid.SHORT,
+      );
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
     }
-    const { displayName, email, profileImage } = userData;
-    const updates: any = {};
-    if (displayName) updates.displayName = displayName;
-    if (email) updates.email = email;
-    if (profileImage) updates.profileImage = profileImage;
+  };
 
-    await db.collection('users').doc(currentUser.uid).update(updates);
-    dispatch(setUser(updates));
-    ToastAndroid.show('Profile updated successfully!', ToastAndroid.SHORT);
-    return updates;
-  } catch (error:any) {
-    console.error('Error updating user data:', error);
-    dispatch(setError(error.message));
-    ToastAndroid.show(`Error updating profile: ${error.message}`, ToastAndroid.SHORT);
-    throw error;
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
-
-export const uploadProfileImage = (image: any) => async (dispatch: Dispatch<any>) => {
-  dispatch(setLoading(true));
-  try {
-    const currentUser = auth().currentUser;
-    if (!currentUser) {
-      throw new Error('No current user found');
+export const uploadProfileImage =
+  (image: any) => async (dispatch: Dispatch<any>) => {
+    dispatch(setLoading(true));
+    try {
+      const currentUser = auth().currentUser;
+      if (!currentUser) {
+        throw new Error('No current user found');
+      }
+      const imageRef = storage().ref(`/images/${currentUser.uid}/profileImage`);
+      await imageRef.putFile(image.path);
+      const downloadURL = await imageRef.getDownloadURL();
+      await dispatch(updateUserProfile({profileImage: downloadURL}));
+      dispatch(setProfileImage(downloadURL));
+      ToastAndroid.show(
+        'Profile image uploaded successfully!',
+        ToastAndroid.SHORT,
+      );
+    } catch (error: any) {
+      console.error('Error uploading profile image:', error);
+      dispatch(setError(error.message));
+      ToastAndroid.show(
+        `Error uploading profile image: ${error.message}`,
+        ToastAndroid.SHORT,
+      );
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
     }
-    const imageRef = storage().ref(`/images/${currentUser.uid}/profileImage`);
-    await imageRef.putFile(image.path);
-    const downloadURL = await imageRef.getDownloadURL();
-    await dispatch(updateUserProfile({ profileImage: downloadURL }));
-    dispatch(setProfileImage(downloadURL));
-    ToastAndroid.show('Profile image uploaded successfully!', ToastAndroid.SHORT);
-  } catch (error:any) {
-    console.error('Error uploading profile image:', error);
-    dispatch(setError(error.message));
-    ToastAndroid.show(`Error uploading profile image: ${error.message}`, ToastAndroid.SHORT);
-    throw error;
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
+  };
 
 export const fetchUserData = () => async (dispatch: Dispatch<any>) => {
   dispatch(setLoading(true));
@@ -243,7 +259,7 @@ export const fetchUserData = () => async (dispatch: Dispatch<any>) => {
     } else {
       dispatch(setError('No current user found'));
     }
-  } catch (error:any) {
+  } catch (error: any) {
     console.error('Error fetching user data:', error);
     dispatch(setError(error.message));
   } finally {

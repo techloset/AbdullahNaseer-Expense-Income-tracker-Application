@@ -14,7 +14,7 @@ import ImagePicker, {
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import {db} from '../../config/firebase';
 import auth from '@react-native-firebase/auth';
-import {Alert, Dimensions} from 'react-native';
+import {Alert, Dimensions, ToastAndroid} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {
   addTransaction,
@@ -71,28 +71,31 @@ const useCreateTransaction = () => {
   const handleImageThroughCamera = () => {
     console.log('press image');
     try {
-      console.log("in the try")
+      console.log('in the try');
       ImagePicker.openCamera({
         width: 300,
         height: 400,
         cropping: true,
-      }).then(pickedImage => {
-        setImage(pickedImage);
-        console.log(pickedImage);
-        setFileModalVisible(false);
-      }).catch(error => {
-        console.error('Error picking image from camera:', error);
-        if (error.code === 'E_PERMISSION_MISSING') {
-          Alert.alert('Camera Permission Required', 'Please grant permission to access the camera.');
-        }
-        setFileModalVisible(false);
-      });
+      })
+        .then(pickedImage => {
+          setImage(pickedImage);
+          console.log(pickedImage);
+          setFileModalVisible(false);
+        })
+        .catch(error => {
+          console.error('Error picking image from camera:', error);
+          if (error.code === 'E_PERMISSION_MISSING') {
+            Alert.alert(
+              'Camera Permission Required',
+              'Please grant permission to access the camera.',
+            );
+          }
+          setFileModalVisible(false);
+        });
     } catch (error) {
       console.error('Error opening camera:', error);
     }
   };
-  
-  
 
   const selectCategory = (categoryName: string) => {
     setCategory(categoryName);
@@ -110,14 +113,13 @@ const useCreateTransaction = () => {
   const handleSubmit = async (): Promise<void> => {
     try {
       if (!description || !category || !money) {
+        ToastAndroid.show('Required fields are empty', ToastAndroid.SHORT);
         console.error('Required fields are empty');
         return;
       }
-
       setLoading(true);
       const userEmail: string = auth().currentUser?.email || '';
       let imageUrl: string | null = null;
-
       if (image) {
         const imageId: number = Date.now(); // Generate a unique ID for the image
         const imageRef = storage().ref(`/images/${userEmail}/${imageId}`);

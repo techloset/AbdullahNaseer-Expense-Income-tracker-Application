@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import auth from '@react-native-firebase/auth';
-
 import SignUp from '../screens/auth/signup/SignUp';
 import LoginScreen from '../screens/auth/login/Login';
 import ForgetPassScreen from '../screens/auth/forgetPassword/ForgetPassword';
@@ -11,20 +10,16 @@ import Home from '../screens/home/Home';
 import Transaction from '../screens/transactions/Transactions';
 import ProfileHome from '../screens/profile/profile/Profile';
 import ResetPassword from '../screens/profile/resetPassword/ResetPassword';
-import Budget from '../screens/budget/Budget';
 import CreateTransaction from '../screens/createTransaction/CreateTransaction';
 import UpdateProfile from '../screens/profile/updateProfile/UpdateProfile';
-
 import {Image} from 'react-native';
 import {User} from '../types/types';
-
 import homeIcon from '../assets/home.png';
 import transactionIcon from '../assets/transaction.png';
 import profileIcon from '../assets/profile.png';
-import budgetIcon from '../assets/piechart.png';
+import financialReportIcon from '../assets/piechart.png';
 import addIcon from '../assets/add.png';
 import TransactionDetail from '../screens/transactionDetail/TransactionDetail';
-import {NavigationRoute} from '../types/navigationType';
 import FinancialReports from '../screens/financialReport/FinancialReport';
 
 const Tab = createBottomTabNavigator();
@@ -51,7 +46,7 @@ const TabNavigation = () => (
             iconSource = focused ? profileIcon : profileIcon;
             break;
           case 'FinancialReport':
-            iconSource = focused ? budgetIcon : budgetIcon;
+            iconSource = focused ? financialReportIcon : financialReportIcon;
             break;
           default:
             iconSource = null;

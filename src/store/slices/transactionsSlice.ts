@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {db} from '../../config/firebase'; // Assuming firebase config is imported here
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
+import {ToastAndroid} from 'react-native';
 
 // Interface for a transaction object
 interface Transaction {
@@ -87,6 +88,7 @@ export const addTransaction = createAsyncThunk<Transaction, Transaction>(
       dispatch(fetchTransactions() as any);
       return {...transactionData, id: docRef.id};
     } catch (error) {
+      ToastAndroid.show('Error adding transaction', ToastAndroid.SHORT);
       console.error('Error adding transaction:', error);
       throw error;
     }
@@ -114,6 +116,7 @@ export const editTransaction = createAsyncThunk<Transaction, Transaction>(
       dispatch(fetchTransactions() as any); // Assuming fetchTransactions fetches updated data
       return updatedTransactionData;
     } catch (error) {
+      ToastAndroid.show('Error editing transaction', ToastAndroid.SHORT);
       console.error('error editing=======>', error);
       throw error;
     }
@@ -141,31 +144,12 @@ export const deleteTransaction = createAsyncThunk<Transaction, Transaction>(
         console.error('Document does not exist');
         return;
       }
-
-      // Get the transaction data
-      // const data = docSnapshot.data();
-      // const imageUrl = data?.imageUrl;
-      // const imageId = data?.imageId;
-
-      // // If image exists, delete it from storage
-      // if (imageUrl) {
-      //   try {
-      //     const imagePath = `images/${userEmail}/${imageId}`;
-      //     await storage().ref().child(imagePath).delete();
-      //     console.log('Image deleted successfully');
-      //   } catch (error) {
-      //     console.error('Error deleting image:', error);
-      //   }
-      // }
-
-      // Delete the transaction document from Firestore
       await db
         .collection('transactions')
         .doc(collectionName)
         .collection(transactionData.transactionType)
         .doc(transactionData.docId)
         .delete();
-
       console.log('Successfully deleted transaction:', transactionData.docId);
 
       // After deleting the transaction, dispatch fetchTransactions to update the state
@@ -173,10 +157,10 @@ export const deleteTransaction = createAsyncThunk<Transaction, Transaction>(
 
       return transactionData;
     } catch (error) {
+      ToastAndroid.show('Error deleting transaction', ToastAndroid.SHORT);
       console.error('Error deleting transaction:', error);
       throw error;
     }
-    console.log('Successfully deleted transaction:', transactionData.docId);
   },
 );
 // Slice state type
@@ -238,7 +222,6 @@ export const transactionSlice = createSlice({
   },
 });
 
-// Export actions and reducer
-export const {} = transactionSlice.actions; // Consider naming exports if needed
+export const {} = transactionSlice.actions;
 
 export default transactionSlice.reducer;

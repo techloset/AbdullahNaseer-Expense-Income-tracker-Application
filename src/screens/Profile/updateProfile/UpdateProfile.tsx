@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Modal,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native'; // Import KeyboardAvoidingView
 import NavigationHeader from '../../../components/NavigationHeader';
 import AppButton from '../../../components/AppButton';
@@ -43,7 +44,7 @@ const UpdateProfile = () => {
   }, [dispatch]);
 
   return (
-    <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
+    <>
       <View style={styles.container}>
         <NavigationHeader
           title={'Update Profile'}
@@ -118,7 +119,7 @@ const UpdateProfile = () => {
         onPress={handleAlertVisible}
         visible={alertVisible}
       />
-    </KeyboardAvoidingView>
+    </>
   );
 };
 

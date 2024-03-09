@@ -84,7 +84,7 @@ export const registerUser =
           ToastAndroid.show('This email is invalid', ToastAndroid.SHORT);
         }
         if (error.code === 'auth/weak-password') {
-          console.log('danger', 'Password is too weak');
+          console.log('danger', 'min 6 characters required for password');
           ToastAndroid.show('Password is too weak', ToastAndroid.SHORT);
         }
         setLoading(false);
@@ -119,6 +119,19 @@ export const loginUser =
       console.log('success', 'User logged in!');
       ToastAndroid.show('User logged in!', ToastAndroid.SHORT);
     } catch (error: any) {
+      if (error.code === 'auth/user-not-found') {
+        console.log('danger', 'User not found');
+        ToastAndroid.show('User not found', ToastAndroid.SHORT);
+      }
+      if (error.code === 'auth/wrong-password') {
+        console.log('danger', 'Invalid password');
+        ToastAndroid.show('Invalid password', ToastAndroid.SHORT);
+      }
+      if (error.code === 'auth/invalid-email') {
+        console.log('danger', 'Invalid email');
+        ToastAndroid.show('Invalid email', ToastAndroid.SHORT);
+      }
+      console.error(error);
       ToastAndroid.show('Login failed', ToastAndroid.SHORT);
       dispatch(setError(error.message));
       console.error(error);
@@ -154,8 +167,20 @@ export const googleSignin = async () => {
     } else {
       ToastAndroid.show('User signed in successfully!', ToastAndroid.SHORT);
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log('error', error);
+    ToastAndroid.show('Google Signin failed', ToastAndroid.SHORT);
+    if (error.code === 'auth/account-exists-with-different-credential') {
+      console.log('danger', 'Account already exists with different credential');
+      ToastAndroid.show(
+        'Account already exists with different credential',
+        ToastAndroid.SHORT,
+      );
+    }
+    if (error.code === 'auth/invalid-credential') {
+      console.log('danger', 'Invalid credential');
+      ToastAndroid.show('Invalid credential', ToastAndroid.SHORT);
+    }
   }
 };
 
