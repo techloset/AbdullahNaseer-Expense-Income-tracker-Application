@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import NavigationHeader from '../../../components/NavigationHeader';
 import AppButton from '../../../components/AppButton';
 import useResetPassword from './useResetPassword';
+import {styles} from './styles';
 
 const ResetPassword = () => {
   const {
@@ -43,27 +44,3 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
-
-const styles = StyleSheet.create({
-  container: {
-    margin: 16,
-    position: 'relative',
-    height: '100%',
-  },
-  textInput: {
-    width: '100%',
-    height: 56,
-    backgroundColor: 'white',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'whitesmoke',
-    paddingHorizontal: 10,
-    marginTop: 24,
-    color: "black"
-  },
-  resetPasswordBtn: {
-    position: 'absolute',
-    bottom: 55,
-    width: '100%',
-  },
-});

@@ -13,12 +13,10 @@ import Filter from '../../components/Filter';
 import HeaderMenu from '../../components/HeaderMenu';
 import HomeList from '../../components/HomeList';
 import MenuBar from '../../components/MenuBar';
-import {useNavigation} from '@react-navigation/native';
-import Navigation from '../../navigation/Navigation';
 import useHome from './useHome';
+import {styles} from './styles';
 
 const Home = () => {
-  const navigation = useNavigation();
   const {
     financeSummary,
     selectedFilter,
@@ -51,13 +49,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  content: {
-    flex: 1,
-  },
-});

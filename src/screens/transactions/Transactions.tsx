@@ -13,7 +13,7 @@ import MenuBar from '../../components/MenuBar';
 import useTransactions from './useTransactions';
 import FilterTransactionPopup from '../../components/FilterTransactionPopup';
 import {TransactionInterface} from '../../types/types';
-
+import {styles} from './styles';
 
 const Transaction: React.FC = () => {
   const {
@@ -114,77 +114,3 @@ const Transaction: React.FC = () => {
 };
 
 export default Transaction;
-
-const styles = StyleSheet.create({
-  container: {
-    margin: 16,
-    flex: 1,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  filterButton: {
-    height: 40,
-    width: 96,
-    borderRadius: 20,
-    borderColor: 'whitesmoke',
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  filterButtonText: {
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  burgerIcon: {
-    height: 40,
-    width: 40,
-    borderRadius: 15,
-    borderColor: 'whitesmoke',
-    borderWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  alertContainer: {
-    height: 54,
-    backgroundColor: '#EEE5FF',
-    borderRadius: 16,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 16,
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    width: '100%',
-    alignSelf: 'center',
-  },
-  alertContainerText: {
-    fontSize: 16,
-    fontWeight: '400',
-    color: '#7F3DFF',
-  },
-  headingText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: 'black',
-    marginBottom: 10,
-  },
-  modelContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modelBackground: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  flatList: {},
-});

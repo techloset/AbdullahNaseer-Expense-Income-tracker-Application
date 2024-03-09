@@ -4,6 +4,7 @@ import AppButton from '../../../components/AppButton';
 import NavigationHeader from '../../../components/NavigationHeader';
 import useForgetPassword from './useForgetPassword';
 import {useNavigation} from '@react-navigation/native';
+import {styles} from './styles';
 
 const ForgetPassScreen: React.FC = () => {
   const navigation = useNavigation();
@@ -34,36 +35,3 @@ const ForgetPassScreen: React.FC = () => {
 
 export default ForgetPassScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'left',
-    marginBottom: 20,
-  },
-  inputContainer: {
-    width: '100%',
-    marginBottom: 20,
-  },
-  textInput: {
-    width: '100%',
-    height: 56,
-    backgroundColor: 'white',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'whitesmoke',
-    paddingHorizontal: 10,
-    marginTop: 10,
-  },
-});
