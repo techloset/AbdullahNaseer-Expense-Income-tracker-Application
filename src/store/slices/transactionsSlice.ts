@@ -107,7 +107,7 @@ export const editTransaction = createAsyncThunk<Transaction, Transaction>(
         .doc(updatedTransactionData.id)
         .update(updatedTransactionData);
       console.log(
-        'Successfully edited transaction: msg from slice============================================>',
+        'Successfully edited transaction',
         //transactionData.docId,
         updatedTransactionData,
       );

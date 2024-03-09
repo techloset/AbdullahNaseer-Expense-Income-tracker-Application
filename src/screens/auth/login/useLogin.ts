@@ -8,7 +8,7 @@ import {
   googleSignin,
 } from '../../../store/slices/authSlice';
 import auth from '@react-native-firebase/auth';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 
 const useLogin = () => {
   const dispatch = useDispatch();
@@ -22,13 +22,16 @@ const useLogin = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-
   const handleLogin = async () => {
+    if (!email || !password) {
+      return Alert.alert('Error', 'All fields are required');
+    }
     setLoading(true);
     try {
       await dispatch(loginUser({email, password}) as any);
       setLoading(false);
     } catch (error: any) {
+      ToastAndroid.show('Login failed', ToastAndroid.SHORT);
       setError(error.message);
       Alert.alert('Error', error.message);
     }
@@ -52,7 +55,6 @@ const useLogin = () => {
     togglePasswordVisibility,
     isPasswordVisible,
     handleGoogleSignIn,
-
   };
 };
 

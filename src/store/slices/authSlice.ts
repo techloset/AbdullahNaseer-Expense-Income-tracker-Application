@@ -3,7 +3,7 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import firestore from '@react-native-firebase/firestore';
 import {AuthState, SignIn, SignUp, User} from '../../types/types';
-import { ToastAndroid } from 'react-native';
+import {ToastAndroid} from 'react-native';
 
 const initialState: AuthState = {
   user: null,
@@ -13,7 +13,7 @@ const initialState: AuthState = {
 
 GoogleSignin.configure({
   webClientId:
-    '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com', 
+    '410122792339-986og3kdl5im005jcjr1o4a9rnls27b4.apps.googleusercontent.com',
 });
 
 export const authSlice = createSlice({
@@ -46,7 +46,10 @@ export const registerUser =
     dispatch(setLoading(true));
     if (!displayName || !email || !password) {
       console.log('danger', 'Please fill your all required fields');
-
+      ToastAndroid.show(
+        'Please fill your all required fields',
+        ToastAndroid.SHORT,
+      );
       return;
     }
     return await auth()
@@ -67,14 +70,22 @@ export const registerUser =
             email: email,
           } as User),
         );
+        setLoading(false);
+        ToastAndroid.show('User registered successfully!', ToastAndroid.SHORT);
         console.log('success', 'User registered successfully!');
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
           console.log('danger', 'This email is already in use');
+          ToastAndroid.show('This email is already in use', ToastAndroid.SHORT);
         }
         if (error.code === 'auth/invalid-email') {
           console.log('danger', 'This email is invalid');
+          ToastAndroid.show('This email is invalid', ToastAndroid.SHORT);
+        }
+        if (error.code === 'auth/weak-password') {
+          console.log('danger', 'Password is too weak');
+          ToastAndroid.show('Password is too weak', ToastAndroid.SHORT);
         }
         setLoading(false);
         console.error(error);
@@ -89,6 +100,10 @@ export const loginUser =
     try {
       if (!email || !password) {
         console.log('danger', 'Please enter your email and password correctly');
+        ToastAndroid.show(
+          'Please enter your email and password correctly',
+          ToastAndroid.SHORT,
+        );
       }
       await auth().signInWithEmailAndPassword(email, password);
 
@@ -102,7 +117,9 @@ export const loginUser =
         );
       }
       console.log('success', 'User logged in!');
+      ToastAndroid.show('User logged in!', ToastAndroid.SHORT);
     } catch (error: any) {
+      ToastAndroid.show('Login failed', ToastAndroid.SHORT);
       dispatch(setError(error.message));
       console.error(error);
     } finally {
@@ -132,7 +149,7 @@ export const googleSignin = async () => {
           email: auth()?.currentUser?.email,
           profileImage: auth()?.currentUser?.photoURL || null,
           uid: auth()?.currentUser?.uid,
-        })
+        });
       ToastAndroid.show('New user signed up successfully!', ToastAndroid.SHORT);
     } else {
       ToastAndroid.show('User signed in successfully!', ToastAndroid.SHORT);
@@ -141,6 +158,5 @@ export const googleSignin = async () => {
     console.log('error', error);
   }
 };
-
 
 export default authSlice.reducer;

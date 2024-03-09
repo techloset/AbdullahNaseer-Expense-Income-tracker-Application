@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -31,6 +31,9 @@ const SignUp: React.FC = () => {
     isPasswordVisible,
   } = useSignup();
   const navigation = useNavigation();
+  useEffect(() => {
+    console.log('Error', error);
+  }, [error]);
   return (
     <View style={styles.container}>
       <NavigationHeader title="Sign Up" headerStyle={{textColor: 'black'}} />
@@ -140,3 +143,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
+
