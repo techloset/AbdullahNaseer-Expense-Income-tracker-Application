@@ -19,9 +19,7 @@ import {RootState} from '../../../store/store';
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
-  const {user, isLoading, error} = useSelector(
-    (state: RootState) => state.user,
-  );
+  const {user, isLoading, error} = useSelector((state: any) => state.user);
   const {
     displayName,
     setDisplayName,
@@ -41,11 +39,14 @@ const UpdateProfile = () => {
   return (
     <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
       <View style={styles.container}>
-        <NavigationHeader title={'Update Profile'} />
+        <NavigationHeader
+          title={'Update Profile'}
+          headerStyle={{textColor: 'black'}}
+        />
         <View style={styles.profileView}>
           <View style={styles.imageContainer}>
             {isLoading ? (
-              <Text>Loading Image</Text>
+              <Image source={require("../../../assets/loader.png")}/>
             ) : (
               <Image
                 style={styles.userImage}
@@ -127,7 +128,6 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     overflow: 'hidden',
-    backgroundColor: 'red',
     borderColor: '#AD00FF',
     borderWidth: 2,
   },
