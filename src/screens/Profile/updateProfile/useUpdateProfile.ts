@@ -7,7 +7,7 @@ import {
 } from '../../../store/slices/userSlice';
 import {RootState} from '../../../store/store';
 import ImagePicker from 'react-native-image-crop-picker';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 
 import {UpdateUserProps} from '../../../types/types';
 
@@ -41,29 +41,23 @@ const useUpdateProfile = (): UpdateUserProps => {
           profileImage: user.profileImage,
         }) as any,
       );
-      console.log('User data updated successfully!');
     } catch (error: any) {
-      console.error('Error updating user data:', error);
       setUpdateError(error.message);
     }
   };
   const handleImageThrougGallery = () => {
-    console.log('press image');
     ImagePicker.openPicker({
       width: 200,
       height: 200,
       cropping: true,
     }).then(pickedImage => {
       setImage(pickedImage);
-      console.log(pickedImage);
       setFileModalVisible(false);
       handleUpdateUserImg(pickedImage);
     });
   };
   const handleImageThroughCamera = () => {
-    console.log('press image');
     try {
-      console.log('in the try');
       ImagePicker.openCamera({
         width: 300,
         height: 400,
@@ -71,7 +65,6 @@ const useUpdateProfile = (): UpdateUserProps => {
       })
         .then(pickedImage => {
           setImage(pickedImage);
-          console.log(pickedImage);
           setFileModalVisible(false);
           handleUpdateUserImg(pickedImage);
         })
@@ -98,15 +91,13 @@ const useUpdateProfile = (): UpdateUserProps => {
   }, [dispatch, user.profileImage]);
 
   const handleUpdateUserImg = async (image: any) => {
-    console.log('dspatche called');
     try {
-      console.log('dispatch called');
       await dispatch(uploadProfileImage(image) as any);
       setMessage('Image uploaded successfully');
       setAlertVisible(true);
     } catch (error: any) {
-      console.error('Error updating user image:', error);
       setUpdateError(error.message);
+      ToastAndroid.show('Error uploading image', ToastAndroid.SHORT);
     }
   };
   return {

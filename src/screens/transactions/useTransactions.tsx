@@ -27,7 +27,6 @@ const useTransactions = () => {
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const handleFilterModelShow = () => {
     setShowFilter(!showFilter);
-    console.log('sss');
   };
 
   const {isLoading, transactions, isError} = useSelector(
@@ -97,15 +96,12 @@ const useTransactions = () => {
       return false;
     });
 
-    console.log('Filtered Transactions:', filteredTransactions);
-    // Handle filtered transactions here (e.g., update UI)
     setFilteredTransactions(filteredTransactions);
     setShowFilter(false);
   };
 
   const handleSortSelect = (sort: string) => {
     setSelectedSort(sort);
-    console.log('sort', sort);
   };
 
   return {

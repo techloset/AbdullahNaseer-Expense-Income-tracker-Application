@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import auth from '@react-native-firebase/auth';
+import { ToastAndroid } from 'react-native';
 // import
 const useProfile = () => {
   const [confirmAlert, setConfirmAlert] = useState(false);
@@ -7,7 +8,7 @@ const useProfile = () => {
   const handleSignOut = () => {
     auth()
       .signOut()
-      .then(() => console.log('User signed out!'));
+      .then(() => ToastAndroid.show('Signed out successfully', ToastAndroid.SHORT));
     setConfirmAlert(false);
   };
   const handleCancelSignOut = () => {

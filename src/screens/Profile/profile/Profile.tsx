@@ -25,12 +25,7 @@ const ProfileHome: React.FC = () => {
   }, [dispatch]);
 
   // Re-render when user data changes (including initially getting populated)
-  useEffect(() => {
-    console.log(
-      'User data updated, re-rendering profile page ============================================',
-    );
-    console.log('User data from profile', user);
-  }, [user]);
+
 
   return (
     <View style={styles.mainContainer}>

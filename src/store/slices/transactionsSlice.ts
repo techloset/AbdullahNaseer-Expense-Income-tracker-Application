@@ -65,7 +65,7 @@ export const fetchTransactions = createAsyncThunk<Transaction[]>(
 
       return allTransactions;
     } catch (error) {
-      console.error('Error fetching transactions:', error);
+      // console.error('Error fetching transactions:', error);
       throw error; // Propagate the error for handling in the UI
     }
   },
@@ -83,13 +83,13 @@ export const addTransaction = createAsyncThunk<Transaction, Transaction>(
         .collection(transactionData.transactionType)
         .add(transactionData);
 
-      console.log('Successfully added transaction:', docRef.id);
+      // console.log('Successfully added transaction:', docRef.id);
       // After adding the transaction, dispatch fetchTransactions to update the state
       dispatch(fetchTransactions() as any);
       return {...transactionData, id: docRef.id};
     } catch (error) {
       ToastAndroid.show('Error adding transaction', ToastAndroid.SHORT);
-      console.error('Error adding transaction:', error);
+      // console.error('Error adding transaction:', error);
       throw error;
     }
   },
@@ -108,16 +108,16 @@ export const editTransaction = createAsyncThunk<Transaction, Transaction>(
         .collection(updatedTransactionData.transactionType)
         .doc(updatedTransactionData.id)
         .update(updatedTransactionData);
-      console.log(
-        'Successfully edited transaction',
-        //transactionData.docId,
-        updatedTransactionData,
-      );
+      // console.log(
+      //   'Successfully edited transaction',
+      //   //transactionData.docId,
+      //   updatedTransactionData,
+      // );
       dispatch(fetchTransactions() as any); // Assuming fetchTransactions fetches updated data
       return updatedTransactionData;
     } catch (error) {
       ToastAndroid.show('Error editing transaction', ToastAndroid.SHORT);
-      console.error('error editing=======>', error);
+      // console.error('error editing=======>', error);
       throw error;
     }
   },
@@ -141,7 +141,7 @@ export const deleteTransaction = createAsyncThunk<Transaction, Transaction>(
 
       // Check if the document exists
       if (!docSnapshot.exists) {
-        console.error('Document does not exist');
+        // console.error('Document does not exist');
         return;
       }
       await db
@@ -150,7 +150,7 @@ export const deleteTransaction = createAsyncThunk<Transaction, Transaction>(
         .collection(transactionData.transactionType)
         .doc(transactionData.docId)
         .delete();
-      console.log('Successfully deleted transaction:', transactionData.docId);
+      // console.log('Successfully deleted transaction:', transactionData.docId);
 
       // After deleting the transaction, dispatch fetchTransactions to update the state
       dispatch(fetchTransactions() as any);
@@ -158,7 +158,7 @@ export const deleteTransaction = createAsyncThunk<Transaction, Transaction>(
       return transactionData;
     } catch (error) {
       ToastAndroid.show('Error deleting transaction', ToastAndroid.SHORT);
-      console.error('Error deleting transaction:', error);
+      // console.error('Error deleting transaction:', error);
       throw error;
     }
   },

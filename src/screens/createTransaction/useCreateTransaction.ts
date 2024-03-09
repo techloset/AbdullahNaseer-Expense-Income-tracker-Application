@@ -47,31 +47,24 @@ const useCreateTransaction = () => {
   const dispatch = useDispatch();
 
   const handleImageThrougGallery = () => {
-    console.log('press image');
     ImagePicker.openPicker({
       width: 200,
       height: 200,
       cropping: true,
     }).then(pickedImage => {
       setImage(pickedImage);
-      console.log(pickedImage);
       setFileModalVisible(false);
     });
   };
 
   const toggleCategoryModal = () => {
-    console.log(' modal');
     setModalVisible(!modalVisible);
   };
 
-  useEffect(() => {
-    console.log('use effect img', image);
-  }, [image]);
+
 
   const handleImageThroughCamera = () => {
-    console.log('press image');
     try {
-      console.log('in the try');
       ImagePicker.openCamera({
         width: 300,
         height: 400,
@@ -79,7 +72,6 @@ const useCreateTransaction = () => {
       })
         .then(pickedImage => {
           setImage(pickedImage);
-          console.log(pickedImage);
           setFileModalVisible(false);
         })
         .catch(error => {

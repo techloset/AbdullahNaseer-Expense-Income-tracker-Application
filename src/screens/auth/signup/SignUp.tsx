@@ -32,9 +32,7 @@ const SignUp: React.FC = () => {
     isPasswordVisible,
   } = useSignup();
   const navigation = useNavigation();
-  useEffect(() => {
-    console.log('Error', error);
-  }, [error]);
+
   return (
     <View style={styles.container}>
       <NavigationHeader title="Sign Up" headerStyle={{textColor: 'black'}} />

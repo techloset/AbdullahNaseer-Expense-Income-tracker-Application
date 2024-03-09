@@ -72,10 +72,6 @@ const useHome = () => {
         }
         return true;
       });
-
-      // Console log selected filter and filtered transactions
-      console.log('Selected Filter:', selectedFilter);
-      console.log('Filtered Transactions for home:', filtered);
       return filtered;
     }
     return transactions;

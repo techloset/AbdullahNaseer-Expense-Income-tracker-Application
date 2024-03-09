@@ -46,9 +46,6 @@ const TransactionDetail: React.FC = () => {
     imageId,
   };
 
-  useEffect(() => {
-    console.log('Transaction Data from useeffect', transactionData);
-  }, []);
 
   const {
     handleDelete,

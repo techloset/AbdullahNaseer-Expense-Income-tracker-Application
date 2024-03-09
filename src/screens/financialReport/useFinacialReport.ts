@@ -1,43 +1,3 @@
-// import {useEffect, useState} from 'react';
-// import {useSelector} from 'react-redux';
-// import {RootState} from '../../store/store';
-
-// const useFinancialReports = () => {
-//   const [isExpenseSelected, setIsExpenseSelected] = useState<boolean>(true);
-//   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-//   // Select transactions from Redux store
-//   const transactions = useSelector(
-//     (state: RootState) => state.transactions.transactions,
-//   );
-
-//   // Calculate financial summary
-//   const income = transactions
-//     .filter(transaction => transaction.transactionType === 'Income')
-//     .reduce((acc, curr) => acc + parseFloat(curr.money), 0);
-
-//   const expenses = transactions
-//     .filter(transaction => transaction.transactionType === 'Expense')
-//     .reduce((acc, curr) => acc + parseFloat(curr.money), 0);
-
-//   const balance = income - expenses;
-
-//   const handleToggle = () => {
-//     setIsExpenseSelected(!isExpenseSelected);
-//   };
-
-//   return {
-//     isExpenseSelected,
-//     isLoading,
-//     handleToggle,
-//     income,
-//     expenses,
-//     balance,
-//   };
-// };
-
-// export default useFinancialReports;
-
 import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
@@ -73,13 +33,6 @@ const useFinancialReports = () => {
   const categoryIncomes: CategoryIncomes = {};
   const categoryExpenses: CategoryExpenses = {};
 
-  useEffect(() => {
-    console.log('balance', balance);
-    console.log('categoryIncomes', categoryIncomes);
-    console.log('categoryExpenses', categoryExpenses);
-    console.log('expenses', expenses);
-
-  }, []);
   transactions.forEach(transaction => {
     if (transaction.transactionType === 'Income') {
       if (!categoryIncomes[transaction.category]) {
