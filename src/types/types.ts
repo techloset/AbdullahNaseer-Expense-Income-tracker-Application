@@ -97,7 +97,7 @@ export interface AppButtonProps {
   disabled?: boolean;
 }
 
-export interface CategoryProps {
+export interface FinancialCategoryGraphProps {
   category: string;
   color: string;
   style: object;

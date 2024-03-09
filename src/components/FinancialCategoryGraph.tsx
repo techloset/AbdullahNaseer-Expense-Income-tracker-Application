@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Image} from 'react-native';
-import {CategoryProps} from '../types/types';
+import {FinancialCategoryGraphProps} from '../types/types';
 
 // interface CategoryProps {
 //   category: string;
@@ -13,7 +13,7 @@ import {CategoryProps} from '../types/types';
 //   transactionType: 'Expense' | 'Income';
 // }
 
-const Category: React.FC<CategoryProps> = ({
+const FinancialCategoryGraph: React.FC<FinancialCategoryGraphProps> = ({
   category,
   color,
   amount,
@@ -42,7 +42,7 @@ const Category: React.FC<CategoryProps> = ({
   );
 };
 
-export default Category;
+export default FinancialCategoryGraph;
 
 const styles = StyleSheet.create({
   CategoryContainer: {
@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 10,
+    width: '100%',
   },
   Container: {
     flexDirection: 'row',
     alignItems: 'center',
     height: 34,
-    maxWidth: 230,
     borderWidth: 1,
     borderColor: '#D9D9D9',
     borderRadius: 17,

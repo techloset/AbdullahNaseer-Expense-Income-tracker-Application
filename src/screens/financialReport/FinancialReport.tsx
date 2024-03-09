@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Category from '../../components/Category';
+import FinancialCategoryGraph from '../../components/FinancialCategoryGraph';
 import NavigationHeader from '../../components/NavigationHeader';
 import useFinancialReports from './useFinacialReport';
 import {styles} from './styles';
@@ -32,7 +32,7 @@ const FinancialReports = () => {
   const bottomContentText = isExpenseSelected ? (
     <View style={styles.BarGraphContainer}>
       {Object.keys(categoryExpenses).map(category => (
-        <Category
+        <FinancialCategoryGraph
           color=""
           key={category}
           category={category}
@@ -47,7 +47,7 @@ const FinancialReports = () => {
   ) : (
     <View style={styles.BarGraphContainer}>
       {Object.keys(categoryIncomes).map(category => (
-        <Category
+        <FinancialCategoryGraph
           color=""
           key={category}
           category={category}
