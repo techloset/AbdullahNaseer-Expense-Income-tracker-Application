@@ -70,16 +70,29 @@ const useCreateTransaction = () => {
 
   const handleImageThroughCamera = () => {
     console.log('press image');
-    ImagePicker.openCamera({
-      width: 300,
-      height: 400,
-      cropping: true,
-    }).then(pickedImage => {
-      setImage(pickedImage);
-      console.log(pickedImage);
-      setFileModalVisible(false);
-    });
+    try {
+      console.log("in the try")
+      ImagePicker.openCamera({
+        width: 300,
+        height: 400,
+        cropping: true,
+      }).then(pickedImage => {
+        setImage(pickedImage);
+        console.log(pickedImage);
+        setFileModalVisible(false);
+      }).catch(error => {
+        console.error('Error picking image from camera:', error);
+        if (error.code === 'E_PERMISSION_MISSING') {
+          Alert.alert('Camera Permission Required', 'Please grant permission to access the camera.');
+        }
+        setFileModalVisible(false);
+      });
+    } catch (error) {
+      console.error('Error opening camera:', error);
+    }
   };
+  
+  
 
   const selectCategory = (categoryName: string) => {
     setCategory(categoryName);
@@ -118,7 +131,7 @@ const useCreateTransaction = () => {
         imageUrl,
         transactionType,
         timestamp: new Date().toString(),
-        imageId: image ? Date.now() : null, 
+        imageId: image ? Date.now() : null,
       };
       await dispatch(addTransaction(transactionData) as any);
       setDescription('');

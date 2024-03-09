@@ -16,6 +16,7 @@ import useUpdateProfile from './useUpdateProfile'; // Import the custom hook
 import {fetchUserData} from '../../../store/slices/userSlice';
 import AttachmentInputPopUp from '../../../components/AttachmentInputPopUp';
 import {RootState} from '../../../store/store';
+import Alert from '../../../components/Alert';
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const UpdateProfile = () => {
     toggleFileModal,
     handleUpdateUserImg,
     handleImageThrougGallery,
+    handleImageThroughCamera,
+    message,
+    alertVisible,
+    handleAlertVisible,
   } = useUpdateProfile(); // Use the custom hook
 
   useEffect(() => {
@@ -46,7 +51,7 @@ const UpdateProfile = () => {
         <View style={styles.profileView}>
           <View style={styles.imageContainer}>
             {isLoading ? (
-              <Image source={require("../../../assets/loader.png")}/>
+              <Image source={require('../../../assets/loader.png')} />
             ) : (
               <Image
                 style={styles.userImage}
@@ -102,10 +107,16 @@ const UpdateProfile = () => {
           <View style={styles.attachmentPopup}>
             <AttachmentInputPopUp
               handleImageThrougGallery={handleImageThrougGallery}
+              handleImageThroughCamera={handleImageThroughCamera}
             />
           </View>
         </View>
       </Modal>
+      <Alert
+        message={message}
+        onPress={handleAlertVisible}
+        visible={alertVisible}
+      />
     </KeyboardAvoidingView>
   );
 };

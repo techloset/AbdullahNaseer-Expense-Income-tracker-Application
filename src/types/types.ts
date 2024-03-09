@@ -193,4 +193,8 @@ export interface UpdateUserProps {
   toggleFileModal: () => void;
   handleUpdateUserImg: (image: any) => void;
   handleImageThrougGallery: () => void;
+  handleImageThroughCamera: () => void;
+  handleAlertVisible: () => void;
+  message: string;
+  alertVisible: boolean;
 }

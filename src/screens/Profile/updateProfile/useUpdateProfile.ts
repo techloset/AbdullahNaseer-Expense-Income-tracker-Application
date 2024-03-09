@@ -8,7 +8,7 @@ import {RootState} from '../../../store/store';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Alert} from 'react-native';
 
-import { UpdateUserProps } from '../../../types/types';
+import {UpdateUserProps} from '../../../types/types';
 
 const useUpdateProfile = (): UpdateUserProps => {
   const dispatch = useDispatch();
@@ -23,6 +23,8 @@ const useUpdateProfile = (): UpdateUserProps => {
   const [updateError, setUpdateError] = useState<string | null>(null);
   const [fileModalVisible, setFileModalVisible] = useState<boolean>(false);
   const [image, setImage] = useState<any>(null);
+  const [message, setMessage] = useState<string>('');
+  const [alertVisible, setAlertVisible] = useState<boolean>(false);
 
   const toggleFileModal = () => {
     setFileModalVisible(!fileModalVisible);
@@ -57,13 +59,46 @@ const useUpdateProfile = (): UpdateUserProps => {
       handleUpdateUserImg(pickedImage);
     });
   };
+  const handleImageThroughCamera = () => {
+    console.log('press image');
+    try {
+      console.log('in the try');
+      ImagePicker.openCamera({
+        width: 300,
+        height: 400,
+        cropping: true,
+      })
+        .then(pickedImage => {
+          setImage(pickedImage);
+          console.log(pickedImage);
+          setFileModalVisible(false);
+          handleUpdateUserImg(pickedImage);
+        })
+        .catch(error => {
+          console.error('Error picking image from camera:', error);
+          if (error.code === 'E_PERMISSION_MISSING') {
+            Alert.alert(
+              'Camera Permission Required',
+              'Please grant permission to access the camera.',
+            );
+          }
+          setFileModalVisible(false);
+        });
+    } catch (error) {
+      console.error('Error opening camera:', error);
+    }
+  };
+  const handleAlertVisible = () => {
+    setAlertVisible(!alertVisible);
+  };
 
   const handleUpdateUserImg = async (image: any) => {
     console.log('dspatche called');
     try {
       console.log('dispatch called');
       await dispatch(uploadProfileImage(image) as any);
-      Alert.alert('Image uploaded successfully');
+      setMessage('Image uploaded successfully');
+      setAlertVisible(true);
     } catch (error: any) {
       console.error('Error updating user image:', error);
       setUpdateError(error.message);
@@ -82,6 +117,10 @@ const useUpdateProfile = (): UpdateUserProps => {
     toggleFileModal,
     handleUpdateUserImg,
     handleImageThrougGallery,
+    handleImageThroughCamera,
+    handleAlertVisible,
+    message,
+    alertVisible,
   };
 };
 
