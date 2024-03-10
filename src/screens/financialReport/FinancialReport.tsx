@@ -76,7 +76,7 @@ const FinancialReports = () => {
               source={require('../../assets/arrow-down.png')}
               style={styles.filterImage}
             />
-            <Text style={styles.filterButtonText}>Month</Text>
+            <Text style={styles.filterButtonText}>All time</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.burgerIcon}>
             <Image

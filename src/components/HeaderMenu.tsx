@@ -1,11 +1,13 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store/store';
 import {fetchUserData} from '../store/slices/userSlice';
+import {useNavigation} from '@react-navigation/native';
 
 const HeaderMenu = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   // const user = useSelector(state => state.user.user);
   const user = useSelector((state: RootState) => state.user.user);
 
@@ -15,7 +17,11 @@ const HeaderMenu = () => {
   }, [dispatch]);
   return (
     <View style={styles.container}>
-      <View style={styles.userImgContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('ProfileHome' as never);
+        }}
+        style={styles.userImgContainer}>
         {user && user.profileImage ? (
           <Image style={styles.userImage} source={{uri: user.profileImage}} />
         ) : (
@@ -24,18 +30,18 @@ const HeaderMenu = () => {
             source={require('../assets/user.png')}
           />
         )}
-      </View>
-      <View style={styles.selectMonth}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.selectMonth}>
         <Image
           style={styles.userImage}
           source={require('../assets/dropdown.png')}
         />
-        <Text style={styles.monthText}>October</Text>
-      </View>
+        <Text style={styles.monthText}>All Time</Text>
+      </TouchableOpacity>
       <View>
         <Image
           style={styles.notification}
-          source={require('../assets/notification.png')}
+          source={require('../assets/notifiaction.png')}
         />
       </View>
     </View>

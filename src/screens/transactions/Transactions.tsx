@@ -14,8 +14,10 @@ import useTransactions from './useTransactions';
 import FilterTransactionPopup from '../../components/FilterTransactionPopup';
 import {TransactionInterface} from '../../types/types';
 import {styles} from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const Transaction: React.FC = () => {
+  const navigation = useNavigation();
   const {
     transactions,
     isLoading,
@@ -65,7 +67,11 @@ const Transaction: React.FC = () => {
           <Image source={require('../../assets/burgerIcon.png')} />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.alertContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('FinancialReport' as never);
+        }}
+        style={styles.alertContainer}>
         <Text style={styles.alertContainerText}>See your financial report</Text>
         <Image source={require('../../assets/arrowright.png')} />
       </TouchableOpacity>

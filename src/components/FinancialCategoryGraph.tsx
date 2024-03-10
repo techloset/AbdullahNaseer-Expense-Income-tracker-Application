@@ -1,17 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import React from 'react';
-import {Image} from 'react-native';
-import {FinancialCategoryGraphProps} from '../types/types';
+import { FinancialCategoryGraphProps } from '../types/types';
 
-// interface CategoryProps {
-//   category: string;
-//   color: string;
-//   style: object;
-//   styleamount: object;
-//   amount: number;
-//   image: any;
-//   transactionType: 'Expense' | 'Income';
-// }
+const { width } = Dimensions.get('window');
+const CONTAINER_WIDTH = width - 32; // Full width of screen minus margins
 
 const FinancialCategoryGraph: React.FC<FinancialCategoryGraphProps> = ({
   category,
@@ -24,7 +16,7 @@ const FinancialCategoryGraph: React.FC<FinancialCategoryGraphProps> = ({
 }) => {
   return (
     <View>
-      <View style={styles.CategoryContainer}>
+      <View style={[styles.CategoryContainer, { width: CONTAINER_WIDTH }]}>
         <View style={styles.Container}>
           <Text style={[styles.ContainerDot, style]}>{color}</Text>
           <Text style={styles.ContainerText}>{category}</Text>
@@ -51,7 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 10,
-    width: '100%',
   },
   Container: {
     flexDirection: 'row',
@@ -70,13 +61,11 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
   ContainerText: {
-    height: 34,
+    // flex: 1, // Remove flex property
     fontFamily: 'Inter-SemiBold',
     fontSize: 16,
     color: 'black',
     marginRight: 10,
-    overflow: 'hidden',
-
     textAlignVertical: 'center',
   },
   ContainerText2: {
@@ -90,9 +79,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   categoryImage: {
-    width: 323,
+    width: CONTAINER_WIDTH * 1, // Adjust image width accordingly
     borderRadius: 25,
     marginTop: 5,
     height: 15,
+    resizeMode: 'contain',
   },
 });

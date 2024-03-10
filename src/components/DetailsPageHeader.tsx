@@ -3,9 +3,6 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {detailPageHeaderProps} from '../types/types';
 
-// interface detailPageHeaderProps {
-//   onPress: () => void;
-// }
 
 const DetailPageHeader:React.FC<detailPageHeaderProps> = ({onPress}) => {
   const navigation = useNavigation();
@@ -55,6 +52,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     fontWeight: '600',
+    color: 'white',
   },
   deleteBtn: {
     justifyContent: 'flex-end',

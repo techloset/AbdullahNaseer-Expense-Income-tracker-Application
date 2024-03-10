@@ -1,14 +1,18 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeHeader = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View>
           <Text style={styles.headingText}>Recent Transaction See All</Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Transaction' as never)}
+          style={styles.button}>
           <Text style={styles.buttonText}>See All</Text>
         </TouchableOpacity>
       </View>
@@ -41,6 +45,6 @@ const styles = StyleSheet.create({
   headingText: {
     fontSize: 18,
     fontWeight: '600',
-    color: 'black'
+    color: 'black',
   },
 });

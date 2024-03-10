@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
-import {TransactionInterface,TransactionCardProps} from '../types/types';
+import {TransactionInterface, TransactionCardProps} from '../types/types';
 
 const TransactionCard: React.FC<TransactionCardProps> = ({
   id,
@@ -55,7 +55,11 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
         <Image style={styles.inputImg} source={getImageSource(category)} />
         <View style={styles.detailsTextContainer}>
           <Text style={styles.detailsContainerHeading}>{category}</Text>
-          <Text style={styles.detailsContaineDescription}>{description}</Text>
+          <Text style={styles.detailsContaineDescription}>
+            {description.length > 30
+              ? `${description.slice(0, 30)}...`
+              : description}
+          </Text>
         </View>
       </View>
       <View style={styles.timeContainer}>
