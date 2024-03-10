@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -13,8 +13,6 @@ import NavigationHeader from '../../../components/NavigationHeader';
 import useSignup from './useSignup'; // Import the useSignup hook
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './styles'; // Import the styles
-
-
 
 const SignUp: React.FC = () => {
   const {
@@ -78,7 +76,7 @@ const SignUp: React.FC = () => {
             onPress={handleGoogleSignIn}
             title={'Continue with Google'}
           />
-          <Text>
+          <Text style={styles.linkContainer}>
             Already have an account?
             <TouchableOpacity
               onPress={() => navigation.navigate('login' as never)}>
@@ -92,6 +90,3 @@ const SignUp: React.FC = () => {
 };
 
 export default SignUp;
-
-
-

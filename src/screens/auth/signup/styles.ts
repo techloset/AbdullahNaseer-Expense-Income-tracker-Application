@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     height: 56,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: 'whitesmoke',
     paddingHorizontal: 10,
@@ -48,4 +48,8 @@ export const styles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
   },
+  linkContainer:{
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
