@@ -69,7 +69,6 @@ const useUpdateProfile = (): UpdateUserProps => {
           handleUpdateUserImg(pickedImage);
         })
         .catch(error => {
-          console.error('Error picking image from camera:', error);
           if (error.code === 'E_PERMISSION_MISSING') {
             Alert.alert(
               'Camera Permission Required',
@@ -79,7 +78,6 @@ const useUpdateProfile = (): UpdateUserProps => {
           setFileModalVisible(false);
         });
     } catch (error) {
-      console.error('Error opening camera:', error);
     }
   };
   const handleAlertVisible = () => {

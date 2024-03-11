@@ -75,7 +75,6 @@ const useCreateTransaction = () => {
           setFileModalVisible(false);
         })
         .catch(error => {
-          console.error('Error picking image from camera:', error);
           if (error.code === 'E_PERMISSION_MISSING') {
             Alert.alert(
               'Camera Permission Required',
@@ -85,7 +84,6 @@ const useCreateTransaction = () => {
           setFileModalVisible(false);
         });
     } catch (error) {
-      console.error('Error opening camera:', error);
     }
   };
 
@@ -106,7 +104,6 @@ const useCreateTransaction = () => {
     try {
       if (!description || !category || !money) {
         ToastAndroid.show('Required fields are empty', ToastAndroid.SHORT);
-        console.error('Required fields are empty');
         return;
       }
       setLoading(true);
@@ -136,7 +133,6 @@ const useCreateTransaction = () => {
       setLoading(false);
       setAlert(true);
     } catch (error) {
-      console.error('Error adding transaction:', error);
       setLoading(false);
     }
   };

@@ -69,7 +69,6 @@ export const updateUserProfile =
       ToastAndroid.show('Profile updated successfully!', ToastAndroid.SHORT);
       return updates;
     } catch (error: any) {
-      console.error('Error updating user data:', error);
       dispatch(setError(error.message));
       ToastAndroid.show(
         `Error updating profile: ${error.message}`,
@@ -99,7 +98,6 @@ export const uploadProfileImage =
         ToastAndroid.SHORT,
       );
     } catch (error: any) {
-      // console.error('Error uploading profile image:', error);
       dispatch(setError(error.message));
       ToastAndroid.show(
         `Error uploading profile image: ${error.message}`,
@@ -136,7 +134,6 @@ export const fetchUserData = () => async (dispatch: Dispatch<any>) => {
       dispatch(setError('No current user found'));
     }
   } catch (error: any) {
-    // console.error('Error fetching user data:', error);
     dispatch(setError(error.message));
   } finally {
     dispatch(setLoading(false));

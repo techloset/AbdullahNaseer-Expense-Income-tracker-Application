@@ -40,7 +40,6 @@ const useLogin = () => {
     try {
       await dispatch(googleSignin as any);
     } catch (error: any) {
-      console.error(error);
       setError(error.message);
     }
   };

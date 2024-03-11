@@ -70,7 +70,6 @@ const useTransactionDetail = (
       setAlert(true);
       setConfirmAlert(false);
     } catch (error) {
-      console.error('Error removing document: ', error);
     }
   };
   const handleEdit = async (): Promise<void> => {
@@ -87,7 +86,6 @@ const useTransactionDetail = (
       setAlertMessage('Transaction updated Successfully');
       setAlert(true);
     } catch (error) {
-      console.error('Error updating document: ', error);
     }
   };
 

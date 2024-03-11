@@ -21,7 +21,6 @@ const useForgetPassword = () => {
         errorMessage = 'That email address is not registered!';
       }
       Alert.alert(errorMessage);
-      // console.error(error);
       Alert.alert(error);
     }
   };

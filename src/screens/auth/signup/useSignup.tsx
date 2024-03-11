@@ -31,14 +31,12 @@ const useSignup = () => {
       Alert.alert('Error', error.message);
       setError(error.message);
       setLoading(false);
-      // console.log('Error', error.message);
     }
   };
   const handleGoogleSignIn = async () => {
     try {
       await dispatch(googleSignin as any);
     } catch (error: any) {
-      console.error(error);
       setError(error.message);
     }
   };
