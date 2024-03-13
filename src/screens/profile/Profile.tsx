@@ -1,11 +1,11 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-import ConfirmAlert from '../../../components/ConfirmAlert';
+import ConfirmAlert from '../../components/ConfirmAlert';
 import useProfile from './useProfile';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
-import {fetchUserData} from '../../../store/slices/userSlice';
+import {RootState} from '../../store/store';
+import {fetchUserData} from '../../store/slices/userSlice';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './styles';
 
